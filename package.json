@@ -1,7 +1,7 @@
 {
   "name": "testytester",
   "version": "1.0.0",
-  "description": "Some boilerplate code to get you started - get shakin'!",
+  "description": "Explore space and learn to test with Chester the cat-astronaut!",
   "engines": {
     "node": ">= 7.0.0"
   },
@@ -18,7 +18,7 @@
     "start-server": "nodemon server -e html,js,scss --ignore public --ignore client",
     "test": "NODE_ENV='test' mocha ./server/**/*.spec.js ./server/**/**/*.spec.js ./client/**/*.spec.js --require @babel/polyfill --require @babel/register"
   },
-  "author": "Fullstack Academy of Code",
+  "author": "Charlie's Angels",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.15.3",
