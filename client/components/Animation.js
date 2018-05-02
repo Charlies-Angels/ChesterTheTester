@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import {Col} from 'react-bootstrap';
+
 
 class Animation extends Component {
 	constructor() {
@@ -8,7 +10,7 @@ class Animation extends Component {
 
 	render() {
 		return(
-			<div></div>
+			<Col xs={6} md={4}>Animation</Col>
 		)
 	}
 }
