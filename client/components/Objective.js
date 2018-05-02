@@ -1,31 +1,23 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import {Col} from 'react-bootstrap'
+import levels from './levels/levels'
 
 class Objective extends Component {
-	constructor() {
-		super()
+	constructor(props) {
+		super(props)
 	}
 
 	render() {
+		let level = "level" + this.props.match.params.id;
+
 		return(
 			<Col xs={6} md={4}>
-				<pre><code>
-					{
-						`
-						const launchRocket = () => {
-						  let countDown = [];
-						  let counter = 10;
-						  while (counter>-1) {
-						    countDown.push(counter);
-						    counter--;
-						  } 
-						  return countDown;
-						 }
-						 launchRocket();
-						`
-					}
-				</code></pre>
+				<pre>
+					<code>
+						{levels[level]}
+					</code>
+				</pre>
 			</Col>
 		)
 	}
