@@ -1,7 +1,7 @@
 {
   "name": "boilermaker",
   "version": "1.0.0",
-  "description": "Explor space and learn to test with Chester the cat-astronaut!",
+  "description": "Explore space and learn to test with Chester the cat-astronaut!",
   "engines": {
     "node": ">= 7.0.0"
   },
