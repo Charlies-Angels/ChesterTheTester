@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
+import {ProgressBar} from 'react-bootstrap'
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div>
@@ -15,6 +16,10 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
           <a href="#" onClick={handleClick}>
             Logout
           </a>
+          <ProgressBar>
+            <ProgressBar striped bsStyle="success" now={10} key={1} />
+            <ProgressBar striped bsStyle="danger" now={90} key={2} />
+          </ProgressBar>
         </div>
       ) : (
         <div>

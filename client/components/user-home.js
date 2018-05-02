@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-
 /**
  * COMPONENT
  */
@@ -10,7 +10,7 @@ export const UserHome = (props) => {
 
   return (
     <div>
-      <h3>Splash Page for {email}</h3>
+      <Link to="/level/1">Level 1</Link>
     </div>
   )
 }
