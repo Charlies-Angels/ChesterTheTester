@@ -1,42 +1,19 @@
-/* global describe beforeEach it */
+//Pure JS tests
 
-import {expect} from 'chai'
-// import React from 'react'
-// import enzyme, {shallow} from 'enzyme'
-// import Adapter from 'enzyme-adapter-react-16'
-// import {UserHome} from './user-home'
-
-// const adapter = new Adapter()
-// enzyme.configure({adapter})
-
-// describe('UserHome', () => {
-//   let userHome
-
-//   beforeEach(() => {
-//     userHome = shallow(<UserHome email={'cody@email.com'} />)
-//   })
-
-//   it('renders the email in an h3', () => {
-//     expect(userHome.find('h3').text()).to.be.equal('Welcome, cody@email.com')
-//   })
-// })
-
-
-//Starting Tests for Capstone
+const level1 = `
 const launchRocket = () => {
 	let countDown = [];
 	let counter = 10;
-	while (counter > -1) {
+	while (counter>-1) {
 		countDown.push(counter);
 		counter--;
-	} return countDown;
+	}
+	return countDown;
 }
-
 launchRocket();
+`
 
-
-//test
-
+const level1Test = `
 describe('return an array of numbers counting down from 10', () => {
 	let result = launchRocket();
 
@@ -52,7 +29,9 @@ describe('return an array of numbers counting down from 10', () => {
 		expect(result).to.have.lengthOf(11)
 	});
 });
+`
 
+const level2 = `
 class Rocket {
 	constructor(height, width, capacity) {
 		this.height = height;
@@ -64,7 +43,10 @@ class Rocket {
 		return this.height * this.width;
 	}
 }
+`
 
+
+const level2Test = `
 describe('Rocket class', () => {
 	let testRocket = new Rocket(10, 5, 100);
 
@@ -78,9 +60,10 @@ describe('Rocket class', () => {
 		expect(testRocket.area()).to.equal(50);
 	});
 });
+`
 
-
-
-
-
+export default {
+	level1,
+	level2
+}
 

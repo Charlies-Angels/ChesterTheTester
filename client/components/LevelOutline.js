@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Objective from './Objective'
 import Animation from './Animation';
 import DragDrop from './DragDrop';
-import {Row, Col, Grid} from 'react-bootstrap';
+import {Row} from 'react-bootstrap';
 
 class LevelOutline extends Component {
 	constructor() {
@@ -15,7 +15,7 @@ class LevelOutline extends Component {
 			
 			<Row className="show-grid">
 				<Animation />
-				<Objective />
+				<Objective {...this.props} />
 				<DragDrop />
 			</Row>
 			)
