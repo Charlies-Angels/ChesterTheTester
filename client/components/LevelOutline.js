@@ -10,42 +10,56 @@ class LevelOutline extends Component {
 	constructor() {
 		super()
 		this.state = {
-			expected: "",
-			actual: "",
+			input1: "",
+			input2: "",
 			message: "",
 			selectOne: "",
-			selected: []
+			selected: [],
+			error: false
 		}
 	}
 
 	handleClickAssert = (event) => {
-		const {message, actual, expected, selected, selectOne} = this.state
 		this.setState({
 			selectOne: event.target.value
 		})
-
-
-		console.log(selectOne)
-		console.log(assert[event.target.value](message,[actual,expected]))
 	}
-	
+
 	runTest = (event) => {
 		event.preventDefault();
+		const {selectOne, input1, input2, message} = this.state
 
-
-
-
-		this.setState({
-			selected: [...this.state.selected, event.target.value]
-		})
-		
-
+		let result = assert[selectOne](message,[input2,input1])
+		console.log(result)
+		let str = ''
+		if (result === message) {
+			 str =
+					`
+								it('${message}',function(){
+									assert.${selectOne}(${input2},${input1})
+								})
+					`
+			this.setState({
+				selectOne: '',
+				input1: '',
+				input2: '',
+				message: '',
+				error: false,
+				selected: [...this.state.selected, str]
+			})
+		}
+		else {
+			this.setState({
+				error: true
+			})
+		}
 	}
 
 	render() {
 		const methods = Object.keys(assert);
-		const {message, actual, expected, selected, selectOne} = this.state
-		console.log(assert["propertyVal"])
+
+		const {message, input2, input1, selected, selectOne, error} = this.state
+
 		return (
 			<div>
 				<Row className="show-grid">
@@ -70,37 +84,39 @@ class LevelOutline extends Component {
 						    onChange={ (event)=> this.setState({message: event.target.value})}
 						    />
 						</label>
-						{selectOne ? 
+						{selectOne ?
 						  	(<div>
 						  		<label>
 								    Input 1
-								    <input 
-								    type="text" 
+								    <input
+								    type="text"
 								    name="input1"
-								    onChange={ (event)=> this.setState({expected: event.target.value})}
+								    onChange={ (event)=> this.setState({input1: event.target.value})}
 								    />
 						  		</label>
 							  	<label>
 							    	Input 2
-								    <input 
-								    type="text" 
-								    name="input2" 
-								    onChange={ (event) => this.setState({actual: event.target.value})}
+								    <input
+								    type="text"
+								    name="input2"
+								    onChange={ (event) => this.setState({input2: event.target.value})}
 								    />
 							  	</label>
-							</div>) : null				
+							</div>) : null
 						}
 					  	<input type="submit" name="Submit" />
+					  	{error ? <div>Test Failed Please Try Again</div> : <span /> }
 					</form>
 				</div>
 				<pre>
 					<code>
 						{
 							`
-							describe('Writing tests for launchRocket', function(){ 
-							  it('${message}',function(){
-							    assert.${selectOne}(${actual},${expected})
-							  })
+							describe('Writing tests for launchRocket', function(){
+								${selected.map(element => element)}
+								it('${message}',function(){
+							        assert.${selectOne}(${input2},${input1})
+								})
 							})
 							`
 						}
