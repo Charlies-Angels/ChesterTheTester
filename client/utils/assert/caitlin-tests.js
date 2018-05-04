@@ -14,4 +14,12 @@ const assert = {
     else if (typeof haystack === 'object' && !(haystack.hasOwnProperty(needle))) return msg;
     else return 'ERROR YOU SUCK'
   },
+  match(msg, value, regex) {
+    if (value.match(regex)) return msg;
+    else return 'ERROR YOU SUCK'
+  },
+  property(object, prop) {
+    if (object.hasOwnProperty(prop)) return msg;
+    else return 'ERROR YOU SUCK'
+  }
 }
