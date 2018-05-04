@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
+import { assert } from './test-object'
 /**
  * COMPONENT
  */
@@ -11,6 +12,8 @@ export const UserHome = (props) => {
   return (
     <div>
       <Link to="/level/1">Level 1</Link>
+      <h1>{assert.closeTo(5, 6, 1)}</h1>
+
     </div>
   )
 }
