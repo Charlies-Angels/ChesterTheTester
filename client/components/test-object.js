@@ -1,5 +1,5 @@
 
- const assert = {
+ export const assert = {
   equal(msg, [actual, expected]) {
       if (actual === expected) {return msg}
       else { return `Expected ${expected} to equal ${actual} YOU WRONG`}
@@ -138,5 +138,3 @@
     return checkBool ? msg : 'ERROR YOU SUCK'
   }
 };
-
-export default assert;
