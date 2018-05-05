@@ -1,6 +1,6 @@
 /* global describe beforeEach it */
 
-import {expect} from 'chai'
+import {assert, expect} from 'chai'
 // import React from 'react'
 // import enzyme, {shallow} from 'enzyme'
 // import Adapter from 'enzyme-adapter-react-16'
@@ -41,7 +41,7 @@ describe('return an array of numbers counting down from 10', () => {
 	let result = launchRocket();
 
 	it('launchRocket should be a function', () => {
-		expect(launchRocket).to.be.a('function');
+		assert.isNull(launchRocket);
 	});
 
 	it('launchRocket should return an array', () => {
@@ -65,7 +65,7 @@ class Rocket {
 	}
 }
 
-describe('Rocket class', () => {
+describe('', () => {
 	let testRocket = new Rocket(10, 5, 100);
 
 	it('Rocket should have a height, width, and capacity', () => {

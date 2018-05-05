@@ -1,142 +1,237 @@
-
- const assert = {
-  equal(msg, [actual, expected]) {
-      if (actual === expected) {return msg}
-      else { return `Expected ${expected} to equal ${actual} YOU WRONG`}
+export const assert = {
+  typeOf: {
+    func(msg, actual, expected) {
+      if (typeof actual === expected) return msg;
+      return 'YOU WRONG';
+    },
+    args: ['actual', 'expected'],
   },
-  strictEqual(msg, [actual, expected]) {
-      if (actual === expected) { return msg }
-      else { return `Expected ${expected} to strictly equal ${actual} YOU WRONG`}
+  equal: {
+    func(msg, actual, expected) {
+      if (actual === expected) return msg;
+      return `Expected ${expected} to equal ${actual} YOU WRONG`;
+    },
+    args: ['actual', 'expected'],
   },
-  isTrue(msg, [actual]) {
-      if (actual) {return msg}
-      else { return `Expected ${actual} to be True`}
+  strictEqual: {
+    func(msg, actual, expected) {
+      if (actual === expected) return msg;
+      return `Expected ${expected} to strictly equal ${actual} YOU WRONG`;
+    },
+    args: ['actual', 'expected'],
   },
-  isFalse(msg, [actual]) {
-      if (!actual) {return msg}
-      else { return `Expected ${actual} to be False`}
+  isTrue: {
+    func(msg, actual) {
+      if (actual === true) return msg;
+      return `Expected ${actual} to be True`;
+    },
+    args: ['actual'],
   },
-  isNull(msg, [actual]) {
-      if (actual === null) {return msg}
-      else { return `Expected ${actual} to be null`}
+  isFalse: {
+    func(msg, actual) {
+      if (actual === false) return msg;
+      return `Expected ${actual} to be False`;
+    },
+    args: ['actual'],
   },
-  isNotNull(msg, [actual]) {
-      if (actual !== null) {return msg}
-      else { return `Expected ${actual} to be not null`}
+  isNull: {
+    func(msg, actual) {
+      if (actual === null) return msg;
+      return `Expected ${actual} to be null`;
+    },
+    args: ['actual'],
   },
-  isUndefined(msg, [actual]) {
-      if (actual === undefined) {return msg}
-      else { return `Expected ${actual} to be undefined`}
+  isNotNull: {
+    func(msg, actual) {
+      if (actual !== null) return msg;
+      return `Expected ${actual} to be not null`;
+    },
+    args: ['actual'],
   },
-  isNotUndefined(msg, [actual]) {
-      if (actual !== undefined) {return msg}
-      else { return `Expected ${actual} to be not undefined`}
+  isUndefined: {
+    func(msg, actual) {
+      if (actual === undefined) return msg;
+      return `Expected ${actual} to be undefined`;
+    },
+    args: ['actual'],
   },
-  isArray(msg, [actual]) {
-    if (actual.isArray) {return msg}
-    else { return `Expected ${actual} to be an array`}
+  isNotUndefined: {
+    func(msg, actual) {
+      if (actual !== undefined) return msg;
+      return `Expected ${actual} to be not undefined`;
+    },
+    args: ['actual'],
   },
-  isObject(msg, [actual]) {
-    if (typeof actual == 'object') {return msg}
-    else {
-      return `Expected ${actual} to be a object`
-    }
+  isArray: {
+    func(msg, actual) {
+      if (actual.isArray) return msg;
+      return `Expected ${actual} to be an array`;
+    },
+    args: ['actual'],
   },
-  isFunction(msg, [actual]) {
-    if (typeof actual == 'function') {return msg}
-    else {
-      return `Expected ${actual} to be a function`
-    }
+  isObject: {
+    func(msg, actual) {
+      if (typeof actual == 'object') return msg;
+      return `Expected ${actual} to be a object`;
+    },
+    args: ['actual'],
   },
-  closeTo(msg, [actual, expected, delta]) {
-    if ( actual === expected) {return msg}
-    else if ( actual < expected && (actual + delta) >= expected) {return msg}
-    else if ( actual > expected && (actual + delta) <= expected) {return msg}
-    else {return `Expected ${actual} to be close to ${expected}`}
+  isFunction: {
+    func(msg, actual) {
+      if (typeof actual == 'function') return msg;
+      return `Expected ${actual} to be a function`;
+    },
+    args: ['actual'],
   },
-  isString(msg, [actual]) {
-    if (typeof actual === 'string' ) return msg;
-    else return `Expected ${actual} to be a string, WRONG`
+  closeTo: {
+    func(msg, actual, expected, delta) {
+      if (actual === expected) return msg;
+      else if (actual < expected && actual + delta >= expected) return msg;
+      else if (actual > expected && actual + delta <= expected) return msg;
+      return `Expected ${actual} to be close to ${expected}`;
+    },
+    args: ['actual', 'expected', 'delta'],
   },
-  isNumber(msg, [actual]) {
-  if (typeof actual === 'number' ) return msg;
-  else return `Expected ${actual} to be a number, WRONG`
+  isString: {
+    func(msg, actual) {
+      if (typeof actual === 'string') return msg;
+      return `Expected ${actual} to be a string, WRONG`;
+    },
+    args: ['actual'],
   },
-  isBoolean(msg, [actual]) {
-  if (typeof actual === 'boolean' ) return msg;
-  else return `Expected ${actual} to be a boolean, WRONG`
+  isNumber: {
+    func(msg, actual) {
+      if (typeof actual === 'number') return msg;
+      return `Expected ${actual} to be a number, WRONG`;
+    },
+    args: ['actual'],
   },
-  include(msg, [haystack, needle]) {
-    if (Array.isArray(haystack) || typeof haystack === 'string' ) {
-      if (haystack.includes(needle)) return msg;
-    }
-    else if (typeof haystack === 'object' && haystack.hasOwnProperty(needle)) {return msg}
-    return 'ERROR YOU SUCK'
+  isBoolean: {
+    func(msg, actual) {
+      if (typeof actual === 'boolean') return msg;
+      return `Expected ${actual} to be a boolean, WRONG`;
+    },
+    args: ['actual'],
   },
-  notInclude(msg, [haystack, needle]) {
-    if (Array.isArray(haystack) || typeof haystack === 'string' ) {
-      if (!haystack.includes(needle)) {return msg}
-    }
-    else if (typeof haystack === 'object' && !(haystack.hasOwnProperty(needle))) {return msg}
-    return 'ERROR YOU SUCK'
+  include: {
+    func(msg, actual, searchTerm) {
+      if (Array.isArray(actual) || typeof actual === 'string') {
+        if (actual.includes(searchTerm)) return msg;
+      }
+      else if (typeof actual === 'object'
+      && actual.hasOwnProperty(searchTerm)) {
+        return msg;
+      }
+      return 'ERROR YOU SUCK';
+    },
+    args: ['actual', 'search term'],
   },
-  match(msg, [value, regex]) {
-    if (value.match(regex)) {return msg}
-    return 'ERROR YOU SUCK'
+  notInclude: {
+    func(msg, actual, searchTerm) {
+      if (Array.isArray(actual) || typeof actual === 'string') {
+        if (!actual.includes(searchTerm)) {
+          return msg;
+        }
+      } else if (
+        typeof actual === 'object' &&
+        !actual.hasOwnProperty(searchTerm)
+      ) {
+        return msg;
+      }
+      return 'ERROR YOU SUCK';
+    },
+    args: ['actual, searchTerm'],
   },
-  property(msg, [object, prop]) {
-    if (object.hasOwnProperty(prop)) {return msg}
-    return 'ERROR YOU SUCK'
+  match: {
+    func(msg, value, regexp) {
+      if (value.match(regexp)) {
+        return msg;
+      }
+      return 'ERROR YOU SUCK';
+    },
+    args: ['value, regexp'],
   },
-  lengthOf(msg, [input, len]) {
-    if (Array.isArray(input) || typeof input === 'string' ) {
-      if (input.length === len) {return msg}
-    }
-    else if (typeof haystack === 'object' && (Object.keys(input).length === len)) {return msg}
-    return 'ERROR YOU SUCK'
+  property: {
+    func(msg, object, prop) {
+      if (object.hasOwnProperty(prop)) {
+        return msg;
+      }
+      return 'ERROR YOU SUCK';
+    },
+    args: ['object', 'property'],
   },
-  isOk(msg, [input]) {
-    if (input) return msg;
-    return 'ERROR YOU SUCK'
+  lengthOf: {
+    func(msg, actual, len) {
+      if (Array.isArray(actual) || typeof actual === 'string') {
+        if (actual.length === len) {
+          return msg;
+        }
+      } else if (
+        typeof actual === 'object' &&
+        Object.keys(actual).length === len
+      ) {
+        return msg;
+      }
+      return 'ERROR YOU SUCK';
+    },
+    args: ['actual', 'length'],
   },
-  isNotOk(msg, [input]) {
-    if (!input) return msg;
-    return 'ERROR YOU SUCK'
+  isOk: {
+    func(msg, actual) {
+      if (actual) return msg;
+      return 'ERROR YOU SUCK';
+    },
+    args: ['actual'],
   },
-  propertyVal(msg, [object, property, value]) {
-    if (object[property] === value) return msg;
-    return 'ERROR YOU SUCK'
+  isNotOk: {
+    func(msg, actual) {
+      if (!actual) return msg;
+      return 'ERROR YOU SUCK';
+    },
+    args: ['actual'],
   },
-  instanceOf(msg, [child, parent]) {
-    if (child instanceof parent) return msg;
-    return 'ERROR YOU SUCK'
+  propertyVal: {
+    func(msg, object, property, value) {
+      if (object[property] === value) return msg;
+      return 'ERROR YOU SUCK';
+    },
+    args: ['object', 'property', 'value'],
   },
-  operator(msg, [val1, operation, val2]) {
-    let checkBool = null;
-    switch (operation) {
-      case '<':
-        checkBool = val1 < val2;
-        break;
-      case '>':
-        checkBool = val1 < val2;
-        break;
-      case '==':
-        checkBool = val1 == val2;
-        break;
-      case '===':
-        checkBool = val1 === val2;
-        break;
-      case '!=':
-        checkBool = val1 != val2;
-        break;
-      case '!==':
-        checkBool = val1 !== val2;
-        break;
-      default:
-        checkBool = false;
-    }
-    return checkBool ? msg : 'ERROR YOU SUCK'
-  }
+  instanceOf: {
+    func(msg, instance, constructor) {
+      if (instance instanceof constructor) return msg;
+      return 'ERROR YOU SUCK';
+    },
+    args: ['instance', 'constructor'],
+  },
+  operator: {
+    func(msg, val1, operation, val2) {
+      let checkBool = null;
+      switch (operation) {
+        case '<':
+          checkBool = val1 < val2;
+          break;
+        case '>':
+          checkBool = val1 < val2;
+          break;
+        case '==':
+          checkBool = val1 == val2;
+          break;
+        case '===':
+          checkBool = val1 === val2;
+          break;
+        case '!=':
+          checkBool = val1 != val2;
+          break;
+        case '!==':
+          checkBool = val1 !== val2;
+          break;
+        default:
+          checkBool = false;
+      }
+      return checkBool ? msg : 'ERROR YOU SUCK';
+    },
+    args: ['value 1', 'operator', 'value 2'],
+  },
 };
 
-export default assert;
