@@ -1,9 +1,8 @@
-import React from 'react'
-import Navbar from './components/nav/navbar'
+import React from 'react';
+import Navbar from './components/nav/navbar';
 // import {Navbar} from './components'
-import Routes from './routes'
-import {Grid} from 'react-bootstrap'
-import Test from './components/test-checks/test';
+import Routes from './routes';
+import { Grid } from 'react-bootstrap';
 
 const App = () => {
   return (
@@ -11,7 +10,7 @@ const App = () => {
       <Navbar />
       <Routes />
     </Grid>
-  )
-}
+  );
+};
 
-export default App
+export default App;
