@@ -117,13 +117,13 @@ form div {
   height: 80vh;
   min-height: 100%;
   margin-right: 5vw;
-  border-style: solid;
   background-color: #353539;
-border-width: 76px 80px 134px 74px;
--moz-border-image: url(img/control-panel.png) 76 80 134 74 repeat;
--webkit-border-image: url(img/control-panel.png) 76 80 134 74 repeat;
--o-border-image: url(img/control-panel.png) 76 80 134 74 repeat;
-border-image: url(img/control-panel.png) 76 80 134 74 fill repeat;
+  border-style: solid;
+  border-width: 38px 85px 79px 83px;
+  -moz-border-image: url(img/control-panel.png) 38 85 79 83 repeat;
+  -webkit-border-image: url(img/control-panel.png) 38 85 79 83 repeat;
+  -o-border-image: url(img/control-panel.png) 38 85 79 83 repeat;
+  border-image: url(img/control-panel.png) 38 85 79 83 fill repeat;
 border-radius: 10%;
 }
 .chester {
