@@ -1,85 +1,86 @@
+
 export const assert = {
   typeOf: {
     func(msg, actual, expected) {
       if (typeof actual === expected) return msg;
-      return 'YOU WRONG';
+      return [msg, `Expected ${actual} to be a type of ${expected}`];
     },
     args: ['actual', 'expected'],
   },
   equal: {
     func(msg, actual, expected) {
       if (actual === expected) return msg;
-      return `Expected ${expected} to equal ${actual} YOU WRONG`;
+      return [msg, `Expected ${actual} to equal ${expected}`];
     },
     args: ['actual', 'expected'],
   },
   strictEqual: {
     func(msg, actual, expected) {
       if (actual === expected) return msg;
-      return `Expected ${expected} to strictly equal ${actual} YOU WRONG`;
+      return [msg, `Expected ${actual} to strictly equal ${expected}`];
     },
     args: ['actual', 'expected'],
   },
   isTrue: {
     func(msg, actual) {
       if (actual === true) return msg;
-      return `Expected ${actual} to be True`;
+      return [msg, `Expected ${actual} to be true`];
     },
     args: ['actual'],
   },
   isFalse: {
     func(msg, actual) {
       if (actual === false) return msg;
-      return `Expected ${actual} to be False`;
+      return [msg, `Expected ${actual} to be false`];
     },
     args: ['actual'],
   },
   isNull: {
     func(msg, actual) {
       if (actual === null) return msg;
-      return `Expected ${actual} to be null`;
+      return [msg, `Expected ${actual} to be null`];
     },
     args: ['actual'],
   },
   isNotNull: {
     func(msg, actual) {
       if (actual !== null) return msg;
-      return `Expected ${actual} to be not null`;
+      return [msg, `Expected ${actual} to not be null`];
     },
     args: ['actual'],
   },
   isUndefined: {
     func(msg, actual) {
       if (actual === undefined) return msg;
-      return `Expected ${actual} to be undefined`;
+      return [msg, `Expected ${actual} to be undefined`];
     },
     args: ['actual'],
   },
   isNotUndefined: {
     func(msg, actual) {
       if (actual !== undefined) return msg;
-      return `Expected ${actual} to be not undefined`;
+      return [msg, `Expected ${actual} to not be undefined`];
     },
     args: ['actual'],
   },
   isArray: {
     func(msg, actual) {
-      if (actual.isArray) return msg;
-      return `Expected ${actual} to be an array`;
+      if (Array.isArray(actual)) return msg;
+      return [msg, `Expected ${actual} to be an array`];
     },
     args: ['actual'],
   },
   isObject: {
     func(msg, actual) {
       if (typeof actual == 'object') return msg;
-      return `Expected ${actual} to be a object`;
+      return [msg, `Expected ${actual} to be an object`];
     },
     args: ['actual'],
   },
   isFunction: {
     func(msg, actual) {
       if (typeof actual == 'function') return msg;
-      return `Expected ${actual} to be a function`;
+      return [msg, `Expected ${actual} to be a function`];
     },
     args: ['actual'],
   },
@@ -88,28 +89,28 @@ export const assert = {
       if (actual === expected) return msg;
       else if (actual < expected && actual + delta >= expected) return msg;
       else if (actual > expected && actual + delta <= expected) return msg;
-      return `Expected ${actual} to be close to ${expected}`;
+      return [msg, `Expected ${actual} to be close to ${expected}`];
     },
     args: ['actual', 'expected', 'delta'],
   },
   isString: {
     func(msg, actual) {
       if (typeof actual === 'string') return msg;
-      return `Expected ${actual} to be a string, WRONG`;
+      return [msg, `Expected ${actual} to be a string`];
     },
     args: ['actual'],
   },
   isNumber: {
     func(msg, actual) {
       if (typeof actual === 'number') return msg;
-      return `Expected ${actual} to be a number, WRONG`;
+      return [msg, `Expected ${actual} to be a number`];
     },
     args: ['actual'],
   },
   isBoolean: {
     func(msg, actual) {
       if (typeof actual === 'boolean') return msg;
-      return `Expected ${actual} to be a boolean, WRONG`;
+      return [msg, `Expected ${actual} to be a boolean`];
     },
     args: ['actual'],
   },
@@ -122,7 +123,7 @@ export const assert = {
       && actual.hasOwnProperty(searchTerm)) {
         return msg;
       }
-      return 'ERROR YOU SUCK';
+      return [msg, `Expected ${actual} to include ${searchTerm}`];
     },
     args: ['actual', 'search term'],
   },
@@ -138,7 +139,7 @@ export const assert = {
       ) {
         return msg;
       }
-      return 'ERROR YOU SUCK';
+      return [msg, `Expected ${actual} to not include ${searchTerm}`]
     },
     args: ['actual, searchTerm'],
   },
@@ -147,7 +148,7 @@ export const assert = {
       if (value.match(regexp)) {
         return msg;
       }
-      return 'ERROR YOU SUCK';
+      return [msg, `Expected ${value} to match ${regexp}`];
     },
     args: ['value, regexp'],
   },
@@ -156,7 +157,7 @@ export const assert = {
       if (object.hasOwnProperty(prop)) {
         return msg;
       }
-      return 'ERROR YOU SUCK';
+      return [msg, `Expected ${object} to have the property ${prop}`];
     },
     args: ['object', 'property'],
   },
@@ -172,35 +173,35 @@ export const assert = {
       ) {
         return msg;
       }
-      return 'ERROR YOU SUCK';
+      return [msg, `Expected ${actual} to have a length of ${len}`];
     },
     args: ['actual', 'length'],
   },
   isOk: {
     func(msg, actual) {
       if (actual) return msg;
-      return 'ERROR YOU SUCK';
+      return [msg, `Expected ${actual} to be ok (truthy)`];
     },
     args: ['actual'],
   },
   isNotOk: {
     func(msg, actual) {
       if (!actual) return msg;
-      return 'ERROR YOU SUCK';
+      return [msg, `Expected ${actual} to not be ok (falsey)`];
     },
     args: ['actual'],
   },
   propertyVal: {
     func(msg, object, property, value) {
       if (object[property] === value) return msg;
-      return 'ERROR YOU SUCK';
+      return [msg, `Expected ${object} to have a property of ${property}, with a value of ${value}`];
     },
     args: ['object', 'property', 'value'],
   },
   instanceOf: {
     func(msg, instance, constructor) {
       if (instance instanceof constructor) return msg;
-      return 'ERROR YOU SUCK';
+      return [msg, `Expected ${instance} to be an instance of ${constructor}`];
     },
     args: ['instance', 'constructor'],
   },
@@ -229,7 +230,7 @@ export const assert = {
         default:
           checkBool = false;
       }
-      return checkBool ? msg : 'ERROR YOU SUCK';
+      return checkBool ? msg : [msg, `Expected ${val1} ${operation} ${val2} to be true`];
     },
     args: ['value 1', 'operator', 'value 2'],
   },

@@ -2,10 +2,12 @@
 
 export const it = (msg) => {
   return (test) => {
-    return (args) => {
-      return test(msg, ...args)
+    return (...args) => {
+      return test.func(msg, ...args)
     }
   }
 }
 
-// let test = it('launchRocket should be a function')(assert.typeof.func)(launchRocket, 'function')
+// let tests = []
+// tests.push(it('launchRocket should be a function')(assert.typeOf)(launchRocket, 'function'))
+// tests.push(it('launchRocket should return an array')(assert.isArray)('hi'))
