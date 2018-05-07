@@ -4,7 +4,6 @@ import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Login, Signup, UserHome, LevelOutline} from './components'
 import {me} from './store'
-
 /**
  * COMPONENT
  */
