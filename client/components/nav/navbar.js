@@ -14,8 +14,8 @@ class Navbar extends Component {
           </div>
           <div className="nav__statusBar">
             <div className="nav__meter">
-              {/* HERE Do a state check on progress to change the classname */}
               <span className="nav__meter-25" />
+              {/* HERE Do a state check on progress to change the classname */}
             </div>
           </div>
           <div className="nav__levelName">

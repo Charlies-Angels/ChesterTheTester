@@ -1,9 +1,9 @@
-import React from 'react'
-import Navbar from './components/nav/navbar'
+import React from 'react';
+import Navbar from './components/nav/navbar';
 // import {Navbar} from './components'
-import Routes from './routes'
-import {Grid} from 'react-bootstrap'
-// import {TestEditor} from './components/blockly/dev-index'
+import Routes from './routes';
+import { Grid } from 'react-bootstrap';
+import StartGame from './components/start-game';
 
 
 const App = (props) => {
@@ -13,6 +13,7 @@ const App = (props) => {
       <Routes />
     </Grid>
   )
-}
+};
 
-export default App
+export default App;
+

@@ -1,5 +1,10 @@
 body {
   font-family: sans-serif;
+  width: 100%;
+  height: 100%;
+  color: #c0d3be;
+  background-color: #1b1b1c;
+  font-family: 'Inconsolata', sans-serif
 }
 
 a {
@@ -29,7 +34,6 @@ form div {
   flex: 0 0 85%;
 
 }
-
 
 .nav {
   flex: 0 0 15%;
@@ -92,4 +96,40 @@ form div {
 	border-radius: 25px;
 	padding: 10px;
 	box-shadow: inset 0 -1px 1px rgba(238, 155, 155, 0.3);
+}
+
+.success {
+  color: green;
+}
+.failure {
+  color: red;
+}
+
+.start-container {
+  display: flex;
+  justify-content: flex-end;
+  min-height: 100vh;
+  align-items: flex-end;
+}
+.start-game {
+  flex: 0 0 40%;
+  align-self: center;
+  height: 80vh;
+  min-height: 100%;
+  margin-right: 5vw;
+  background-color: #353539;
+  border-style: solid;
+  border-width: 38px 85px 79px 83px;
+  -moz-border-image: url(img/control-panel.png) 38 85 79 83 repeat;
+  -webkit-border-image: url(img/control-panel.png) 38 85 79 83 repeat;
+  -o-border-image: url(img/control-panel.png) 38 85 79 83 repeat;
+  border-image: url(img/control-panel.png) 38 85 79 83 fill repeat;
+border-radius: 10%;
+}
+.chester {
+  flex: 0 0 40%;
+  margin-right: 5vw;
+}
+.chester-img {
+  width: auto
 }
