@@ -141,7 +141,7 @@ export const assert = {
       }
       return [msg, `Expected ${actual} to not include ${searchTerm}`]
     },
-    args: ['actual, searchTerm'],
+    args: ['actual', 'searchTerm'],
   },
   match: {
     func(msg, value, regexp) {
@@ -150,7 +150,7 @@ export const assert = {
       }
       return [msg, `Expected ${value} to match ${regexp}`];
     },
-    args: ['value, regexp'],
+    args: ['value', 'regexp'],
   },
   property: {
     func(msg, object, prop) {
