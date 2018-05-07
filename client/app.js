@@ -5,7 +5,8 @@ import Routes from './routes';
 import { Grid } from 'react-bootstrap';
 import StartGame from './components/start-game';
 
-const App = () => {
+
+const App = (props) => {
   return (
     <Grid>
       <Navbar />
