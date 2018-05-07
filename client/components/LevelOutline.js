@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import Objective from './Objective'
-import Animation from './Animation';
-import DragDrop from './DragDrop';
 import {Row} from 'react-bootstrap';
 import { assert } from './test-object';
 
@@ -10,10 +8,10 @@ class LevelOutline extends Component {
 	constructor() {
 		super()
 		this.state = {
-			input1: "",
-			input2: "",
-			message: "",
-			selectOne: "",
+			input1: '',
+			input2: '',
+			message: '',
+			selectOne: '',
 			selected: [],
 			error: false
 		}
