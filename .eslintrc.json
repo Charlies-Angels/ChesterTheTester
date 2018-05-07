@@ -7,6 +7,6 @@
 		"new-cap": [1, { "capIsNewExceptions": ["Router"] }]
 	},
 	"globals": {
-		"Blockly": true,
-	},
+		"Blockly": true
+	}
 }
