@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Objective from './Objective'
 import {Row} from 'react-bootstrap';
 import { assert } from './test-object';
+import { it } from '../utils/tester';
 
 class LevelOutline extends Component {
 	constructor() {
@@ -26,9 +27,13 @@ class LevelOutline extends Component {
 	runTest = (event) => {
 		event.preventDefault();
 		const {selectOne, input1, input2, message} = this.state
+		const argsSelectOne = assert[selectOne].args;
 
-		let result = assert[selectOne](message,[input2,input1])
+
+		let result = it(message)(assert[selectOne])(...argsSelectOne)
+
 		console.log(result)
+
 		let str = ''
 		if (result === message) {
 			 str =
@@ -82,25 +87,18 @@ class LevelOutline extends Component {
 						    onChange={ (event)=> this.setState({message: event.target.value})}
 						    />
 						</label>
-						{selectOne ?
-						  	(<div>
+						{selectOne ? assert[selectOne].args.map(arg =>
+						  	(<div key={arg}>
 						  		<label>
-								    Input 1
+								    {arg}
 								    <input
 								    type="text"
-								    name="input1"
+								    name={arg}
 								    onChange={ (event)=> this.setState({input1: event.target.value})}
 								    />
 						  		</label>
-							  	<label>
-							    	Input 2
-								    <input
-								    type="text"
-								    name="input2"
-								    onChange={ (event) => this.setState({input2: event.target.value})}
-								    />
-							  	</label>
-							</div>) : null
+							</div>)
+							) : <span />
 						}
 					  	<input type="submit" name="Submit" />
 					  	{error ? <div>Test Failed Please Try Again</div> : <span /> }
