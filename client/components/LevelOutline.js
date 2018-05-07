@@ -5,16 +5,21 @@ import {Row} from 'react-bootstrap';
 import { assert } from './test-object';
 import { it } from '../utils/tester';
 
+import brace from 'brace';
+import AceEditor from 'react-ace';
+
+import 'brace/mode/java';
+import 'brace/theme/github';
+
+
 class LevelOutline extends Component {
 	constructor() {
 		super()
 		this.state = {
-			input1: '',
-			input2: '',
 			message: '',
 			selectOne: '',
 			selected: [],
-			error: false
+			error: false,
 		}
 	}
 
@@ -26,26 +31,29 @@ class LevelOutline extends Component {
 
 	runTest = (event) => {
 		event.preventDefault();
-		const {selectOne, input1, input2, message} = this.state
-		const argsSelectOne = assert[selectOne].args;
+		console.log(this.state)
 
+		const {selectOne, message} = this.state
 
-		let result = it(message)(assert[selectOne])(...argsSelectOne)
+		const selectOneArgs = assert[selectOne].args;
+		const inputs = [];
 
-		console.log(result)
+		for (let i = 0;i < selectOneArgs.length;i++) {
+			inputs.push(event.target[selectOneArgs[i]].value)
+		}
+
+		let result = it(message)(assert[selectOne])(...inputs)
 
 		let str = ''
 		if (result === message) {
 			 str =
 					`
 								it('${message}',function(){
-									assert.${selectOne}(${input2},${input1})
+									assert.${selectOne}(${inputs.join(',')})
 								})
 					`
 			this.setState({
 				selectOne: '',
-				input1: '',
-				input2: '',
 				message: '',
 				error: false,
 				selected: [...this.state.selected, str]
@@ -60,8 +68,8 @@ class LevelOutline extends Component {
 
 	render() {
 		const methods = Object.keys(assert);
+		const {message, selected, selectOne, error} = this.state
 
-		const {message, input2, input1, selected, selectOne, error} = this.state
 
 		return (
 			<div>
@@ -69,7 +77,7 @@ class LevelOutline extends Component {
 					<Objective {...this.props} />
 					<div>
 						{methods.map(method => (
-							<button 
+							<button
 							key={method}
 							value={method}
 							onClick={this.handleClickAssert}
@@ -81,27 +89,27 @@ class LevelOutline extends Component {
 					<form onSubmit={this.runTest}>
 						<label>
 						    Message
-						    <input 
-						    type="text" 
+						    <input
+						    type="text"
 						    name="message"
-						    onChange={ (event)=> this.setState({message: event.target.value})}
+						    onChange={ (event) => this.setState({message: event.target.value})}
 						    />
 						</label>
 						{selectOne ? assert[selectOne].args.map(arg =>
-						  	(<div key={arg}>
-						  		<label>
+							(<div key={arg}>
+								<label>
 								    {arg}
 								    <input
 								    type="text"
 								    name={arg}
-								    onChange={ (event)=> this.setState({input1: event.target.value})}
+								    onChange={ (event) => this.setState({[event.target.name]: event.target.value})}
 								    />
-						  		</label>
+								</label>
 							</div>)
 							) : <span />
 						}
-					  	<input type="submit" name="Submit" />
-					  	{error ? <div>Test Failed Please Try Again</div> : <span /> }
+						{selectOne ? <input type="submit" name="Submit" /> : <span /> }
+						{error ? <div>Test Failed Please Try Again</div> : <span /> }
 					</form>
 				</div>
 				<pre>
@@ -111,13 +119,21 @@ class LevelOutline extends Component {
 							describe('Writing tests for launchRocket', function(){
 								${selected.map(element => element)}
 								it('${message}',function(){
-							        assert.${selectOne}(${input2},${input1})
+							        assert.${selectOne}(${this.state.actual})
 								})
 							})
 							`
 						}
 					</code>
 				</pre>
+				<AceEditor
+				    mode="javascript"
+				    onChange={(event) => console.log(event)}
+				    theme="github"
+				    readOnly={true}
+				    name="UNIQUE_ID_OF_DIV"
+				    editorProps={{$blockScrolling: true}}
+				/>
 			</div>
 			)
 	}
@@ -131,8 +147,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-	return {
-		
+	return {	
 	}
 }
 
