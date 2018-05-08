@@ -35,9 +35,8 @@ tests.push(it('launchRocket should not be a string')(assert.typeOf)(launchRocket
 const App = (props) => {
   return (
     <Grid>
-      {/* <Navbar /> */}
-      {/* <Routes /> */}
-      <Test tests={tests} />
+      <Navbar />
+      <Routes />
     </Grid>
   )
 };
