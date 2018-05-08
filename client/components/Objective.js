@@ -24,7 +24,7 @@ class Objective extends Component {
 				    onChange={(event) => console.log(event)}
 				    theme="github"
 				    readOnly={true}
-				    value={levels[level]}
+				    value={levels[level].objective}
 				    name="UNIQUE_ID_OF_DIV"
 				    editorProps={{$blockScrolling: true}}
 				    width="350px"
