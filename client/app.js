@@ -5,7 +5,6 @@ import Routes from './routes';
 import { Grid } from 'react-bootstrap';
 import StartGame from './components/start-game';
 
-
 const App = (props) => {
   return (
     <Grid>

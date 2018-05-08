@@ -1,4 +1,5 @@
 //Pure JS tests
+
 const levels = [
 	{
 	level: 1,
@@ -14,6 +15,46 @@ const levels = [
 			counter--;
 		}
 		return countDown;
+	}
+	launchRocket();
+	`,
+	fn: () => {
+		let countDown = [];
+		let counter = 10;
+		while (counter>-1) {
+			countDown.push(counter);
+			counter--;
+		}
+		return countDown;
+	},
+	title: 'launchRocket()',
+	buttons: ['launchRocket().length', 'launchRocket']
+}
+
+const level1Test = `
+describe('return an array of numbers counting down from 10', () => {
+	let result = launchRocket();
+
+	it('launchRocket should be a function', () => {
+		expect(launchRocket).to.be.a('function');
+	});
+
+	it('launchRocket should return an array', () => {
+		expect(result).to.be.a('array')
+	});
+
+	it('returns an array with a length of 11', () => {
+		expect(result).to.have.lengthOf(11)
+	});
+});
+`
+
+const level2 = `
+class Rocket {
+	constructor(height, width, capacity) {
+		this.height = height;
+		this.width = width;
+		this.capacity = capacity;
 	}
 	launchRocket();`,
 	suggestedTests: [

@@ -1,33 +1,7 @@
 import React, { Component } from 'react';
 import Success from './success';
 import Failure from './failure';
-
-class Test extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {  }
-  }
-  render() {
-    // TODO: Should probably receive props that tell how many tests were ran in the suite
-    // TODO: Should receive 'describe' block as props
-    return (
-      <div>
-        <h3>Test(s) Passed</h3>
-        <h4>Describe block: {/* this.props.describe*/}</h4>
-        <ul className="fa-ul">
-          {this.props.tests.map( test => {
-            return (Array.isArray(test)) ?
-              <Failure msg={test} /> :
-              <Success msg={test} />
-          })}
-        </ul>
-      </div>
-     )
-  }
-}
-
-export default Test;
-
+// import {assert} from './components/test-object';
 
 // const launchRocket = () => {
 // 	let countDown = [];
@@ -43,10 +17,40 @@ export default Test;
 // export const it = (msg) => {
 //   return (test) => {
 //     return (...args) => {
-//       return test(msg, ...args)
+//       return test.func(msg, ...args)
 //     }
 //   }
 // }
-// // console.log(assert.typeOf.func)
-// let test = it('launchRocket should be a function')(assert.typeOf.func)(launchRocket, 'function')
-// console.log(test);
+// let tests = [];
+// tests.push(it('launchRocket should be a function')(assert.typeOf)(launchRocket, 'function'))
+// tests.push(it('launchRocket should not be a string')(assert.isFunction)(launchRocket))
+// tests.push(it('launchRocket should not be a string')(assert.typeOf)(launchRocket(), 'object'))
+// tests.push(it('launchRocket should not be a string')(assert.typeOf)(launchRocket(), 'array'))
+
+class Test extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {  }
+  }
+  render() {
+    // TODO: Should probably receive props that tell how many tests were ran in the suite
+    // TODO: Should receive 'describe' block as props
+    return (
+      <div>
+        <h3>Test(s) Passed</h3>
+        <h4>Describe block: {/* this.props.describe*/}</h4>
+        <ul className="fa-ul">
+          {this.props.tests.map( test => {
+            {/* // TODO: Do a different sort of "success" check */}
+            return (test.includes('Expected')) ?
+              <Failure msg={test} /> :
+              <Success msg={test} />
+          })}
+        </ul>
+      </div>
+     )
+  }
+}
+
+export default Test;
+

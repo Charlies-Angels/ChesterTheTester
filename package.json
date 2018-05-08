@@ -30,7 +30,6 @@
     "history": "^4.6.3",
     "immutable": "^3.8.2",
     "morgan": "^1.8.1",
-    "node-blockly": "^1.0.34",
     "passport": "^0.3.2",
     "passport-google-oauth": "^1.0.0",
     "pg": "^6.1.2",
@@ -38,7 +37,6 @@
     "prop-types": "^15.6.1",
     "react": "^16.0.0",
     "react-ace": "^6.1.0",
-    "react-blockly-drawer": "^1.5.0",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.0.0",
     "react-immutable-proptypes": "^2.1.0",
@@ -47,6 +45,7 @@
     "redux": "^3.6.0",
     "redux-logger": "^2.8.1",
     "redux-thunk": "^2.2.0",
+    "sandbox": "^0.8.6",
     "sequelize": "^4.3.1",
     "socket.io": "^2.0.3"
   },
