@@ -16,8 +16,7 @@ const launchRocket = `const launchRocket = () => {
 let sand = new Sandbox();
 
 router.post('/', (req, res, next) => {
-	sand.run(`${launchRocket}; ${req.body.sandbox}`, function(output){
+	sand.run(launchRocket + ';' + req.body.sandbox, function(output){
 		res.json(output.result)
 	})
 })
-
