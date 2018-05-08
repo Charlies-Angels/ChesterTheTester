@@ -1,17 +1,30 @@
 //Pure JS tests
 
-const level1 = `
-const launchRocket = () => {
-	let countDown = [];
-	let counter = 10;
-	while (counter>-1) {
-		countDown.push(counter);
-		counter--;
+const level1 = {
+	objective: `
+	const launchRocket = () => {
+		let countDown = [];
+		let counter = 10;
+		while (counter>-1) {
+			countDown.push(counter);
+			counter--;
+		}
+		return countDown;
 	}
-	return countDown;
+	launchRocket();
+	`,
+	fn: () => {
+		let countDown = [];
+		let counter = 10;
+		while (counter>-1) {
+			countDown.push(counter);
+			counter--;
+		}
+		return countDown;
+	},
+	title: 'launchRocket()',
+	buttons: ['launchRocket().length', 'launchRocket']
 }
-launchRocket();
-`
 
 const level1Test = `
 describe('return an array of numbers counting down from 10', () => {
