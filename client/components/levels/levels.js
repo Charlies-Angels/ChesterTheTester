@@ -23,7 +23,7 @@ const level1 = {
 		return countDown;
 	},
 	title: 'launchRocket()',
-	buttons: ['launchRocket().length','launchRocket']
+	buttons: ['launchRocket().length', 'launchRocket']
 }
 
 const level1Test = `
