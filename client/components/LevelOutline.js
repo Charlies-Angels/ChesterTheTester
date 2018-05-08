@@ -4,12 +4,8 @@ import Objective from './Objective'
 import {Row} from 'react-bootstrap';
 import { assert } from './test-object';
 import { it } from '../utils/tester';
-
-import brace from 'brace';
-import AceEditor from 'react-ace';
-
-import 'brace/mode/java';
-import 'brace/theme/github';
+import levels from './levels/levels'
+import {postCodeToSandbox} from '../store/sandbox'
 
 
 class LevelOutline extends Component {
@@ -20,6 +16,9 @@ class LevelOutline extends Component {
 			selectOne: '',
 			selected: [],
 			error: false,
+			input0: '',
+			input1: '',
+			input2: '',
 		}
 	}
 
@@ -31,8 +30,6 @@ class LevelOutline extends Component {
 
 	runTest = (event) => {
 		event.preventDefault();
-		console.log(this.state)
-
 		const {selectOne, message} = this.state
 
 		const selectOneArgs = assert[selectOne].args;
@@ -44,32 +41,40 @@ class LevelOutline extends Component {
 
 		let result = it(message)(assert[selectOne])(...inputs)
 
-		let str = ''
-		if (result === message) {
-			 str =
-					`
-								it('${message}',function(){
-									assert.${selectOne}(${inputs.join(',')})
-								})
-					`
-			this.setState({
-				selectOne: '',
-				message: '',
-				error: false,
-				selected: [...this.state.selected, str]
-			})
-		}
-		else {
-			this.setState({
-				error: true
-			})
-		}
+		console.log(result)
+		console.log(this.state.input0)
+
+		this.props.postCodeToSandbox({sandbox: this.state.input0})
+		.then(res => {
+			if (res.sandbox === this.state.input1){
+				let str1 =
+				`
+						it('${message}',function(){
+							assert.${selectOne}(${inputs.join(',')})
+						})
+				`
+				this.setState({
+					selectOne: '',
+					message: '',
+					error: false,
+					selected: [...this.state.selected, str1],
+					input0: '',
+					input1: '',
+					input2: ''
+				})
+			}
+			else {
+				this.setState({
+					error: true
+				})
+			}
+		})
 	}
 
 	render() {
 		const methods = Object.keys(assert);
 		const {message, selected, selectOne, error} = this.state
-
+		let level = "level" + this.props.match.params.id;
 
 		return (
 			<div>
@@ -84,6 +89,16 @@ class LevelOutline extends Component {
 							>{method}</button>
 						))}
 					</div>
+					<hr />
+					<div>
+						{levels[level].buttons.map(button => (
+							<button
+							key={button}
+							value={button}
+							onClick={() => this.setState({input0: button})}
+							>{button}</button>)
+						)}
+					</div>
 				</Row>
 				<div>
 					<form onSubmit={this.runTest}>
@@ -95,14 +110,15 @@ class LevelOutline extends Component {
 						    onChange={ (event) => this.setState({message: event.target.value})}
 						    />
 						</label>
-						{selectOne ? assert[selectOne].args.map(arg =>
+						{selectOne ? assert[selectOne].args.map((arg,i) =>
 							(<div key={arg}>
 								<label>
 								    {arg}
 								    <input
 								    type="text"
+								    value={this.state["input"+i]}
 								    name={arg}
-								    onChange={ (event) => this.setState({[event.target.name]: event.target.value})}
+								    onChange={ (event) => this.setState({["input" + i]: event.target.value})}
 								    />
 								</label>
 							</div>)
@@ -116,24 +132,16 @@ class LevelOutline extends Component {
 					<code>
 						{
 							`
-							describe('Writing tests for launchRocket', function(){
+							describe('Writing tests for ${levels[level].title}', function(){
 								${selected.map(element => element)}
 								it('${message}',function(){
-							        assert.${selectOne}(${this.state.actual})
+							        assert.${selectOne}(${this.state.input0},${this.state.input1}${this.state.input2 ? ',' + this.state.input2 : ''}})
 								})
 							})
 							`
 						}
 					</code>
 				</pre>
-				<AceEditor
-				    mode="javascript"
-				    onChange={(event) => console.log(event)}
-				    theme="github"
-				    readOnly={true}
-				    name="UNIQUE_ID_OF_DIV"
-				    editorProps={{$blockScrolling: true}}
-				/>
 			</div>
 			)
 	}
@@ -142,12 +150,13 @@ class LevelOutline extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-
+		sandbox: state.sandbox
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
-	return {	
+	return {
+		postCodeToSandbox: sandbox => dispatch(postCodeToSandbox(sandbox))
 	}
 }
 
