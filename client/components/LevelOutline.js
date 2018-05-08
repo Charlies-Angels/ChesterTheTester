@@ -5,6 +5,7 @@ import {Row} from 'react-bootstrap';
 import { assert } from './test-object';
 import { it } from '../utils/tester';
 import levels from './levels/levels'
+import {postCodeToSandbox} from '../store/sandbox'
 
 
 class LevelOutline extends Component {
@@ -40,29 +41,34 @@ class LevelOutline extends Component {
 
 		let result = it(message)(assert[selectOne])(...inputs)
 
-		let str = ''
-		if (result === message) {
-			 str =
-					`
-								it('${message}',function(){
-									assert.${selectOne}(${inputs.join(',')})
-								})
-					`
-			this.setState({
-				selectOne: '',
-				message: '',
-				error: false,
-				selected: [...this.state.selected, str],
-				input0: '',
-				input1: '',
-				input2: ''
-			})
-		}
-		else {
-			this.setState({
-				error: true
-			})
-		}
+		console.log(result)
+		console.log(this.state.input0)
+
+		this.props.postCodeToSandbox({sandbox: this.state.input0})
+		.then(res => {
+			if (res.sandbox === this.state.input1){
+				let str1 =
+				`
+						it('${message}',function(){
+							assert.${selectOne}(${inputs.join(',')})
+						})
+				`
+				this.setState({
+					selectOne: '',
+					message: '',
+					error: false,
+					selected: [...this.state.selected, str1],
+					input0: '',
+					input1: '',
+					input2: ''
+				})
+			}
+			else {
+				this.setState({
+					error: true
+				})
+			}
+		})
 	}
 
 	render() {
@@ -144,12 +150,13 @@ class LevelOutline extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-
+		sandbox: state.sandbox
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
-	return {	
+	return {
+		postCodeToSandbox: sandbox => dispatch(postCodeToSandbox(sandbox))
 	}
 }
 
