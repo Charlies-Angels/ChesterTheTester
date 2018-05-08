@@ -2,7 +2,9 @@
 const levels = [
 	{
 	level: 1,
-	objective: 'STORY',
+	title: `Lift Off!`,
+	objective: `Ok cadets, since no one checked the critical functions of the our intergalactic rocket, I guess it's up to us to make sure thing are going smoothly. We do unit testing here at Fullstack A-Cat-amy of Space, that means making many small tests to tests each part of our code.  `,
+
 	function:
 	`const launchRocket = () => {
 		let countDown = [];
@@ -14,7 +16,11 @@ const levels = [
 		return countDown;
 	}
 	launchRocket();`,
-	suggestedTests
+	suggestedTests: [
+		{test: 'typeof', actual: 'launchRocket', expected: 'function'},
+		{test: 'isFunction', actual: 'launchRocket'},
+		{test: 'isArray', actual: 'launchRocket()'},
+	]
 },
 {
 	level: 2,
