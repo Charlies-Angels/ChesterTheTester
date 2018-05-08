@@ -45,10 +45,13 @@ class LevelOutline extends Component {
 		if (assert[selectOne].pre) sandbox = assert[selectOne].pre + sandbox;
 		if (assert[selectOne].post) sandbox = sandbox + assert[selectOne].post;
 
-		this.props.postCodeToSandbox({sandbox})
+		//post to sandbox and evaluate response. send in appropriate level in req.body as well
+		this.props.postCodeToSandbox({sandbox, level: this.props.match.params.id-1})
 		.then(res => {
+			//evaluate response using our assert function
 			let result = it(message)(assert[selectOne])(res.sandbox, ...inputs)
 
+			//if pass/fail
 			if (result === message){
 				let str1 =
 				`
@@ -77,8 +80,6 @@ class LevelOutline extends Component {
 	render() {
 		const methods = Object.keys(assert);
 		const {message, selected, selectOne, error} = this.state
-		let level = "level" + this.props.match.params.id;
-
 		return (
 			<div>
 				<Row className="show-grid">
@@ -94,7 +95,7 @@ class LevelOutline extends Component {
 					</div>
 					<hr />
 					<div>
-						{levels[level].buttons.map(button => (
+						{levels[this.props.match.params.id - 1].buttons.map(button => (
 							<button
 							key={button}
 							value={button}
@@ -136,7 +137,7 @@ class LevelOutline extends Component {
 					<code>
 						{
 							`
-							describe('Writing tests for ${levels[level].title}', function(){
+							describe('Writing tests for ${levels[this.props.match.params.id-1].title}', function(){
 								${selected.map(element => element)}
 								it('${message}',function(){
 							        assert.${selectOne}(${this.state.input0}${this.state.input1 ? ',' + this.state.input1 : ''}${this.state.input2 ? ',' + this.state.input2 : ''})
