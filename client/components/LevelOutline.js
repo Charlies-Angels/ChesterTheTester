@@ -35,23 +35,26 @@ class LevelOutline extends Component {
 		const selectOneArgs = assert[selectOne].args;
 		const inputs = [];
 
-		for (let i = 0;i < selectOneArgs.length;i++) {
+		//not include actual input
+		for (let i = 1;i < selectOneArgs.length;i++) {
 			inputs.push(event.target[selectOneArgs[i]].value)
 		}
 
-		let result = it(message)(assert[selectOne])(...inputs)
+		//check for prefixes or postfixes in test objects
+		let sandbox = this.state.input0;
+		if (assert[selectOne].pre) sandbox = assert[selectOne].pre + sandbox;
+		if (assert[selectOne].post) sandbox = sandbox + assert[selectOne].post;
 
-		console.log(result)
-		console.log(this.state.input0)
-
-		this.props.postCodeToSandbox({sandbox: this.state.input0})
+		this.props.postCodeToSandbox({sandbox})
 		.then(res => {
-			if (res.sandbox === this.state.input1){
+			let result = it(message)(assert[selectOne])(res.sandbox, ...inputs)
+
+			if (result === message){
 				let str1 =
 				`
-						it('${message}',function(){
-							assert.${selectOne}(${inputs.join(',')})
-						})
+				        it('${message}',function(){
+				            assert.${selectOne}(${inputs ? this.state.input0 + ',' + inputs.join(',') : this.state.input0})
+				        })
 				`
 				this.setState({
 					selectOne: '',
@@ -102,14 +105,15 @@ class LevelOutline extends Component {
 				</Row>
 				<div>
 					<form onSubmit={this.runTest}>
-						<label>
+						{selectOne ? (<label>
 						    Message
 						    <input
 						    type="text"
 						    name="message"
 						    onChange={ (event) => this.setState({message: event.target.value})}
 						    />
-						</label>
+						</label>)
+						: <span />}
 						{selectOne ? assert[selectOne].args.map((arg,i) =>
 							(<div key={arg}>
 								<label>
@@ -135,7 +139,7 @@ class LevelOutline extends Component {
 							describe('Writing tests for ${levels[level].title}', function(){
 								${selected.map(element => element)}
 								it('${message}',function(){
-							        assert.${selectOne}(${this.state.input0},${this.state.input1}${this.state.input2 ? ',' + this.state.input2 : ''}})
+							        assert.${selectOne}(${this.state.input0}${this.state.input1 ? ',' + this.state.input1 : ''}${this.state.input2 ? ',' + this.state.input2 : ''})
 								})
 							})
 							`
