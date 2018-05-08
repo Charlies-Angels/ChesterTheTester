@@ -129,7 +129,7 @@ class LevelOutline extends Component {
 							describe('Writing tests for ${levels[level].title}', function(){
 								${selected.map(element => element)}
 								it('${message}',function(){
-							        assert.${selectOne}(${this.state.input0},${this.state.input1}${this.state.input2}})
+							        assert.${selectOne}(${this.state.input0},${this.state.input1}${this.state.input2 ? ',' + this.state.input2 : ''}})
 								})
 							})
 							`
