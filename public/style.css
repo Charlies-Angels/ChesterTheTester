@@ -134,6 +134,12 @@ form div {
 }
 .layout-header__left {
   flex: 1;
+  color: #ffbb33;
+  text-shadow: 2px 3px 0px #bd8a25;
+  font-size: 3rem;
+  text-align: center;
+  font-weight: bold;
+  padding: .1em;
   background-color: #d79c2a;
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
@@ -144,6 +150,7 @@ form div {
   letter-spacing: .1em;
   font-weight: bold;
   text-align: center;
+
 }
 .layout-header__levels {
   flex: 1;
@@ -164,6 +171,12 @@ form div {
 }
 .layout-header__right {
   flex: 1;
+  color: #ffbb33;
+  text-align: center;
+  text-shadow: 2px 3px 0px #bd8a25;
+  font-size: 3rem;
+  font-weight: bold;
+  padding: .1em;
   background-color: #d79c2a;
   border-top-right-radius: 30px;
   border-bottom-right-radius: 30px;

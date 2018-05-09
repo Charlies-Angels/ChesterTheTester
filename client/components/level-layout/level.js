@@ -5,7 +5,11 @@ import { assert } from '../test-object';
 import { it } from '../../utils/tester';
 import levels from '../levels/levels';
 import {postCodeToSandbox} from '../../store'
+import brace from 'brace';
+import AceEditor from 'react-ace';
 
+import 'brace/mode/javascript';
+import 'brace/theme/chaos';
 import Header from './header';
 import Objective from './objective';
 class Layout extends Component {
@@ -69,6 +73,14 @@ class Layout extends Component {
     const {message, selected, selectOne, error} = this.state
     // const {buttons, title} = levels[this.props.match.params.id - 1];
     const {buttons, title} = levels[0];
+    const codeSnippet = `
+describe('Writing tests for ${title}', function(){
+  ${selected.map(element => element)}
+  it('${message}',function(){
+        assert.${selectOne}(${this.state.input0}${this.state.input1 ? ',' + this.state.input1 : ''}${this.state.input2 ? ',' + this.state.input2 : ''})
+  })
+})
+`
     return (
       <div className="layout-container">
         <Header active={this.props.level.level} />
@@ -130,20 +142,20 @@ class Layout extends Component {
 					</form>
 				</div>
         <div>
-				<pre>
-					<code>
-						{
-							`
-							describe('Writing tests for ${title}', function(){
-								${selected.map(element => element)}
-								it('${message}',function(){
-							        assert.${selectOne}(${this.state.input0}${this.state.input1 ? ',' + this.state.input1 : ''}${this.state.input2 ? ',' + this.state.input2 : ''})
-								})
-							})
-							`
-						}
-					</code>
-				</pre>
+        <AceEditor
+			    mode="javascript"
+			    onChange={(event) => console.log(event)}
+			    theme="chaos"
+          height="250px"
+			    readOnly={true}
+			    value={codeSnippet}
+			    name="UNIQUE_ID_OF_DIV"
+			    editorProps={{$blockScrolling: true}}
+          highlightActiveLine={false}
+          highlightGutterLine={false}
+          setOptions={{cursorStyle: 'thin'}}
+
+			/>
 			</div>
       </div>
     )
