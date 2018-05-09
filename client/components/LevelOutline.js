@@ -46,7 +46,7 @@ class LevelOutline extends Component {
 		if (assert[selectOne].post) sandbox = sandbox + assert[selectOne].post;
 
 		//post to sandbox and evaluate response. send in appropriate level in req.body as well
-		this.props.postCodeToSandbox({sandbox, level: this.props.match.params.id - 1})
+		this.props.postCodeToSandbox({sandbox, level: this.props.match.params.id})
 		.then(res => {
 			//evaluate response using our assert function
 			let result = it(message)(assert[selectOne])(res.sandbox, ...inputs)

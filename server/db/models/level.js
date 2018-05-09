@@ -3,7 +3,7 @@ const db = require('../db')
 
 const Level = db.define('Level', {
     level: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         allowNull: false,
     },
     title: {
@@ -15,7 +15,7 @@ const Level = db.define('Level', {
         allowNull: false
     },
     function: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         allowNull: false
     },
     buttons: {
