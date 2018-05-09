@@ -4,32 +4,31 @@ import history from '../history'
 /**
  * ACTION TYPES
  */
+const START_GAME = 'START_GAME'
 const UPDATE_LEVEL = 'UPDATE_LEVEL'
-const UPDATE_PROGRESS = 'UPDATE_PROGRESS'
 
 /**
  * INITIAL STATE
  */
 const defaultLevel = {
   level: 1,
-  progress: 0
 }
 
 /**
  * ACTION CREATORS
  */
-const setLevel = level => ({type: UPDATE_LEVEL, level})
-const setProgress = progress => ({type: UPDATE_PROGRESS, progress})
+export const levelOne = () => ({type: START_GAME, level: 1})
+export const setLevel = level => ({type: UPDATE_LEVEL, level})
 
 /**
  * REDUCER
  */
 export default function (state = defaultLevel, action) {
   switch (action.type) {
+    case START_GAME:
+    return action.level
     case UPDATE_LEVEL:
       return {level: ++state.level, progress: 0}
-    case UPDATE_PROGRESS:
-      return {...state, progress: ++state.progress}
     default:
       return state
   }

@@ -4,7 +4,7 @@ body {
   height: 100%;
   color: #c0d3be;
   background-color: #1b1b1c;
-  font-family: 'Inconsolata', sans-serif
+  font-family: 'Inconsolata', monotype;
 }
 
 a {
@@ -107,29 +107,85 @@ form div {
 
 .start-container {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-around;
   min-height: 100vh;
   align-items: flex-end;
 }
 .start-game {
   flex: 0 0 40%;
   align-self: center;
-  height: 80vh;
+  height: 70vh;
   min-height: 100%;
-  margin-right: 5vw;
-  background-color: #353539;
   border-style: solid;
   border-width: 38px 85px 79px 83px;
   -moz-border-image: url(img/control-panel.png) 38 85 79 83 repeat;
   -webkit-border-image: url(img/control-panel.png) 38 85 79 83 repeat;
   -o-border-image: url(img/control-panel.png) 38 85 79 83 repeat;
   border-image: url(img/control-panel.png) 38 85 79 83 fill repeat;
-border-radius: 10%;
+  border-radius: 10%;
 }
 .chester {
-  flex: 0 0 40%;
+  flex: 0 0 30%;
+}
+.next-level {
+  flex: 0 0 5%;
   margin-right: 5vw;
 }
 .chester-img {
   width: auto
+}
+
+.button {
+	display: inline-block;
+	padding: .5vw 1vh;
+	color: #1b1b1c;
+	transform: translate(0%, 0%);
+	font-family: 'Inconsolata', monotype;
+	text-decoration: none;
+	font-size: 1.7vw;
+	transition: all .5s;
+  background-color: #d75b2a;
+  text-decoration: none;
+  outline: 0;
+  border: none;
+}
+.button::before {
+  position: absolute;
+	content: '';
+	transition: all .5s;
+  bottom: -10px;
+  height: 10px;
+  width: 100%;
+  left: 5px;
+  transform: skewX(45deg);
+  background-color: #ba4f24;
+}
+
+.button::after {
+  position: absolute;
+	content: '';
+	transition: all .5s;
+  right: -10px;
+  height: 100%;
+  width: 10px;
+  bottom: -5px;
+  transform: skewY(45deg);
+  background-color: #ab4922;
+}
+
+.button:active {
+  margin-left: 10px;
+  margin-top: 10px;
+  text-decoration: none;
+}
+.button:active::before {
+  bottom: -2px;
+  height: 2px;
+  left: 1px;
+}
+
+.button:active::after {
+  right: -2px;
+  width: 2px;
+  bottom: -1px;
 }

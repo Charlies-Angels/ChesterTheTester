@@ -2,8 +2,9 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome, LevelOutline} from './components'
-import {me} from './store'
+import {Login, Signup, UserHome, LevelOutline, StartGame} from './components'
+import {me, levelOne} from './store'
+
 /**
  * COMPONENT
  */
@@ -18,10 +19,12 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
+
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/home" component={UserHome} />
         <Route path="/level/:id" component={LevelOutline} />
+        <Route path="/" component={StartGame} />
         {/* Displays our Login component as a fallback */}
         <Route component={Login} />
       </Switch>
@@ -44,6 +47,7 @@ const mapDispatch = (dispatch) => {
   return {
     loadInitialData () {
       dispatch(me())
+      dispatch(levelOne());
     }
   }
 }
