@@ -56,7 +56,7 @@ class LevelOutline extends Component {
 				let str1 =
 				`
 				        it('${message}',function(){
-				            assert.${selectOne}(${inputs ? this.state.input0 + ',' + inputs.join(',') : this.state.input0})
+				            assert.${selectOne}(${inputs.length ? this.state.input0 + ',' + inputs.join(',') : this.state.input0})
 				        })
 				`
 				this.setState({
@@ -115,7 +115,7 @@ class LevelOutline extends Component {
 						    />
 						</label>)
 						: <span />}
-						{selectOne ? assert[selectOne].args.map((arg,i) =>
+						{selectOne ? assert[selectOne].args.map((arg, i) =>
 							(<div key={arg}>
 								<label>
 								    {arg}
