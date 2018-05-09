@@ -4,8 +4,10 @@ import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import level from './level'
+import sandbox from './sandbox'
 
-const reducer = combineReducers({user, level})
+const reducer = combineReducers({user, level, sandbox})
+
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
   createLogger({collapsed: true})
@@ -15,3 +17,4 @@ const store = createStore(reducer, middleware)
 export default store
 export * from './user'
 export * from './level'
+export * from './sandbox'
