@@ -3,7 +3,7 @@ import { isBoolean } from 'util';
 //Pure JS tests
 
 const levels = [
-	{
+{
 	level: 1,
 	title: `All sytems!`,
 	objective: 'Ok cadets, since no one checked the critical functions of the our intergalactic rocket, I guess it\'s up to us to make sure thing are going smoothly. We do unit testing here at Fullstack A-Cat-amy of Space, that means making many small tests to tests each part of our code. We tests to check validity, make maintenance easier, for documentation, for better understanding, and for conscidering business logic which means you should check edge cases and any possible use scenarios. I\'ll have to be the one to teach you the mocha.js framework and the chai.js assertions, ugh. Tests should be organized into groups using \'describe\' blocks accepting a message and a callback, then \'beforeEach\' can be added to set up common code, but we wont worry about that for now. Individual tests should be the in the second argument of the describe block and start with \'it\', \'it\' also takes a message as its first parameter and an anonymous function with an assertion as the second. Lets jump in. we\'ll start by writing a simple test to test the "all systems are go" function of the ship. You\'ll see the test assertions on the right and the functions on the left. Start by observing the type of variables and functions available to test. allSystemCheck is a variable that stores a boolean, we can select the "isBoolean" assertion. Then choose the allSystemCheck input. you\'ll see that the tests become filled with your choices. Ok, time to write taht first test.',
@@ -54,34 +54,35 @@ const levels = [
 // should return {Iron meteor: 5}
 	 var meteors = ["Iron meteor", "Iron meteor", "Stone meteor", "Stone meteor", "Stoney-iron meteor", "Stone meteor", "Stone meteor", "Stoney-iron meteor", "Iron meteor", "Undetermined meteor", "Iron meteor", "Iron meteor"];
 	 `
+
 },
 {
 	level: 4,
 	objective: 'STORY',
 	function: `
-		const swap = (array, i, j) => {
+	const swap = (array, i, j) => {
 		let temp = array[i]
 		array[i] = array[j]
 		array[j] = temp
+	}
+
+	function spaceSort(array) {
+		let swaps = 0;
+		for (let i = 0; i < array.length - 1; i++) {
+			if (array[i] > array[i + 1]) {
+				swap(array, i, i + 1);
+				swaps++;
+			}
 		}
 
-		function spaceSort(array) {
-				let swaps = 0;
-				for (let i = 0; i < array.length - 1; i++) {
-						if (array[i] > array[i + 1]) {
-								swap(array, i, i + 1);
-								swaps++;
-						}
-				}
-
-				if (swaps > 0) {
-						return spaceSort(array);
-				}
-				return array;
-			}
+		if (swaps > 0) {
+			return spaceSort(array);
+		}
+		return array;
+	}
 
 
-		spaceSort([5, 2, 3, 4, 8, 7, 10])`
+	spaceSort([5, 2, 3, 4, 8, 7, 10])`
 },
 {
 level: 5,
@@ -92,11 +93,12 @@ Spacecraft.prototype.fly = function(){
 	return 'they fly';
 };
 
-let Rocket = function(){};
-Rocket.prototype = Object.create(Spacecraft.prototype);      //Rocket inherits from Spacecraft
-Rocket.prototype.blastOff = function(){
-	return 'blast off';
-};
+
+	let Rocket = function(){};
+	Rocket.prototype = Object.create(Spacecraft.prototype);      //Rocket inherits from Spacecraft
+	Rocket.prototype.blastOff = function(){
+		return 'blast off';
+	};
 
 let CatShip = function(){};
 CatShip.prototype = Object.create(Rocket.prototype)
@@ -109,6 +111,9 @@ CatShip.prototype = Object.create(Rocket.prototype)
 level: 6,
 objective: 'STORY',
 function: `setTimeout(() => {
+
 		for (var x = 1; x <= 3; x++) alert(x) }, 1000);`
-}
+	}
 ]
+
+export default levels;
