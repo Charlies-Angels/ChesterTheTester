@@ -18,7 +18,7 @@ const levels = [
   allSystemsAreGo(allSystemCheck);
 		`,
 
-	buttons: ['allSystemCheck', 'allSystemsAreGo()'],
+	buttons: ['allSystemCheck', 'allSystemsAreGo(allSystemCheck)'],
 	solutions: 'Ready for liftoff!',
 	suggestedTests: ['isBoolean,allSystemCheck', 'strictEqual,allSystemsAreGo(),Ready for liftoff!']
 },
