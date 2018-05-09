@@ -10,3 +10,4 @@ export {default as Objective} from './Objective'
 export {default as DragDrop} from './DragDrop'
 export {default as Animation} from './Animation'
 export {default as LevelOutline} from './LevelOutline'
+export {default as StartGame} from './start-game';
