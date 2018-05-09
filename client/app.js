@@ -7,9 +7,7 @@ import StartGame from './components/start-game';
 
 const App = () => {
   return (
-    <div>
     <Routes />
-    </div>
   )
 };
 
