@@ -121,35 +121,28 @@ export const assert = {
     },
     args: ['actual'],
   },
-  // include: {
-  //   func(msg, actual, searchTerm) {
-  //     if (Array.isArray(actual) || typeof actual === 'string') {
-  //       if (actual.includes(searchTerm)) return msg;
-  //     }
-  //     else if (typeof actual === 'object'
-  //     && actual.hasOwnProperty(searchTerm)) {
-  //       return msg;
-  //     }
-  //     return `${msg}, Expected ${actual} to include ${searchTerm}`;
-  //   },
-  //   args: ['actual', 'search term'],
-  // },
-  // notInclude: {
-  //   func(msg, actual, searchTerm) {
-  //     if (Array.isArray(actual) || typeof actual === 'string') {
-  //       if (!actual.includes(searchTerm)) {
-  //         return msg;
-  //       }
-  //     } else if (
-  //       typeof actual === 'object' &&
-  //       !actual.hasOwnProperty(searchTerm)
-  //     ) {
-  //       return msg;
-  //     }
-  //     return `${msg}, Expected ${actual} to not include ${searchTerm}`
-  //   },
-  //   args: ['actual', 'searchTerm'],
-  // },
+  include: {
+    func(msg, actual, searchTerm) {
+      if ((actual.slice(0, 1) === "'" && actual.slice(-1) === "'") || (actual.slice(0, 1) === '[' && actual.slice(-1) === ']')){
+        if (searchTerm.slice(0, 1) === "'" && searchTerm.slice(-1) === "'") searchTerm = searchTerm.slice(1, -1)
+        if (actual.includes(searchTerm)) return msg;
+      }
+
+      return `${msg}, Expected ${actual} to include ${searchTerm}`;
+    },
+    args: ['actual', 'search term'],
+  },
+  notInclude: {
+    func(msg, actual, searchTerm) {
+      if ((actual.slice(0, 1) === "'" && actual.slice(-1) === "'") || (actual.slice(0, 1) === '[' && actual.slice(-1) === ']')){
+        if (searchTerm.slice(0, 1) === "'" && searchTerm.slice(-1) === "'") searchTerm = searchTerm.slice(1, -1)
+        if (!actual.includes(searchTerm)) return msg;
+      }
+
+      return `${msg}, Expected ${actual} to not include ${searchTerm}`;
+    },
+    args: ['actual', 'searchTerm'],
+  },
   // match: {
   //   func(msg, value, regexp) {
   //     if (value.match(regexp)) {
@@ -168,22 +161,29 @@ export const assert = {
   //   },
   //   args: ['object', 'property'],
   // },
-  // lengthOf: {
-  //   func(msg, actual, len) {
-  //     if (Array.isArray(actual) || typeof actual === 'string') {
-  //       if (actual.length === len) {
-  //         return msg;
-  //       }
-  //     } else if (
-  //       typeof actual === 'object' &&
-  //       Object.keys(actual).length === len
-  //     ) {
-  //       return msg;
-  //     }
-  //     return `${msg}, Expected ${actual} to have a length of ${len}`;
-  //   },
-  //   args: ['actual', 'length'],
-  // },
+  lengthOf: {
+    func(msg, actual, len) {
+      if (actual.slice(0, 1) === "'" && actual.slice(-1) === "'"){
+        console.log('here')
+        actual = actual.slice(1, -1)
+        console.log(actual)
+        if (actual.length === Number(len)) {
+          console.log('actual')
+          return msg;
+        }
+      }
+      if (actual.slice(0, 1) === '[' && actual.slice(-1) === ']'){
+        actual = actual.slice(1, -1)
+        actual = actual.split(',')
+        if (actual.length === Number(len)) {
+          return msg;
+        }
+      }
+
+      return `${msg}, Expected ${actual} to have a length of ${len}`;
+    },
+    args: ['actual', 'length'],
+  },
   isOk: {
     func(msg, actual) {
       if (actual==='true') return msg;
