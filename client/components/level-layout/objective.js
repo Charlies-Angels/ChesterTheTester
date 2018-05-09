@@ -21,7 +21,11 @@ const Objective = (props) => {
 			    readOnly={true}
 			    value={func}
 			    name="UNIQUE_ID_OF_DIV"
-			    editorProps={{$blockScrolling: true, highlightActiveLine: false,  highlightGutterLine: false}}
+			    editorProps={{$blockScrolling: true}}
+          highlightActiveLine={false}
+          highlightGutterLine={false}
+          setOptions={{cursorStyle: 'thin'}}
+
 			/>
 	)
 }

@@ -124,6 +124,7 @@ form div {
   flex-direction: column;
 }
 
+/* // GAME HEADER */
 .layout-header {
   flex: 0 0 20%;
   display: flex;
@@ -167,35 +168,57 @@ form div {
   border-top-right-radius: 30px;
   border-bottom-right-radius: 30px;
 }
+
+/* // GAME BODY */
 .layout-body {
   flex: 0 0 80%;
+  margin: 1vh;
   display: flex;
+  flex-direction: row;
   justify-content: space-around;
   align-items: center;
 }
 .test-keyboard {
-  flex: 0 0 40%;
+  flex: 4;
   align-self: center;
   height: 40vh;
   min-height: 100%;
-  border-style: solid;
-  border-radius: 30px;
   padding: 1rem;
+  border-top: 4px solid #d75b2a;
+  border-bottom: 4px solid #2f9c93;
 }
 .code-block {
-  flex: 0 0 40%;
+  flex: 4;
   align-self: center;
   height: 40vh;
   min-height: 100%;
-  border-style: solid;
-  border-radius: 30px;
   padding: 1rem;
+  border-top: 4px solid #2f9c93;
+  border-bottom: 4px solid #d75b2a;
+
 }
+.body-left {
+  flex: 1;
+  height: 40vh;
+  background-color: #d79c2a;
+  border-top-left-radius: 100px;
+  border-bottom-left-radius: 100px;
+}
+.body-right {
+  flex: 1;
+  height: 40vh;
+  background-color: #d79c2a;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+
+}
+
+
 .button-test{
   display: inline-block;
   padding: .4em .7em;
-  margin: 0 0.1em 0.1em 0;
-  border-radius: 0.4em;
+  margin: 0 0.15em 0.15em 0;
+  border-radius: 0em;
   box-sizing:  border-box;
   font-family: 'Inconsolata', sans-serif;
   font-weight: 400;
@@ -210,4 +233,8 @@ form div {
   }
  .button-test:active {
   top: 0.2em;
+  }
+/* // Hides cursor on ace editor!! */
+  .ace_hidden-cursors {
+    opacity: 0;
   }

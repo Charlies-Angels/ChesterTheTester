@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { assert } from '../test-object';
 import { it } from '../../utils/tester';
 import levels from '../levels/levels';
+import {postCodeToSandbox} from '../../store'
 
 import Header from './header';
 import Objective from './objective';
@@ -32,10 +33,10 @@ class Layout extends Component {
 
 		const selectOneArgs = assert[selectOne].args;
 		const inputs = [];
-
-		for (let i = 0;i < selectOneArgs.length;i++) {
-			inputs.push(event.target[selectOneArgs[i]].value)
-		}
+    selectOneArgs.forEach(arg => inputs.push(arg.value))
+		// for (let i = 0;i < selectOneArgs.length;i++) {
+		// 	inputs.push(event.target[selectOneArgs[i]].value)
+    // }
 
 		let result = it(message)(assert[selectOne])(...inputs)
 
@@ -71,8 +72,11 @@ class Layout extends Component {
     return (
       <div className="layout-container">
         <Header active={this.props.level.level} />
+
       <div className="layout-body">
-      <div className="code-block"><Objective /></div>
+
+        <div className="body-left"/>
+      <div className="code-block"><Objective title={title} /></div>
       <div className="test-keyboard">{methods.map(method => (
         <button
         key={method}
@@ -94,8 +98,53 @@ class Layout extends Component {
       )}
     </div>
       </div>
-
+      <div className="body-right" />
       </div>
+      <div>
+					<form onSubmit={this.runTest}>
+						{selectOne ? (<label>
+						    Message
+						    <input
+						    type="text"
+						    name="message"
+						    onChange={ (event) => this.setState({message: event.target.value})}
+						    />
+						</label>)
+						: <span />}
+						{selectOne ? assert[selectOne].args.map((arg, i) =>
+							(<div key={arg}>
+								<label>
+								    {arg}
+								    <input
+								    type="text"
+								    value={this.state['input' + i]}
+								    name={arg}
+								    onChange={ (event) => this.setState({['input' + i]: event.target.value})}
+								    />
+								</label>
+							</div>)
+							) : <span />
+						}
+						{selectOne ? <input type="submit" name="Submit" /> : <span /> }
+						{error ? <div>{error}</div> : <span /> }
+					</form>
+				</div>
+        <div>
+				<pre>
+					<code>
+						{
+							`
+							describe('Writing tests for ${title}', function(){
+								${selected.map(element => element)}
+								it('${message}',function(){
+							        assert.${selectOne}(${this.state.input0}${this.state.input1 ? ',' + this.state.input1 : ''}${this.state.input2 ? ',' + this.state.input2 : ''})
+								})
+							})
+							`
+						}
+					</code>
+				</pre>
+			</div>
       </div>
     )
   }
@@ -105,16 +154,15 @@ const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
     level: state.level,
-  }
+		sandbox: state.sandbox
+	}
 }
 
-// const mapDispatch = dispatch => {
-//   return {
-//     handleClick() {
-//       dispatch(logout())
-//     }
-//   }
-// }
+const mapDispatchToProps = (dispatch) => {
+	return {
+		postCodeToSandbox: sandbox => dispatch(postCodeToSandbox(sandbox))
+	}
+}
 
 export default connect(mapState, null)(Layout)
 
