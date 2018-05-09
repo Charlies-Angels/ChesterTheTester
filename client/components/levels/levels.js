@@ -112,7 +112,7 @@ const levels = [
 	planetSort()`,
 	buttons: ['planetSort', 'planetSort(exoplanets)', 'planetSort',
 	'planetSort(meteors)', 'exoplanets', 'exoplanets()' ],
-	solutions: '[ 4344, 234444, 734321, 1124560, 3111000, 5324246, 8234566 ]'
+	solutions: '[ 4344, 234444, 734321, 1124560, 3111000, 5324246, 8234566 ]',
 	suggestedTests: ['isFunction,mtrFrequency', 'isArray,mtrFrequency()', 'isUndefined, launchRocket(), [10,9,8,7,6,5,4,3,2,1,0]']
 },
 {
