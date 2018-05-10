@@ -186,48 +186,47 @@ form div {
 .layout-body {
   flex: 0 0 80%;
   margin: 1vh;
+  height: auto;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  align-items: center;
+  align-items: stretch;
 }
 .test-keyboard {
   flex: 4;
-  align-self: center;
-  height: 40vh;
-  min-height: 100%;
+  align-self: stretch;
+  min-height: 50vh;
   padding: 1rem;
   border-top: 4px solid #d75b2a;
   border-bottom: 4px solid #2f9c93;
 }
 .code-block {
   flex: 4;
-  align-self: center;
-  height: 40vh;
-  min-height: 100%;
+  align-self: stretch;
+  min-height: 50vh;
   padding: 1rem;
   border-top: 4px solid #2f9c93;
   border-bottom: 4px solid #d75b2a;
 
 }
-.body-left {
+/* .body-left {
   flex: 1;
-  height: 40vh;
+  min-height: 50vh;
   background-color: #d79c2a;
   border-top-left-radius: 100px;
   border-bottom-left-radius: 100px;
 }
 .body-right {
   flex: 1;
-  height: 40vh;
+  min-height: 50vh;
   background-color: #d79c2a;
   border-top-right-radius: 100px;
   border-bottom-right-radius: 100px;
 
-}
+} */
 
 
-.button-test{
+.button-red{
   display: inline-block;
   padding: .4em .7em;
   margin: 0 0.15em 0.15em 0;
@@ -244,6 +243,42 @@ form div {
   text-decoration: none;
   outline: 0;
   }
+
+.button-blue{
+  display: inline-block;
+  padding: .4em .7em;
+  margin: 0 0.15em 0.15em 0;
+  border-radius: 0em;
+  box-sizing:  border-box;
+  font-family: 'Inconsolata', sans-serif;
+  font-weight: 400;
+  color: #1b1b1c;
+  background-color: #2f9c93;
+  box-shadow: inset 0 -0.6em 0 -0.35em #27817a;
+  text-align: center;
+  position: relative;
+  border: none;
+  text-decoration: none;
+  outline: 0;
+  }
+.button-yellow{
+  display: inline-block;
+  padding: .4em .7em;
+  margin: 0 0.15em 0.15em 0;
+  width: 50vw;
+  border-radius: 0em;
+  box-sizing:  border-box;
+  font-family: 'Inconsolata', sans-serif;
+  font-weight: 400;
+  color: #1b1b1c;
+  background-color: #d79c2a;
+  box-shadow: inset 0 -0.6em 0 -0.35em #bd8a25;
+  position: relative;
+  border: none;
+  text-decoration: none;
+  outline: 0;
+  }
+
  .button-test:active {
   top: 0.2em;
   }
