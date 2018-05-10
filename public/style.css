@@ -261,11 +261,11 @@ form div {
   text-decoration: none;
   outline: 0;
   }
-.button-yellow{
+.input-yellow-l{
   display: inline-block;
   padding: .4em .7em;
   margin: 0 0.15em 0.15em 0;
-  width: 50vw;
+  width: 45vw;
   border-radius: 0em;
   box-sizing:  border-box;
   font-family: 'Inconsolata', sans-serif;
@@ -278,6 +278,23 @@ form div {
   text-decoration: none;
   outline: 0;
   }
+  .input-yellow-sm{
+    display: inline-block;
+    padding: .4em .7em;
+    margin: 0 0.15em 0.15em 0;
+    width: 15vw;
+    border-radius: 0em;
+    box-sizing:  border-box;
+    font-family: 'Inconsolata', sans-serif;
+    font-weight: 400;
+    color: #1b1b1c;
+    background-color: #d79c2a;
+    box-shadow: inset 0 -0.6em 0 -0.35em #bd8a25;
+    position: relative;
+    border: none;
+    text-decoration: none;
+    outline: 0;
+    }
 
  .button-test:active {
   top: 0.2em;
@@ -286,3 +303,17 @@ form div {
   .ace_hidden-cursors {
     opacity: 0;
   }
+
+
+.send-test {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.clear {
+  flex: 1;
+}
+.sandbox-send {
+  flex: 1;
+}

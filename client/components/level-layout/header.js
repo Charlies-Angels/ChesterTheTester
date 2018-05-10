@@ -7,7 +7,7 @@ const Header = (props) => {
         <div className="layout-header__left">{'<<<'}</div>
         <div className="layout-header__title">CHESTER TESTER</div>
         {levels.map(level => (
-          props.active === (level + 1) ?
+          props.active == (level + 1) ?
           <div key={level} className="layout-header__levels-active">level {level + 1}</div> :
           <div key={level} className="layout-header__levels">level {level + 1}</div>))}
         <div className="layout-header__right">{'>>>'}</div>
