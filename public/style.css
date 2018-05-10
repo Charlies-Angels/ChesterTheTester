@@ -317,3 +317,8 @@ form div {
 .sandbox-send {
   flex: 1;
 }
+
+.gimme-space {
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+}
