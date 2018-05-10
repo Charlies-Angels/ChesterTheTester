@@ -102,7 +102,7 @@ class Layout extends Component {
 
     if (!this.props.levels.length) return <span />;
     const level = this.props.levels.find(
-      lev => lev.id === Number(this.props.level.level)
+      lev => lev.id === Number(this.props.match.params.id)
     );
     return (
       <div className="layout-container">
