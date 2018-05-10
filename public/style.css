@@ -30,74 +30,6 @@ form div {
   flex-direction: column;
 }
 
-.body {
-  flex: 0 0 85%;
-
-}
-
-.nav {
-  flex: 0 0 15%;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-}
-
-.nav__title {
-  flex: 0 0 20%;
-}
-
-.nav__levelName {
-  flex: 0 0 20%;
-  /* align-items: flex-end; */
-}
-
-.nav__statusBar {
-  flex: 0 0 40%;
-}
-.nav__meter-25 {
-  width: 25%;
-}
-.nav__meter-50 {
-  width: 50%;
-}
-.nav__meter-75 {
-  width: 75%;
-}
-.nav__meter-100 {
-  width: 100%;
-}
-
-.nav__meter > span {
-  display: block;
-  height: 100%;
-  border-top-right-radius: 8px;
-  border-right: 3px solid #555;
-  border-bottom-right-radius: 8px;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-  background-color: rgb(43,194,83);
-  background-image: linear-gradient(
-    center bottom,
-    rgb(43,194,83) 37%,
-    rgb(84,240,84) 69%
-  );
-  box-shadow:
-    inset 0 2px 9px  rgba(255,255,255,0.3),
-    inset 0 -2px 6px rgba(0,0,0,0.4);
-  position: relative;
-  overflow: hidden;
-}
-.nav__meter {
-	height: 20px;  /* Can be anything */
-	position: relative;
-	background: #555;
-	-moz-border-radius: 25px;
-	-webkit-border-radius: 25px;
-	border-radius: 25px;
-	padding: 10px;
-	box-shadow: inset 0 -1px 1px rgba(238, 155, 155, 0.3);
-}
-
 .success {
   color: green;
 }
@@ -125,12 +57,9 @@ form div {
   border-radius: 10%;
 }
 .chester {
-  flex: 0 0 30%;
+  flex: 0 0 35%;
 }
-.next-level {
-  flex: 0 0 5%;
-  margin-right: 5vw;
-}
+
 .chester-img {
   width: auto
 }
@@ -143,7 +72,7 @@ form div {
 	font-family: 'Inconsolata', monotype;
 	text-decoration: none;
 	font-size: 1.7vw;
-	transition: all .5s;
+	transition: all .1s;
   background-color: #d75b2a;
   text-decoration: none;
   outline: 0;
@@ -152,7 +81,7 @@ form div {
 .button::before {
   position: absolute;
 	content: '';
-	transition: all .5s;
+	transition: all .1s;
   bottom: -10px;
   height: 10px;
   width: 100%;
@@ -164,7 +93,7 @@ form div {
 .button::after {
   position: absolute;
 	content: '';
-	transition: all .5s;
+	transition: all .1s;
   right: -10px;
   height: 100%;
   width: 10px;
@@ -189,3 +118,171 @@ form div {
   width: 2px;
   bottom: -1px;
 }
+
+.layout-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* // GAME HEADER */
+.layout-header {
+  flex: 0 0 20%;
+  display: flex;
+  flex-direction: row;
+  margin: 2vh 2vh 2vh 2vh;
+  justify-content: center;
+}
+.layout-header__left {
+  flex: 1;
+  color: #ffbb33;
+  text-shadow: 2px 3px 0px #bd8a25;
+  font-size: 3rem;
+  text-align: center;
+  font-weight: bold;
+  padding: .1em;
+  background-color: #d79c2a;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+.layout-header__title {
+  flex: 4;
+  font-size: 2.4em;
+  letter-spacing: .1em;
+  font-weight: bold;
+  text-align: center;
+
+}
+.layout-header__levels {
+  flex: 1;
+  background-color: #2f9c93;
+  box-shadow: inset 0 -0.6em 0 -0.35em #27817a;
+  border-right: 2px solid #1b1b1c;
+  padding: 2vh 0vh;
+  text-align: center;
+}
+.layout-header__levels-active {
+  flex: 1;
+  padding: 2vh 0vh;
+  background-color: #d75b2a;
+  box-shadow: inset 0 -0.6em 0 -0.35em #97401d;
+  font-weight: bold;
+  border-right: 2px solid #1b1b1c;
+  text-align: center;
+}
+.layout-header__right {
+  flex: 1;
+  color: #ffbb33;
+  text-align: center;
+  text-shadow: 2px 3px 0px #bd8a25;
+  font-size: 3rem;
+  font-weight: bold;
+  padding: .1em;
+  background-color: #d79c2a;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+/* // GAME BODY */
+.layout-body {
+  flex: 0 0 80%;
+  margin: 1vh;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: stretch;
+}
+.test-keyboard {
+  flex: 4;
+  align-self: stretch;
+  min-height: 50vh;
+  padding: 1rem;
+  border-top: 4px solid #d75b2a;
+  border-bottom: 4px solid #2f9c93;
+}
+.code-block {
+  flex: 4;
+  align-self: stretch;
+  min-height: 50vh;
+  padding: 1rem;
+  border-top: 4px solid #2f9c93;
+  border-bottom: 4px solid #d75b2a;
+
+}
+/* .body-left {
+  flex: 1;
+  min-height: 50vh;
+  background-color: #d79c2a;
+  border-top-left-radius: 100px;
+  border-bottom-left-radius: 100px;
+}
+.body-right {
+  flex: 1;
+  min-height: 50vh;
+  background-color: #d79c2a;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+
+} */
+
+
+.button-red{
+  display: inline-block;
+  padding: .4em .7em;
+  margin: 0 0.15em 0.15em 0;
+  border-radius: 0em;
+  box-sizing:  border-box;
+  font-family: 'Inconsolata', sans-serif;
+  font-weight: 400;
+  color: #1b1b1c;
+  background-color: #d75b2a;
+  box-shadow: inset 0 -0.6em 0 -0.35em #97401d;
+  text-align: center;
+  position: relative;
+  border: none;
+  text-decoration: none;
+  outline: 0;
+  }
+
+.button-blue{
+  display: inline-block;
+  padding: .4em .7em;
+  margin: 0 0.15em 0.15em 0;
+  border-radius: 0em;
+  box-sizing:  border-box;
+  font-family: 'Inconsolata', sans-serif;
+  font-weight: 400;
+  color: #1b1b1c;
+  background-color: #2f9c93;
+  box-shadow: inset 0 -0.6em 0 -0.35em #27817a;
+  text-align: center;
+  position: relative;
+  border: none;
+  text-decoration: none;
+  outline: 0;
+  }
+.button-yellow{
+  display: inline-block;
+  padding: .4em .7em;
+  margin: 0 0.15em 0.15em 0;
+  width: 50vw;
+  border-radius: 0em;
+  box-sizing:  border-box;
+  font-family: 'Inconsolata', sans-serif;
+  font-weight: 400;
+  color: #1b1b1c;
+  background-color: #d79c2a;
+  box-shadow: inset 0 -0.6em 0 -0.35em #bd8a25;
+  position: relative;
+  border: none;
+  text-decoration: none;
+  outline: 0;
+  }
+
+ .button-test:active {
+  top: 0.2em;
+  }
+/* // Hides cursor on ace editor!! */
+  .ace_hidden-cursors {
+    opacity: 0;
+  }

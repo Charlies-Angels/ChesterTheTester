@@ -11,3 +11,4 @@ export {default as DragDrop} from './DragDrop'
 export {default as Animation} from './Animation'
 export {default as LevelOutline} from './LevelOutline'
 export {default as StartGame} from './start-game';
+export {default as Level} from './level-layout/level';
