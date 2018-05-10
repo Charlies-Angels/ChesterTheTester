@@ -23,7 +23,6 @@ const Objective = (props) => {
 			    width="350px"
 			    height="350px"
 			/>
-
 		</Col>
 	)
 }
