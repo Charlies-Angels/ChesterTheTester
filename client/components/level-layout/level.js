@@ -175,18 +175,7 @@ class Layout extends Component {
                   />
                 </div>
               ))}
-            <div className="send-test">
-              <div className="clear">
-                <button className="button-blue" onClick={this.clearForm}>
-                  Clear
-                </button>
-              </div>
-              <div className="sandbox-send">
-                <button className="button-red" onClick={this.runTest}>
-                  Test it!
-                </button>
-              </div>
-            </div>
+
 
             {level && (
               <div className="gimme-space">
@@ -195,6 +184,8 @@ class Layout extends Component {
                   onChange={event => console.log(event)}
                   theme="chaos"
                   height="150px"
+                  width="600px"
+                  fontSize="14px"
                   readOnly={true}
                   value={`describe('Writing tests for ${
                     level.title
@@ -213,8 +204,19 @@ class Layout extends Component {
                 />
               </div>
             )}
+            <div className="send-test">
+              <div className="clear">
+                <button className="button-blue" onClick={this.clearForm}>
+                  Clear
+                </button>
+              </div>
+              <div className="sandbox-send">
+                <button className="button-red" onClick={this.runTest}>
+                  Test it!
+                </button>
+              </div>
+            </div>
           </div>
-          <div className="body-right" />
         </div>
       </div>
     );

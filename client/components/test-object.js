@@ -120,6 +120,7 @@ export const assert = {
       return `${msg}, Expected ${actual} to be a boolean`;
     },
     args: ['actual'],
+    pre: 'typeof '
   },
   include: {
     func(msg, actual, searchTerm) {

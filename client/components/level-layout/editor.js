@@ -17,6 +17,8 @@ const Editor = (props) => {
 			    theme="chaos"
           height="250px"
 			    readOnly={true}
+          width="600px"
+          fontSize="14px"
 			    value={func}
 			    name="UNIQUE_ID_OF_DIV"
 			    editorProps={{$blockScrolling: true}}
