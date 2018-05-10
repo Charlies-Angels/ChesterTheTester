@@ -31,7 +31,7 @@ export default function (state = defaultLevel, action) {
     case START_GAME:
     return {level: 1, completed: false}
     case UPDATE_LEVEL:
-      return {level: ++state.level, completed: false}
+      return {level: action.level, completed: false}
     case COMPLETE_LEVEL:
       return {...state, completed: true}
     default:

@@ -8,10 +8,8 @@ import AceEditor from 'react-ace';
 import 'brace/mode/javascript';
 import 'brace/theme/chaos';
 
-
-const Objective = (props) => {
+const Editor = (props) => {
   const func = props.func;
-
 	return (
 			<AceEditor
 			    mode="javascript"
@@ -25,21 +23,8 @@ const Objective = (props) => {
           highlightActiveLine={false}
           highlightGutterLine={false}
           setOptions={{cursorStyle: 'thin'}}
-
 			/>
 	)
 }
 
-const mapStateToProps = (state) => {
-	return {
-
-	}
-}
-
-const mapDispatchToProps = (dispatch) => {
-	return {
-
-	}
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Objective)
+export default Editor;
