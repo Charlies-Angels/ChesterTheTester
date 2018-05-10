@@ -24,6 +24,7 @@ class Layout extends Component {
       actual: '',
       input1: '',
       input2: '',
+      tests: [],
     };
   }
   handleClickAssert = (e, method) => {
@@ -38,8 +39,7 @@ class Layout extends Component {
     this.props.getLevelsThunk();
   }
 
-  clearForm = e => {
-    e.preventDefault();
+  clearForm = () => {
     this.setState({
       selectOne: '',
       message: '',
@@ -53,16 +53,10 @@ class Layout extends Component {
 
   runTest = event => {
     event.preventDefault();
-  console.log('hiiiii');
     const { selectOne, message } = this.state;
+    const inputs = [this.state.input1];
 
-    const selectOneArgs = assert[selectOne].args;
-    const inputs = [];
-
-    for (let i = 1; i < selectOneArgs.length; i++) {
-      inputs.push(event.target[selectOneArgs[i]].value);
-    }
-    let sandbox = this.state.input0;
+    let sandbox = this.state.actual;
     if (assert[selectOne].pre) sandbox = assert[selectOne].pre + sandbox;
     if (assert[selectOne].post) sandbox = sandbox + assert[selectOne].post;
 
@@ -71,30 +65,23 @@ class Layout extends Component {
       .then(res => {
         //evaluate response using our assert function
         let result = it(message)(assert[selectOne])(res.sandbox, ...inputs);
-        console.log(message);
         if (result === message) {
-          let str1 = `
-                it('${message}',function(){
-                    assert.${selectOne}(${
-            inputs.length
-              ? this.state.input0 + ',' + inputs.join(',')
-              : this.state.input0
-          })
-                })
+          let str = `
+  it('${message}',function(){
+    assert.${selectOne}(${
+inputs[0] ? this.state.actual + ',' + inputs.join(',') : this.state.actual})
+  })
         `;
-          this.setState({
-            selectOne: '',
-            message: '',
-            error: '',
-            selected: [...this.state.selected, str1],
-            actual: '',
-            input1: '',
-            input2: '',
-          });
+        console.log('skiiiiirp', str);
+        this.setState({
+          tests: [...this.state.tests, str]
+        })
+          this.clearForm();
         } else {
           this.setState({
             error: res.sandbox,
           });
+          this.clearForm();
         }
       });
   };
@@ -168,10 +155,10 @@ class Layout extends Component {
                     className="input-yellow-sm"
                     placeholder="the expected output"
                     type="text"
-                    value={this.state['input' + i]}
+                    value={this.state['input' + (i+1)]}
                     name={arg}
                     onChange={event =>
-                      this.setState({ ['input' + i]: event.target.value })
+                      this.setState({ ['input' + (i+1)]: event.target.value })
                     }
                   />
                 </div>
