@@ -1,12 +1,9 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import Objective from './Objective'
 import {Row,Col} from 'react-bootstrap';
 import brace from 'brace';
-import AceEditor from 'react-ace';
 import { assert } from './test-object';
 import { it } from '../utils/tester';
-import levels from './levels/levels'
 import {postCodeToSandbox, getLevelsThunk} from '../store/'
 
 
