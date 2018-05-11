@@ -26,8 +26,12 @@ const Level = db.define('Level', {
         type: Sequelize.STRING,
         allowNull: true,
     },
-    it: {
+    itBlock: {
       type: Sequelize.STRING,
+      allowNull: true,
+    },
+    instructions: {
+      type: Sequelize.TEXT,
       allowNull: true,
     },
     tests: {

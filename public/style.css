@@ -37,6 +37,10 @@ form div {
   color: red;
 }
 
+h3 {
+  color: #d75b2a;
+}
+
 .start-container {
   display: flex;
   justify-content: space-around;

@@ -14,8 +14,9 @@ const Editor = (props) => {
   const func = props.func;
 	return (
     <PrismCode component="pre" className="language-javascript">
-      {func}
-    </PrismCode>
+      {`/*** Code that we're testing ***/
+
+  ${func}`}</PrismCode>
 	)
 }
 
