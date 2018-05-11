@@ -9,7 +9,7 @@ const levels = [
     func: `const allSystemsCheck = true;`,
     objective: 'Check that all systems are go!',
     buttons: ['allSystemsCheck'],
-  instructions: `Test the variable, 'allSystemsGo', to be sure that it returns a boolean. Pick which Mocha assertion you'd like to use on the right side. It will appear in the code block below. Some assertions require a second input to check your code against. For instance, 'typeoOf' accepts a string of what data type the tested code should return. `,
+  instructions: `Test the variable, 'allSystemsCheck', to be sure that it returns a boolean. Pick which Mocha assertion you'd like to use on the right side. It will appear in the code block below. Some assertions require a second input to check your code against. For instance, 'typeoOf' accepts a string of what data type the tested code should return. `,
     itBlock: 'allSystemsCheck should be a boolean',
     tests: ['typeOf', 'isBoolean', 'isTrue', 'isFalse', 'isArray'],
     actual: 'allSystemsCheck'

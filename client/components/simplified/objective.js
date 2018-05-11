@@ -1,9 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
-
-import TestSuite from '../test-checks/test';
-
-
 
 const Objective = (props) => {
 	return (
@@ -14,16 +9,4 @@ const Objective = (props) => {
 	)
 }
 
-const mapStateToProps = (state) => {
-	return {
-
-	}
-}
-
-const mapDispatchToProps = (dispatch) => {
-	return {
-
-	}
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Objective)
+export default Objective;

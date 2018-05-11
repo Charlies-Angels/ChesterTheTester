@@ -1,5 +1,4 @@
 import React from 'react';
-
 import PrismCode from 'react-prism';
 import ScrollArea from 'react-scrollbar';
 import 'prismjs';
