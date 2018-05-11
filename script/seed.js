@@ -1,14 +1,4 @@
-/**
- * Welcome to the seed file! This seed file uses a newer language feature called...
- *
- *                  -=-= ASYNC...AWAIT -=-=
- *
- * Async-await is a joy to use! Read more about it in the MDN docs:
- *
- * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
- *
- * Now that you've got the main idea, check it out in practice below!
- */
+
 const db = require('../server/db')
 const {User,Level} = require('../server/db/models')
 
@@ -16,9 +6,11 @@ const levels = [
   {
     level: 0,
     title: 'Check All Systems',
-    func: `const allSystemCheck = true;`,
+    func: `const allSystemsCheck = true;`,
     objective: 'Check that all systems are go!',
-    it: 'allSystemsCheck Should be a boolean',
+    buttons: ['allSystemsCheck'],
+  instructions: `Test the variable, 'allSystemsGo', to be sure that it returns a boolean. Pick which Mocha assertion you'd like to use on the right side. It will appear in the code block below. Some assertions require a second input to check your code against. For instance, 'typeoOf' accepts a string of what data type the tested code should return. `,
+    itBlock: 'allSystemsCheck should be a boolean',
     tests: ['typeOf', 'isBoolean', 'isTrue', 'isFalse', 'isArray'],
     actual: 'allSystemsCheck'
   },

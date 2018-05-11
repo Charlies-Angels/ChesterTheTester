@@ -37,6 +37,18 @@ form div {
   color: red;
 }
 
+h3 {
+  color: #d75b2a;
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: .2rem;
+}
+h4 {
+  letter-spacing: .1rem;
+}
+h5 {
+  font-family:
+}
+
 .start-container {
   display: flex;
   justify-content: space-around;
@@ -149,6 +161,7 @@ form div {
   flex: 4;
   font-size: 2.4em;
   letter-spacing: .1em;
+  font-family: 'Oswald', sans-serif;
   font-weight: bold;
   text-align: center;
 
@@ -186,32 +199,30 @@ form div {
 /* // GAME BODY */
 .layout-body {
   flex: 0 0 80%;
-  margin: 1vh;
-  height: auto;
+  margin-top: 2vh;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-
-}
-.chester-level {
-  flex: 2;
-  align-self: flex-end;
-  padding-left: 5vw;
-  padding-right: 5vw;
+  justify-content: space-evenly;
 }
 .code-block {
-  flex: 4;
+  flex: 1;
   align-self: stretch;
-  padding: 1rem;
-
+  padding-left: 2vw;
+  padding-right: 1vw;
 }
 
+.chester-level {
+  flex: 1;
+  align-self: stretch;
+  padding-left: 1vw;
+  padding-right: 2vw;
+}
+
+
 .button-red{
-  display: inline-block;
   padding: .4em .7em;
   margin: 0 0.15em 0.15em 0;
   border-radius: 0em;
-  box-sizing:  border-box;
   font-family: 'Inconsolata', sans-serif;
   font-weight: 400;
   color: #1b1b1c;
@@ -225,11 +236,9 @@ form div {
   }
 
 .button-blue{
-  display: inline-block;
   padding: .4em .7em;
   margin: 0 0.15em 0.15em 0;
   border-radius: 0em;
-  box-sizing:  border-box;
   font-family: 'Inconsolata', sans-serif;
   font-weight: 400;
   color: #1b1b1c;
@@ -321,4 +330,29 @@ form div {
 }
 .assertion {
   flex: 1;
+}
+
+.test-block {
+  background-color: #2e2e30;
+  border-radius: 5px;
+  width: auto;
+  height: 30vh;
+  padding: .5em;
+  margin-top: .5em;
+  margin-bottom: .5em;
+  font-family: 'Oswald', sans-serif;
+  font-weight: bold;
+}
+
+.func-block {
+  background-color: #2e2e30;
+  border-radius: 5px;
+  width: auto;
+  height: auto;
+  max-height: 30vh;
+  padding: .5em;
+  margin-top: .5em;
+  margin-bottom: .5em;
+  font-family: 'Oswald', sans-serif;
+  font-weight: bold;
 }
