@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import Header from './header';
 import Objective from './objective';
 import Editor from './editor';
@@ -8,9 +7,6 @@ import Describe from './describe';
 import AssertButton from './assert-button';
 import { assert } from '../test-object';
 import { it } from '../../utils/tester';
-import PrismCode from 'react-prism';
-import 'prismjs';
-
 import { postCodeToSandbox, getLevelsThunk, setLevel } from '../../store';
 
 class Layout extends Component {
@@ -91,7 +87,7 @@ it('${message}',function(){
         <div className="layout-body">
 
           <div className="code-block">
-            <Objective level={level} message={itBlock} title={title} instructions={instructions} />
+            <Objective level={level} title={title} instructions={instructions} />
             <Editor func={func} />
           </div>
 

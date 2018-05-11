@@ -8,7 +8,8 @@ import 'prismjs';
 class Describe extends Component {
   constructor(props) {
     super(props);
-    this.state = { assertion: props.assertion || '' };
+    this.state = {
+      assertion: props.assertion || '' };
   }
   componentWillReceiveProps(nextProps) {
     this.setState({
