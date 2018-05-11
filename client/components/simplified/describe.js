@@ -5,9 +5,6 @@ import ScrollArea from 'react-scrollbar';
 import PrismCode from 'react-prism';
 import 'prismjs';
 
-import 'brace/mode/javascript';
-import 'brace/theme/chaos';
-
 class Describe extends Component {
   constructor(props) {
     super(props);
@@ -21,12 +18,7 @@ class Describe extends Component {
   render() {
     const { describe, it, actual, input1 } = this.props;
     return (
-        <ScrollArea
-            speed={0.8}
-            className="test-block"
-            horizontal={false}
-            >
-              <h4>Test Code:</h4>
+
       <PrismCode component="pre" className="language-javascript">
         {`describe('${describe}', () => {
     it('${it}', () => {
@@ -34,7 +26,6 @@ class Describe extends Component {
     })
   })`}
       </PrismCode>
-      </ScrollArea>
     );
   }
 }

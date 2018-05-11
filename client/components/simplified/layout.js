@@ -39,7 +39,9 @@ class Layout extends Component {
       selectOne: '',
       input1: '',
       input2: '',
-      responses: [],
+      passing: false,
+      testResponse: '',
+
     });
   };
 
@@ -60,19 +62,18 @@ class Layout extends Component {
           responses: [result]
         })
         console.log(result)
-//         if (result === message) {
-//           let str = `
-// it('${message}',function(){
-//    assert.${selectOne}(${inputs[0]? actual + ',' + inputs.join(','): actual
-//   })
-// })
-//   `;
-//           this.setState({
-//             tests: [...this.state.tests, str],
-//           });
+        if (result === message) {
+          let str = `
+it('${message}',function(){
+   assert.${selectOne}(${inputs[0]? actual + ',' + inputs.join(','): actual
+  })
+})
+  `;
+          this.setState({
+            tests: [...this.state.tests, str],
+          });
           this.clearForm();
-
-          //***LEVEL UP LOGIC HERE***//
+        }
       })
       .catch(err => {
         console.log(err);
@@ -92,12 +93,23 @@ class Layout extends Component {
           <div className="code-block">
             <Objective level={level} message={itBlock} title={title} instructions={instructions} />
             <Editor func={func} />
-
           </div>
+
           <div className="chester-level">
+            <div className="test-block">
+
+              <div className="send-test">
+                <div className="test-code"><h4>Test Code:</h4></div>
+                <div className="clear-send">
+                <button className="button-blue" onClick={this.clearForm}>Clear</button>
+                <button className="button-red" onClick={this.runTest}>Run Test!</button>
+                </div>
+            </div>
+
               <Describe describe={objective} assertion={selectOne} actual={actual} input1={input1} it={itBlock} />
+
+              <h5>Choose an assertion: </h5>
               <div className="display-assertions">
-                <div className="assertion"><h5>Choose an assertion: </h5></div>
               {tests.map(method => (
                   selectOne === method ?
                   <div className="assertion" key={method}>
@@ -108,15 +120,8 @@ class Layout extends Component {
                   </div>
               ))}
               </div>
+              </div>
 
-            <div className="send-test">
-              <div className="clear">
-                <button className="button-blue" onClick={this.clearForm}>Clear</button>
-              </div>
-              <div className="sandbox-send">
-                <button className="button-red" onClick={this.runTest}>Run Test!</button>
-              </div>
-          </div>
           </div>
 
       </div>

@@ -18,7 +18,10 @@ class StartGame extends Component {
 
             </h4>
             <Link to="/level/1">
-              <button className="button"> START GAME</button>
+              <button className="button-blue">GO TO TUTORIAL</button>
+            </Link>
+            <Link to="/generator">
+              <button className="button-red">GO TO EDITOR</button>
             </Link>
           </div>
           <div className="chester">
