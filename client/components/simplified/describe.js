@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { Col } from 'react-bootstrap';
-import levels from '../levels/levels';
-import brace from 'brace';
-import AceEditor from 'react-ace';
+
+import ScrollArea from 'react-scrollbar';
 import PrismCode from 'react-prism';
 import 'prismjs';
 
@@ -23,15 +21,20 @@ class Describe extends Component {
   render() {
     const { describe, it, actual, input1 } = this.props;
     return (
+        <ScrollArea
+            speed={0.8}
+            className="test-block"
+            horizontal={false}
+            >
+              <h4>Test Code:</h4>
       <PrismCode component="pre" className="language-javascript">
-        {`/*** Test that we're writing ***/
-
-  describe('${describe}', () => {
+        {`describe('${describe}', () => {
     it('${it}', () => {
     assert.${this.state.assertion}(${actual}${input1 ? ',' + input1 : ''})
     })
   })`}
       </PrismCode>
+      </ScrollArea>
     );
   }
 }

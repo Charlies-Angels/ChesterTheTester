@@ -46,14 +46,14 @@ class Layout extends Component {
   runTest = () => {
     const { selectOne, input1, input2 } = this.state;
     const inputs = [input1];
-    const level = this.props.levels.find(lev => lev.id === Number(1)); // req params
+    const level = this.props.levels.find(lev => lev.level === Number(0)); // req params
     const { func, objective, itBlock, tests, actual, title } = level;
-
+    console.log(actual)
     let sandbox = actual;
     if (assert[selectOne].pre) sandbox = assert[selectOne].pre + sandbox;
     if (assert[selectOne].post) sandbox = sandbox + assert[selectOne].post;
 
-    this.props.postCodeToSandbox({ sandbox, level: 1 }) // req params
+    this.props.postCodeToSandbox({ sandbox, level: 0 }) // req params
       .then(res => {
         let result = it(itBlock)(assert[selectOne])(res.sandbox, ...inputs);
         this.setState({
@@ -92,13 +92,12 @@ class Layout extends Component {
           <div className="code-block">
             <Objective level={level} message={itBlock} title={title} instructions={instructions} />
             <Editor func={func} />
-            <Describe describe={objective} assertion={selectOne} actual={actual} input1={input1} it={itBlock} />
+
           </div>
           <div className="chester-level">
-            <div className="display-assertions">
-              <div className="assertion">
-                <h4>Select One:</h4>
-              </div>
+              <Describe describe={objective} assertion={selectOne} actual={actual} input1={input1} it={itBlock} />
+              <div className="display-assertions">
+                <div className="assertion"><h5>Choose an assertion: </h5></div>
               {tests.map(method => (
                   selectOne === method ?
                   <div className="assertion" key={method}>
@@ -108,6 +107,7 @@ class Layout extends Component {
                   <AssertButton method={method} onClick={e => this.handleClickAssert(e, method)} />
                   </div>
               ))}
+              </div>
 
             <div className="send-test">
               <div className="clear">
@@ -116,12 +116,10 @@ class Layout extends Component {
               <div className="sandbox-send">
                 <button className="button-red" onClick={this.runTest}>Run Test!</button>
               </div>
-            </div>
+          </div>
           </div>
 
-            <img src="/img/chester.svg" />
-          </div>
-        </div>
+      </div>
     </div>
     );
   }
