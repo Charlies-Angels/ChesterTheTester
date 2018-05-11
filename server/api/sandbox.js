@@ -13,5 +13,10 @@ router.post('/', (req, res, next) => {
 			res.json(output.result)
 		})
 	})
+})
 
+router.post('/test-generator', (req, res, next) => {
+	sand.run(req.body.input, function(output){
+		res.json(output.result)
+	})
 })

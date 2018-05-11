@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import {Login, Signup, UserHome, LevelOutline, StartGame, Level} from './components'
 import {me, levelOne, getLevelsThunk} from './store'
 import Level0 from './components/simplified/layout';
+import TestGenerator from './components/test-generator'
 
 /**
  * COMPONENT
@@ -26,7 +27,8 @@ class Routes extends Component {
         <Route exact path="/level/0" component={Level0} />
         <Route path="/level/:id" component={Level} />
         <Route path="/home" component={UserHome} />
-        <Route path="/" component={StartGame} />
+        <Route exact path="/" component={StartGame} />
+        <Route path="/generator" component={TestGenerator} />
         {/* Displays our Login component as a fallback */}
         <Route component={Login} />
       </Switch>
