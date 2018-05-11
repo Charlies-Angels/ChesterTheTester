@@ -13,12 +13,21 @@ const db = require('../server/db')
 const {User,Level} = require('../server/db/models')
 
 const levels = [
+  {
+    level: 0,
+    title: 'Check All Systems',
+    func: `const allSystemCheck = true;`,
+    objective: 'Check that all systems are go!',
+    it: 'allSystemsCheck Should be a boolean',
+    tests: ['typeOf', 'isBoolean', 'isTrue', 'isFalse', 'isArray'],
+    actual: 'allSystemsCheck'
+  },
 {
   level: 1,
   title: `All systems check!`,
   objective: 'Ok cadets, since no one checked the critical functions of the our intergalactic rocket, I guess it\'s up to us to make sure thing are going smoothly. We do unit testing here at Fullstack A-Cat-amy of Space, that means making many small tests to tests each part of our code. We test to check validity, make maintenance easier, for documentation, for better understanding, and for considering business logic which means you should check edge cases and any possible use scenarios. I\'ll have to be the one to teach you the mocha.js framework and the chai.js assertions, ugh. Tests should be organized into groups using \'describe\' blocks accepting a message and a callback, then \'beforeEach\' can be added to set up common code, but we won\'t worry about that for now. Individual tests should be the in the second argument of the describe block and start with \'it\', \'it\' also takes a message as its first parameter and an anonymous function with an assertion as the second. Lets jump in. we\'ll start by writing a simple test to test the "all systems are go" function of the ship. You\'ll see the test assertions on the right and the functions on the left. Start by observing the type of variables and functions available to test. allSystemCheck is a variable that stores a boolean, we can select the "isBoolean" assertion. Then choose the allSystemCheck input. you\'ll see that the tests become filled with your choices. Ok, time to write that first test.',
 
-  function: `
+  func: `
   const allSystemCheck = true;
   const allSystemsAreGo = (allSystemCheck) => {
     if (allSystemCheck) return 'Ready for liftoff!';
@@ -34,7 +43,7 @@ const levels = [
   title: `All systems are go, ready for liftoff!`,
   objective: 'Great, you wrote a test. can you write a second test? I suggest comparing the functions you see on the right side of the page with the assertions on the left. there are a lot of options for both. Next you\'ll see a function that takes allSystemCheck as a parameter. That means you can test the function as a variable which would pass a test check if the test was "isFunction". The instanciated function would return a different fail that same test. allSystemsAreGo() actually returns a string. So "isString", "isOK", and "isNotNull" are all options to check the existence and type of the return from allSystemsAreGo(), while "typeOf" and "equal" require you to input an expected value. Find what you expect to return from the instantiated function. Ok, go on and test!',
 
-  function: `
+  func: `
   const allSystemCheck = true;
   const allSystemsAreGo = (allSystemCheck) => {
     if (allSystemCheck) return 'Ready for liftoff!';
@@ -49,7 +58,7 @@ const levels = [
   level: 3,
   title: `Lift Off!`,
   objective: 'Okay great, you can test a function. I don\'t know if you\'ve ever been part of a catship crew, but it\'s pretty common for a catship to countdown before liftoff. Now that we know that all systems are go we can just make sure our countdown works. you\'ll see that launchRocket is a function that returns and array of numbers 10-0, that\'s a pretty essential part of catship operation. let\'s write 3 tests to check launchRocket',
-  function:
+  func:
   `const launchRocket = () => {
     let countDown = [];
     let counter = 10;
@@ -68,7 +77,7 @@ const levels = [
   level: 4,
   title: 'Meteor check!',
   objective: 'Finally we\'re flying. This is what it\'s all about... Now that the catship is airborne, let\'s do an analysis of our meteor radar. It looks like there are mostly iron meteors floating around. Let\'s use tests to make sure our radar is actually storing the meteors in range and then automatically sorting them by type. Iron meteors are way more dense, so we do our best to avoid them. So, before we smash into a wall of iron meteors lets write at least three tests for our meteor analysis',
-  function:
+  func:
   `function mtrFrequency(meteorsInRange) {
     const mtrAnalysis = meteorsInRange.reduce(function(meteorsInRange, type) {
       if (type in meteorsInRange) {
@@ -110,7 +119,7 @@ const levels = [
   level: 5,
   title: 'Sorting to find life!',
   objective: 'Time for my favorite task of the day,searching the galaxy for inhabitable exoplanets. This catship uses a sensor that populates new "goldi-locks" planet into an "exoplanet" array. Then the catship\'s onboard computer uses an advanced technique to rapidly find the planet most likely to be life sustaining before the sort is even complete. let\'s write at least three tests to make sure this system is in tip top shape. ',
-  function: `
+  func: `
   const swap = (array, i, j) => {
     let temp = array[i];
     array[i] = array[j];
@@ -143,7 +152,7 @@ const levels = [
 level: 6,
 title: 'Classy spacecraft of the 21st century',
 objective: 'Pop Quiz! We\'re here to test catship operations, obviously. So then, you should know the difference between a Spacecraft, a rocket and a catship. See the ES6 code and check if you know that the return statement would say.',
-function: `
+func: `
 class Spacecraft {
   fly() {
     return 'they fly';
