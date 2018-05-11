@@ -4,7 +4,7 @@ import {Row,Col} from 'react-bootstrap';
 import brace from 'brace';
 import { assert } from './test-object';
 import { it } from '../utils/tester';
-import {postCodeToGenerator} from '../store/'
+import {postCodeToGenerator, updateCode} from '../store/'
 import AceEditor from 'react-ace'
 import 'brace/mode/java';
 import 'brace/theme/monokai';
@@ -15,7 +15,6 @@ class TestGenerator extends Component {
 		this.state = {
 			selectOne: '',
 			selected: [],
-			input: '//Type functions here. Make sure to invoke your function! \n',
 			output: '',
 			inputTest1: '',
 			inputTest2: '',
@@ -33,7 +32,7 @@ class TestGenerator extends Component {
 	sendFunctionToSandbox = (event) => {
 		event.preventDefault();
 
-		this.props.postCodeToGenerator({input: this.state.input})
+		this.props.postCodeToGenerator({input: this.props.generator})
 		.then(res => {
 			this.setState({output: res.sandbox})
 		})
@@ -90,19 +89,19 @@ class TestGenerator extends Component {
 
 	render () {
 		const methods = Object.keys(assert);
-		const {selected, selectOne, input, output, message, describe, inputTest1, inputTest2} = this.state
-		const invokedFuncArr = input.split('\n')
-		const invokedFuncStr = invokedFuncArr[invokedFuncArr.length-1]
+		const {selected, selectOne, output, message, describe, inputTest1, inputTest2} = this.state
+		const invokedFuncArr = this.props.generator.split('\n')
+		const invokedFuncStr = invokedFuncArr[invokedFuncArr.length - 1]
 		return (
 			<div>
 				<Row className="show-grid">
 					<Col xs={6} md={4}>
 						<AceEditor
 						    mode="javascript"
-						    onChange={(event) => this.setState({input: event})}
+						    onChange={(event) => this.props.updateCode(event)}
 						    theme="monokai"
 						    readOnly={false}
-						    value={this.state.input}
+						    value={this.props.generator}
 						    name="ace"
 						    editorProps={{$blockScrolling: true}}
 						    width="350px"
@@ -182,13 +181,14 @@ class TestGenerator extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		
+		generator: state.generator
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
 	return {
 		postCodeToGenerator: sandbox => dispatch(postCodeToGenerator(sandbox)),
+		updateCode: code => dispatch(updateCode(code))
 	}
 }
 
