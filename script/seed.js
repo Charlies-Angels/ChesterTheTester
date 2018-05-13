@@ -1,6 +1,6 @@
 
 const db = require('../server/db')
-const {User,Level} = require('../server/db/models')
+const {User, Level} = require('../server/db/models')
 
 const levels = [
   {
@@ -12,12 +12,13 @@ const levels = [
     instructions: `Test the variable, 'allSystemsCheck', to be sure that it returns a boolean. Pick which Mocha assertion you'd like to use on the right side. It will appear in the code block below. Some assertions require a second input to check your code against. For instance, 'typeoOf' accepts a string of what data type the tested code should return. `,
     itBlock: 'allSystemsCheck should be a boolean',
     tests: ['typeOf', 'isBoolean', 'isTrue', 'isFalse', 'isArray'],
-    actual: 'allSystemsCheck'
+    actual: 'allSystemsCheck',
+    testToPass: 1,
   },
 {
   level: 1,
   title: `All systems check!`,
-  objective: 'Ok cadets, since no one checked the critical functions of the our intergalactic rocket, I guess it\'s up to us to make sure thing are going smoothly. We do unit testing here at Fullstack A-Cat-amy of Space, that means making many small tests to tests each part of our code. We test to check validity, make maintenance easier, for documentation, for better understanding, and for considering business logic which means you should check edge cases and any possible use scenarios. I\'ll have to be the one to teach you the mocha.js framework and the chai.js assertions, ugh. Tests should be organized into groups using \'describe\' blocks accepting a message and a callback, then \'beforeEach\' can be added to set up common code, but we won\'t worry about that for now. Individual tests should be the in the second argument of the describe block and start with \'it\', \'it\' also takes a message as its first parameter and an anonymous function with an assertion as the second. Lets jump in. we\'ll start by writing a simple test to test the "all systems are go" function of the ship. You\'ll see the test assertions on the right and the functions on the left. Start by observing the type of variables and functions available to test. allSystemCheck is a variable that stores a boolean, we can select the "isBoolean" assertion. Then choose the allSystemCheck input. you\'ll see that the tests become filled with your choices. Ok, time to write that first test.',
+  objective: 'Ok cadets, since no one checked the critical functions of the our intergalactic rocket, I guess it\'s up to us to make sure thing are going smoothly. We do unit testing here at Fullstack A-Cat-amy of Space, that means making many small tests to tests each part of our code. We test to check validity, make maintenance easier, for documentation, for better understanding, and for considering business logic which means you should check edge cases and any possible use scenarios. I guess I\'ll have to be the one to teach you the mocha.js framework and the chai.js assertions, ugh. Tests should be organized into groups using \'describe\' blocks accepting a message and a callback, then \'beforeEach\' can be added to set up common code, but we won\'t worry about that for now. Individual tests should be the in the second argument of the describe block and start with \'it\', \'it\' also takes a message as its first parameter and an anonymous function with an assertion as the second. Lets jump in. we\'ll start by writing a simple test to test the "all systems are go" function of the ship. You\'ll see the test assertions on the right and the functions on the left. Start by observing the type of variables and functions available to test. allSystemCheck is a variable that stores a boolean, we can select the "isBoolean" assertion. Then choose the allSystemCheck input. you\'ll see that the tests become filled with your choices. Ok, time to write that first test.',
 
   func: `
   const allSystemCheck = true;

@@ -41,6 +41,10 @@ const Level = db.define('Level', {
     actual: {
       type: Sequelize.STRING,
       allowNull: true,
+    },
+    testToPass: {
+      type: Sequelize.INTEGER,
+      allowNull: true,
     }
 })
 

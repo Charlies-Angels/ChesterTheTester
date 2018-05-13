@@ -159,14 +159,14 @@ h6 {
   flex-direction: row;
   justify-content: space-evenly;
 }
-.code-block {
+.left-side {
   flex: 1;
   align-self: stretch;
   padding-left: 2vw;
   padding-right: 1vw;
 }
 
-.chester-level {
+.right-side {
   flex: 1;
   align-self: stretch;
   justify-content: space-between;
@@ -277,26 +277,18 @@ h6 {
   width: 100%;
 }
 
-.test-code {
-  flex: 1;
-}
 .clear-send {
   flex: 1;
   text-align: right;
 }
 
-.gimme-space {
-  margin-top: 1vh;
-  margin-bottom: 1vh;
-}
-
 .display-assertions {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   width: 100%;
 }
 .assertion {
-  flex: 1;
+  flex: 0 0 10%;
 }
 
 .test-block {
@@ -320,7 +312,6 @@ h6 {
   padding: .5em;
   margin-top: .5em;
   margin-bottom: .5em;
-  font-family: 'Oswald', sans-serif;
 }
 
 ul, li {
@@ -329,6 +320,7 @@ ul, li {
 
 .inner-block {
   background-color: #404042;
+  display: flex;
   border-radius: 4px;
   width: 100%;
   height: auto;
@@ -336,4 +328,8 @@ ul, li {
   margin: .5em 0 1em 0;
   font-weight: bold;
   font-family: 'Oswald', sans-serif;
+}
+
+.describe {
+  flex: 3;
 }

@@ -5,6 +5,7 @@ import Objective from './objective';
 import Editor from './editor';
 import Describe from './describe';
 import AssertButton from './assert-button';
+import ClearRun from './clear-run';
 import TestRunner from './test-runner';
 import { assert } from '../test-object';
 import { it } from '../../utils/tester';
@@ -27,8 +28,7 @@ class Layout extends Component {
     this.props.getLevelsThunk();
   }
 
-  handleClickAssert = (e, method) => {
-    e.preventDefault();
+  handleClickAssert = (method) => {
     this.setState({
       selectOne: method,
     });
@@ -40,7 +40,6 @@ class Layout extends Component {
       input1: '',
       input2: '',
       testResponse: '',
-      passing: false,
     });
   };
 
@@ -57,7 +56,8 @@ class Layout extends Component {
       .then(res => {
         let result = it(itBlock)(assert[selectOne])(res.sandbox, ...inputs);
         this.setState({
-          testResponse: result
+          testResponse: result,
+          selectOne: '',
         })
         console.log(result)
         if (result === itBlock) {
@@ -88,19 +88,18 @@ it('${itBlock}',function(){
         <Header active={level} />
         <div className="layout-body">
 
-          <div className="code-block">
+          <div className="left-side">
             <Objective level={level} title={title} instructions={instructions} />
-            <Editor func={func} codeBlock={actual}/>
+            <Editor func={func} codeBlock={actual} />
           </div>
 
-          <div className="chester-level">
+          <div className="right-side">
             <div className="test-block">
             <TestRunner objective={objective} it={itBlock} testResponse={testResponse} />
               <div className="send-test">
-                <div className="test-code"><h4>Test Code:</h4></div>
+                <h4>Test Code Block:</h4>
                 <div className="clear-send">
-                <button disabled={!selectOne} className={selectOne ? 'button-red' : 'button-inactive'} onClick={this.clearForm}>Clear</button>
-                <button disabled={!selectOne} className={selectOne ? 'button-blue-active' : 'button-inactive'} onClick={this.runTest}>Run Test!</button>
+                  <ClearRun selectOne={selectOne} runTest={this.runTest} clearForm={this.clearForm} />
                 </div>
             </div>
 
@@ -111,15 +110,35 @@ it('${itBlock}',function(){
               {tests.map(method => (
                   selectOne === method ?
                   <div className="assertion" key={method}>
-                    <AssertButton active method={method} onClick={e => this.handleClickAssert(e, method)} />
+                    <AssertButton active method={method} onClick={() => this.handleClickAssert(method)} />
                   </div> :
                   <div className="assertion" key={method}>
-                  <AssertButton method={method} onClick={e => this.handleClickAssert(e, method)} />
+                  <AssertButton method={method} onClick={() => this.handleClickAssert(method)} />
                   </div>
               ))}
               </div>
+              { selectOne && assert[selectOne].args.length > 1 &&
+              <div>
+                <h5>Add input for expected value: </h5>
+                <div className="display-assertions">
+                {assert[selectOne].args.slice(1).map((arg, i) => (
+                  <input
+                    key={arg}
+                    className="input-yellow-sm"
+                    placeholder="the expected output"
+                    type="text"
+                    value={this.state['input' + (i + 1)]}
+                    name={arg}
+                    onChange={event =>
+                      this.setState({
+                        ['input' + (i + 1)]: event.target.value,
+                      })
+                    }/>
+                  ))}
+                  </div>
+                </div>
+              }
               </div>
-
           </div>
 
       </div>

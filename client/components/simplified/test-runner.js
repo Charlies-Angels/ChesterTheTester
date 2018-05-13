@@ -27,12 +27,11 @@ class TestRunner extends Component {
           { testResponse.length ?
           testResponse.map(response => (
             response.includes('Expected') ?
-              <Failure msg={response} /> :
+              <Failure msg={response} key={response.charCodeAt(Math.floor(Math.random() * 10))}/> :
               <Success msg={response} />
           ))
           :
           <Failure msg={it} />
-
           }
         </ul>
         </div>
