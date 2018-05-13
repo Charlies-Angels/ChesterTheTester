@@ -31,22 +31,31 @@ form div {
 }
 
 .success {
-  color: green;
+  color: #4ce7da;
 }
 .failure {
-  color: red;
+  color: #d75b2a;
 }
-
-h3 {
+h2 {
   color: #d75b2a;
   font-family: 'Oswald', sans-serif;
-  letter-spacing: .2rem;
+  font-size: 2.4rem;
+  letter-spacing: .1rem;
+}
+h3 {
+  font-family: 'Inconsolata', sans-serif;
+  font-size: 1.4em;
 }
 h4 {
+  font-family: 'Oswald', sans-serif;
   letter-spacing: .1rem;
 }
 h5 {
   font-family: 'Oswald', sans-serif;
+  font-size: 1.6rem;
+}
+h6 {
+  font-family: 'Inconsolata', sans-serif;
   font-size: 1.6rem;
 }
 
@@ -165,7 +174,6 @@ h5 {
   padding-right: 2vw;
 }
 
-
 .button-red{
   padding: .4em .7em;
   margin: 0 0.15em 0.15em 0;
@@ -198,14 +206,6 @@ h5 {
   outline: 0;
 }
 
-.button-blue:active {
-top: 0.2em;
-}
-
-.button-red:active {
-  top: 0.2em;
-}
-
 .button-blue-active {
   background-color: #4ce7da;
   display: inline-block;
@@ -223,6 +223,52 @@ top: 0.2em;
   text-decoration: none;
   outline: 0;
   }
+
+.button-green{
+  padding: .4em .7em;
+  margin: 0 0.15em 0.15em 0;
+  border-radius: 0em;
+  font-family: 'Inconsolata', sans-serif;
+  font-weight: 400;
+  color: #1b1b1c;
+  background-color: #2d9d35;
+  box-shadow: inset 0 -0.6em 0 -0.35em #227628;
+  text-align: center;
+  position: relative;
+  border: none;
+  text-decoration: none;
+  outline: 0;
+  }
+.button-inactive{
+  padding: .4em .7em;
+  margin: 0 0.15em 0.15em 0;
+  border-radius: 0em;
+  font-family: 'Inconsolata', sans-serif;
+  font-weight: 400;
+  color: #1b1b1c;
+  background-color: #5d5d5f;
+  box-shadow: inset 0 -0.6em 0 -0.35em #404042;
+  text-align: center;
+  position: relative;
+  border: none;
+  text-decoration: none;
+  outline: 0;
+  }
+
+.button-blue:active {
+  top: 0.2em;
+}
+
+.button-green:active {
+  top: 0.2em;
+}
+
+.button-red:active {
+    top: 0.2em;
+}
+.button-blue-active:active {
+  top: 0.2em;
+}
 
 .send-test {
   display: flex;
@@ -267,7 +313,7 @@ top: 0.2em;
 
 .func-block {
   background-color: #2e2e30;
-  border-radius: 5px;
+  border-radius: 3px;
   width: auto;
   height: auto;
   max-height: 30vh;
@@ -275,5 +321,19 @@ top: 0.2em;
   margin-top: .5em;
   margin-bottom: .5em;
   font-family: 'Oswald', sans-serif;
+}
+
+ul, li {
+  font-family: 'Inconsolata', sans-serif;
+}
+
+.inner-block {
+  background-color: #404042;
+  border-radius: 4px;
+  width: 100%;
+  height: auto;
+  padding: .5em;
+  margin: .5em 0 1em 0;
   font-weight: bold;
+  font-family: 'Oswald', sans-serif;
 }

@@ -5,6 +5,7 @@ import Objective from './objective';
 import Editor from './editor';
 import Describe from './describe';
 import AssertButton from './assert-button';
+import TestRunner from './test-runner';
 import { assert } from '../test-object';
 import { it } from '../../utils/tester';
 import { postCodeToSandbox, getLevelsThunk, setLevel } from '../../store';
@@ -16,6 +17,9 @@ class Layout extends Component {
       selectOne: '',
       input1: '',
       input2: '',
+      passing: false,
+      testResponse: '',
+      ranTests: [],
     };
   }
   componentDidMount() {
@@ -35,18 +39,16 @@ class Layout extends Component {
       selectOne: '',
       input1: '',
       input2: '',
-      passing: false,
       testResponse: '',
-
+      passing: false,
     });
   };
 
   runTest = () => {
-    const { selectOne, input1, input2 } = this.state;
-    const inputs = [input1];
+    const { selectOne, input1, input2, ranTests } = this.state;
+    const inputs = [input1, input2];
     const level = this.props.levels.find(lev => lev.level === Number(0)); // req params
-    const { func, objective, itBlock, tests, actual, title } = level;
-    console.log(actual)
+    const { itBlock, actual} = level;
     let sandbox = actual;
     if (assert[selectOne].pre) sandbox = assert[selectOne].pre + sandbox;
     if (assert[selectOne].post) sandbox = sandbox + assert[selectOne].post;
@@ -55,18 +57,18 @@ class Layout extends Component {
       .then(res => {
         let result = it(itBlock)(assert[selectOne])(res.sandbox, ...inputs);
         this.setState({
-          responses: [result]
+          testResponse: result
         })
         console.log(result)
-        if (result === message) {
+        if (result === itBlock) {
           let str = `
-it('${message}',function(){
-   assert.${selectOne}(${inputs[0]? actual + ',' + inputs.join(','): actual
+it('${itBlock}',function(){
+   assert.${selectOne}(${inputs[0] ? actual + ',' + inputs.join(',') : actual
   })
 })
   `;
           this.setState({
-            tests: [...this.state.tests, str],
+            ranTests: [...ranTests, str],
           });
           this.clearForm();
         }
@@ -80,7 +82,7 @@ it('${message}',function(){
     // CHANGE LEVEL ID TO Req params
     const thisLevel = this.props.levels.find(lev => lev.level === Number(0));
     const { level, func, objective, instructions, itBlock, tests, actual, title } = thisLevel;
-    const { selectOne, input1 } = this.state;
+    const { selectOne, input1, testResponse } = this.state;
     return (
       <div className="layout-container">
         <Header active={level} />
@@ -88,17 +90,17 @@ it('${message}',function(){
 
           <div className="code-block">
             <Objective level={level} title={title} instructions={instructions} />
-            <Editor func={func} />
+            <Editor func={func} codeBlock={actual}/>
           </div>
 
           <div className="chester-level">
             <div className="test-block">
-
+            <TestRunner objective={objective} it={itBlock} testResponse={testResponse} />
               <div className="send-test">
                 <div className="test-code"><h4>Test Code:</h4></div>
                 <div className="clear-send">
-                <button className="button-blue" onClick={this.clearForm}>Clear</button>
-                <button className="button-red" onClick={this.runTest}>Run Test!</button>
+                <button disabled={!selectOne} className={selectOne ? 'button-red' : 'button-inactive'} onClick={this.clearForm}>Clear</button>
+                <button disabled={!selectOne} className={selectOne ? 'button-blue-active' : 'button-inactive'} onClick={this.runTest}>Run Test!</button>
                 </div>
             </div>
 

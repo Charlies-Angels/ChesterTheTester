@@ -5,17 +5,17 @@ import 'prismjs';
 
 
 const Editor = (props) => {
-  const func = props.func;
+  const {func, codeBlock} = props;
 	return (
     <ScrollArea
-            speed={0.8}
-            className="func-block"
-            horizontal={false}
-            >
-              <h4>Code to Test:</h4>
-    <PrismCode component="pre" className="language-javascript">
-      {`${func}`}</PrismCode>
-  </ScrollArea>
+      speed={0.8}
+      className="func-block"
+      horizontal={false}
+      >
+      <h4>{`Code block: ${codeBlock}`}</h4>
+      <PrismCode component="pre" className="language-javascript">
+        {`${func}`}</PrismCode>
+    </ScrollArea>
 	)
 }
 

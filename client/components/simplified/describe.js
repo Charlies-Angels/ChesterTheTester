@@ -1,7 +1,4 @@
 import React, {Component} from 'react';
-import { connect } from 'react-redux';
-
-import ScrollArea from 'react-scrollbar';
 import PrismCode from 'react-prism';
 import 'prismjs';
 
