@@ -4,16 +4,19 @@ class ClearRun extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectOne: '' };
+      selectOne: ''
+    };
   }
   componentWillReceiveProps(nextProps) {
-    if (nextProps.selectOne !== this.state.nextProps)
-    this.setState({
-      selectOne: nextProps.selectOne,
-    });
+    if (nextProps.selectOne !== this.state.nextProps) {
+      this.setState({
+        selectOne: nextProps.selectOne,
+      });
+    }
   }
   render() {
-    const { selectOne, clearForm, runTest } = this.props;
+    const { clearForm, runTest } = this.props;
+    const {  selectOne } = this.state;
     return (
       <div>
       <button disabled={!selectOne} className={selectOne ? 'button-red' : 'button-inactive'} onClick={clearForm}>Clear</button>

@@ -292,9 +292,11 @@ h6 {
 }
 
 .test-block {
+  display: flex;
   background-color: #2e2e30;
   border-radius: 5px;
   width: auto;
+  flex-direction: column;
   height: auto;
   padding: .5em;
   margin-top: .5em;
@@ -320,7 +322,6 @@ ul, li {
 
 .inner-block {
   background-color: #404042;
-  display: flex;
   border-radius: 4px;
   width: 100%;
   height: auto;
@@ -330,6 +331,62 @@ ul, li {
   font-family: 'Oswald', sans-serif;
 }
 
-.describe {
-  flex: 3;
+.output-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: none;
+  padding: none;
 }
+
+.test-output {
+  flex: 0 0 30%;
+}
+.level-up {
+  align-self: flex-start;
+  text-align: right;
+  flex: 0 0 30%;
+}
+
+.button-blue-lg {
+  background-color: #4ce7da;
+  display: inline-block;
+  padding: .4em .7em;
+  margin: 0 0.15em 0.15em 0;
+  border-radius: 0em;
+  box-sizing:  border-box;
+  font-family: 'Inconsolata', sans-serif;
+  font-weight: 600;
+  color: #1b1b1c;
+  box-shadow: inset 0 -0.6em 0 -0.35em #34a89e;
+  text-align: center;
+  position: relative;
+  border: none;
+  text-decoration: none;
+  font-size: 2rem;
+  outline: 0;
+}
+.button-inactive-lg {
+  background-color: #5d5d5f;
+  display: inline-block;
+  padding: .4em .7em;
+  margin: 0 0.15em 0.15em 0;
+  border-radius: 0em;
+  box-sizing:  border-box;
+  font-family: 'Inconsolata', sans-serif;
+  font-weight: 400;
+  color: #1b1b1c;
+  box-shadow: inset 0 -0.6em 0 -0.35em #404042;
+  text-align: center;
+  position: relative;
+  border: none;
+  text-decoration: none;
+  font-size: 2rem;
+  outline: 0;
+}
+
+.button-blue-lg:active {
+  top: 0.2em;
+}
+
+.

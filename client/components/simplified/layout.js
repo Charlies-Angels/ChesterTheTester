@@ -18,8 +18,7 @@ class Layout extends Component {
       selectOne: '',
       input1: '',
       input2: '',
-      passing: false,
-      testResponse: '',
+      testResponse: [],
       ranTests: [],
     };
   }
@@ -39,15 +38,14 @@ class Layout extends Component {
       selectOne: '',
       input1: '',
       input2: '',
-      testResponse: '',
     });
   };
 
   runTest = () => {
-    const { selectOne, input1, input2, ranTests } = this.state;
+    const { selectOne, input1, input2, ranTests, testResponse } = this.state;
     const inputs = [input1, input2];
     const level = this.props.levels.find(lev => lev.level === Number(0)); // req params
-    const { itBlock, actual} = level;
+    const { itBlock, actual } = level;
     let sandbox = actual;
     if (assert[selectOne].pre) sandbox = assert[selectOne].pre + sandbox;
     if (assert[selectOne].post) sandbox = sandbox + assert[selectOne].post;
@@ -55,21 +53,17 @@ class Layout extends Component {
     this.props.postCodeToSandbox({ sandbox, level: 0 }) // req params
       .then(res => {
         let result = it(itBlock)(assert[selectOne])(res.sandbox, ...inputs);
-        this.setState({
-          testResponse: result,
-          selectOne: '',
-        })
-        console.log(result)
-        if (result === itBlock) {
-          let str = `
+        let str = `
 it('${itBlock}',function(){
-   assert.${selectOne}(${inputs[0] ? actual + ',' + inputs.join(',') : actual
+    assert.${selectOne}(${inputs[0] ? actual + ',' + inputs.join(',') : actual
   })
 })
   `;
-          this.setState({
-            ranTests: [...ranTests, str],
-          });
+        this.setState({
+          testResponse: [...testResponse, result],
+          ranTests: [...ranTests, str],
+        })
+        if (result === itBlock) {
           this.clearForm();
         }
       })
@@ -77,12 +71,14 @@ it('${itBlock}',function(){
         console.log(err);
     })
   }
+
     render() {
     if (!this.props.levels.length) return <span />
     // CHANGE LEVEL ID TO Req params
     const thisLevel = this.props.levels.find(lev => lev.level === Number(0));
-    const { level, func, objective, instructions, itBlock, tests, actual, title } = thisLevel;
+    const { level, func, objective, instructions, itBlock, tests, actual, title, testToPass } = thisLevel;
     const { selectOne, input1, testResponse } = this.state;
+
     return (
       <div className="layout-container">
         <Header active={level} />
@@ -95,7 +91,7 @@ it('${itBlock}',function(){
 
           <div className="right-side">
             <div className="test-block">
-            <TestRunner objective={objective} it={itBlock} testResponse={testResponse} />
+            <TestRunner objective={objective} it={itBlock} testResponse={testResponse} testToPass={testToPass} />
               <div className="send-test">
                 <h4>Test Code Block:</h4>
                 <div className="clear-send">
@@ -133,7 +129,7 @@ it('${itBlock}',function(){
                       this.setState({
                         ['input' + (i + 1)]: event.target.value,
                       })
-                    }/>
+                    } />
                   ))}
                   </div>
                 </div>
