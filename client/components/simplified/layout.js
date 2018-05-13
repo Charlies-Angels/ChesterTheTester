@@ -23,7 +23,9 @@ class Layout extends Component {
     };
   }
   componentDidMount() {
-    this.props.setLevelOnLoad(this.props.match.params.id);
+    if (this.props.level.level !== +this.props.match.params.id) {
+      this.props.setLevelOnLoad(+this.props.match.params.id);
+    }
   }
 
   handleClickAssert = (method) => {

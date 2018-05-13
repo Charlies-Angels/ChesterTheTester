@@ -44,7 +44,7 @@ h2 {
 }
 h3 {
   font-family: 'Inconsolata', sans-serif;
-  font-size: 1.4em;
+  font-size: 1.37em;
 }
 h4 {
   font-family: 'Oswald', sans-serif;
@@ -344,10 +344,10 @@ ul, li {
 }
 
 .test-output {
-  flex: 0 0 30%;
+  flex: 0 0 60%;
 }
 .level-up {
-  align-self: flex-start;
+  align-self: flex-end;
   text-align: right;
   flex: 0 0 30%;
 }
