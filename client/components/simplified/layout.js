@@ -116,12 +116,13 @@ it('${itBlock}',function(){
               { selectOne && assert[selectOne].args.length > 1 &&
               <div>
                 <h5>Add input for expected value: </h5>
-                <div className="display-assertions">
+                <div className="display-inputs">
                 {assert[selectOne].args.slice(1).map((arg, i) => (
                   <input
                     key={arg}
-                    className="input-yellow-sm"
-                    placeholder="the expected output"
+                    autoFocus={i === 0}
+                    className="expect-input"
+                    placeholder="expected value..."
                     type="text"
                     value={this.state['input' + (i + 1)]}
                     name={arg}

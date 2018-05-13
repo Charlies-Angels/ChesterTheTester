@@ -11,8 +11,13 @@ class TestRunner extends Component {
     };
   }
   static getDerivedStateFromProps(nextProps, prevState) {
+    const checkPassing = (tests) => {
+      return tests.some( (test) => {
+        return test.indexOf('Expected') === -1
+      })
+    }
     if (nextProps.testResponse.length !== prevState.testResponse.length) {
-      if (nextProps.testResponse.length >= nextProps.testToPass) {
+      if (nextProps.testResponse.length >= nextProps.testToPass && checkPassing(nextProps.testResponse)) {
         return {
           testResponse: nextProps.testResponse,
           passing: true,
@@ -22,6 +27,7 @@ class TestRunner extends Component {
       }
     else return {}
   }
+
   render() {
     const { objective, it } = this.props;
     const { passing, testResponse } = this.state;
