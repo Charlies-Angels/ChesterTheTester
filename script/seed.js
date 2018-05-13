@@ -7,53 +7,49 @@ const levels = [
     level: 0,
     title: 'Check All Systems',
     func: `const allSystemsCheck = true;`,
-    objective: 'Check that all systems are go!',
-    buttons: ['allSystemsCheck'],
-    instructions: `Test the variable, 'allSystemsCheck', to be sure that it returns a boolean. Pick which Mocha assertion you'd like to use on the right side. It will appear in the code block below. Some assertions require a second input to check your code against. For instance, 'typeoOf' accepts a string of what data type the tested code should return. `,
+    objective: 'Check all Systems!',
+    instructions: `Test the variable, 'allSystemsCheck', to be sure that it returns a boolean. Pick which Mocha assertion you'd like to use on the right side and it will appear in the test code block below. Some assertions require a second input to check your code against. For instance, 'typeoOf' accepts a string of what data type the tested code should return. Write tests until the NEXT LEVEL button lights up.`,
     itBlock: 'allSystemsCheck should be a boolean',
     tests: ['typeOf', 'isBoolean', 'isTrue', 'isFalse', 'isArray'],
     actual: 'allSystemsCheck',
+    buttons: ['allSystemsCheck'],
     testToPass: 1,
+    intro: `Ok cadets, since no one checked the critical functions of the our intergalactic rocket, I guess it's up to us to make sure things are going smoothly. We do unit testing here at Fullstack A-Cat-amy of Space, that means making many small tests to verify each part of our code. We test to check validity, make maintenance easier, for documentation, and for better understanding for those will read our code in the future. It looks like I'll have to be the one to teach you the Mocha.js framework and the Chai.js assertion library, ugh. Tests should be organized into groups using 'describe' blocks accepting a message and a callback. Individual tests should be the in the second argument of the describe block and start with 'it'. The 'it' block also takes a message as its first parameter and an anonymous function with an assertion as the second. Lets jump in. Start by reading the code you're testing and making a game plan for how to test it's validity. Ok, time to write that first test.`,
   },
-{
-  level: 1,
-  title: `All Systems are Go?`,
-  func: `const allSystemCheck = true;
-  const allSystemsAreGo = (allSystemCheck) => {
-    if (allSystemCheck) return 'Ready for liftoff!';
-    else return 'Definitely not ready for liftoff...'
-  };`,
-  objective: `Okay, now that all of our systems have been checked, it's time to check if we're ready for liftoff. Write two tests for the function 'allSystemsGo', one that checks if the return value is a string, and another to check that that value equals we expect. Note that we must invoke our function to test its return value!`,
-  buttons: ['allSystemsAreGo(allSystemCheck)'],
-  itBlock: [`allSystemsAreGo returns a string`, `allSystemsAreGo returns 'Ready for liftoff!'`],
-  tests: ['strictEqual', 'equal', 'isTrue', 'typeOf', 'isString'],
-  actual: 'allSystemsAreGo(allSystemCheck)',
-  testToPass: 2,
-},
+  {
+    level: 1,
+    title: `All Systems are Go?`,
+    func: `const allSystemCheck = true;
+    const allSystemsAreGo = (allSystemCheck) => {
+      if (allSystemCheck) return 'Ready for liftoff!';
+      else return 'Definitely not ready for liftoff...'
+    };`,
+    objective: 'Check that all systems are go!',
+    instructions: `Okay, now that all of our systems have been checked, it's time to check if we're ready for liftoff. Write a test for the function 'allSystemsAreGo' to check that the return value equals what we expect. Note that we must invoke our function to test its return value!`,
+    itBlock: `allSystemsAreGo returns "Ready for liftoff!"`,
+    tests: ['strictEqual', 'equal', 'isTrue', 'typeOf', 'isString'],
+    actual: 'allSystemsAreGo(allSystemCheck)',
+    buttons: ['allSystemsAreGo(allSystemCheck)'],
+    testToPass: 1,
+    PartId: 1,
+    outro: `SOME TEXT LATER OKKKKKK`,
+  }
 ]
 
 async function seed () {
   await db.sync({force: true})
   console.log('db synced!')
-  // Whoa! Because we `await` the promise that db.sync returns, the next line will not be
-  // executed until that promise resolves!
-
   const users = await Promise.all([
     User.create({email: 'cody@email.com', password: '123'}),
     User.create({email: 'murphy@email.com', password: '123'})
   ])
-
   await Level.bulkCreate(levels);
 
-  // Wowzers! We can even `await` on the right-hand side of the assignment operator
-  // and store the result that the promise resolves to in a variable! This is nice!
   console.log(`seeded ${users.length} users`)
+  console.log(`seeded ${levels.length} levels`)
   console.log(`seeded successfully`)
 }
 
-// Execute the `seed` function
-// `Async` functions always return a promise, so we can use `catch` to handle any errors
-// that might occur inside of `seed`
 seed()
   .catch(err => {
     console.error(err.message)
@@ -66,9 +62,4 @@ seed()
     console.log('db connection closed')
   })
 
-/*
- * note: everything outside of the async function is totally synchronous
- * The console.log below will occur before any of the logs that occur inside
- * of the async function
- */
 console.log('seeding...')

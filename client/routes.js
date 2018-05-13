@@ -2,9 +2,11 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome, LevelOutline, StartGame, Level} from './components'
-import {me, levelOne, getLevelsThunk} from './store'
-import Level0 from './components/simplified/layout';
+import {Login, Signup, UserHome, StartGame} from './components'
+
+import {me, getLevelsThunk} from './store'
+import Level from './components/simplified/layout';
+import Intro from './components/simplified/intro';
 import TestGenerator from './components/test-generator'
 
 /**
@@ -24,13 +26,14 @@ class Routes extends Component {
 
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route exact path="/level/0" component={Level0} />
-        <Route path="/level/:id" component={Level} />
+        <Route path="/level/:id/intro" component={Intro} />
+        <Route path="/level/:id/start" component={Level} />
         <Route path="/home" component={UserHome} />
         <Route exact path="/" component={StartGame} />
         <Route path="/generator" component={TestGenerator} />
         {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
+        <Route path="/level/:id/" component={Intro} />
+        <Route component={StartGame} />
       </Switch>
     )
   }

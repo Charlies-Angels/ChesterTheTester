@@ -23,8 +23,7 @@ class Layout extends Component {
     };
   }
   componentDidMount() {
-    this.props.setLevelOnLoad(0); // req params
-    this.props.getLevelsThunk();
+    this.props.setLevelOnLoad(this.props.match.params.id);
   }
 
   handleClickAssert = (method) => {
@@ -44,13 +43,13 @@ class Layout extends Component {
   runTest = () => {
     const { selectOne, input1, input2, ranTests, testResponse } = this.state;
     const inputs = [input1, input2];
-    const level = this.props.levels.find(lev => lev.level === Number(0)); // req params
+    const level = this.props.levels.find(lev => lev.level === Number(this.props.match.params.id));
     const { itBlock, actual } = level;
     let sandbox = actual;
     if (assert[selectOne].pre) sandbox = assert[selectOne].pre + sandbox;
     if (assert[selectOne].post) sandbox = sandbox + assert[selectOne].post;
 
-    this.props.postCodeToSandbox({ sandbox, level: 0 }) // req params
+    this.props.postCodeToSandbox({ sandbox, level: this.props.match.params.id })
       .then(res => {
         let result = it(itBlock)(assert[selectOne])(res.sandbox, ...inputs);
         let str = `
@@ -74,8 +73,7 @@ it('${itBlock}',function(){
 
     render() {
     if (!this.props.levels.length) return <span />
-    // CHANGE LEVEL ID TO Req params
-    const thisLevel = this.props.levels.find(lev => lev.level === Number(0));
+    const thisLevel = this.props.levels.find(lev => lev.level === Number(this.props.match.params.id));
     const { level, func, objective, instructions, itBlock, tests, actual, title, testToPass } = thisLevel;
     const { selectOne, input1, testResponse } = this.state;
 

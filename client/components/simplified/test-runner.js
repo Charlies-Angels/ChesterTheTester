@@ -29,7 +29,7 @@ class TestRunner extends Component {
   }
 
   render() {
-    const { objective, it } = this.props;
+    const { objective, it, completeLevel } = this.props;
     const { passing, testResponse } = this.state;
     return (
       <div>
@@ -38,7 +38,7 @@ class TestRunner extends Component {
             <h4>Test Output:</h4>
           </div>
           <div className="level-up">
-            <button disabled={!passing} className={passing ? 'button-blue-lg' : 'button-inactive-lg'} >NEXT LEVEL</button>
+            <button disabled={!passing} className={passing ? 'button-blue-lg' : 'button-inactive-lg'} onClick={completeLevel}>NEXT LEVEL</button>
           </div>
         </div>
         <div className="inner-block">
