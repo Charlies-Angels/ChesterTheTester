@@ -76,7 +76,7 @@ class Layout extends Component {
   render() {
     if (!this.props.level) return <span />
     const { level, func, objective, instructions, itBlock, tests, title, testToPass, buttons, outro } = this.props.level;
-    const { selectOne, input1, input2, testResponse, actual } = this.state;
+    const { selectOne, input1, input2, testResponse, actual, ranTests } = this.state;
 
     return (
       <div className="layout-container">
@@ -90,7 +90,7 @@ class Layout extends Component {
 
           <div className="right-side">
             <div className="test-block">
-            <TestRunner objective={objective} it={itBlock} testResponse={testResponse} testToPass={testToPass} testBlocks={ranTests} outro={outro}/>
+            <TestRunner objective={objective} it={itBlock} testResponse={testResponse} testToPass={testToPass} testBlocks={ranTests} outro={outro} />
               <div className="send-test">
                 <h4>Test Code Block:</h4>
                 <div className="clear-send">
