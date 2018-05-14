@@ -18,7 +18,6 @@ const Header = (props) => {
     else if (history.location.pathname === '/') history.push(`/level/0`)
     else history.push(`/level/${+props.active + 1}`)
   }
-console.log(history.location.pathname)
   return (
       <div className="layout-header">
         <div className="layout-header__left" onClick={goBack} >{'<<<'}</div>

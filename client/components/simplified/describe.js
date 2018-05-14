@@ -16,7 +16,6 @@ class Describe extends Component {
   }
   render() {
     const { describe, it, actual, input1, input2, passedTests } = this.props;
-    console.log(passedTests)
     return (
 
       <PrismCode component="pre" className="language-javascript">
