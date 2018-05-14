@@ -18,19 +18,16 @@ class TestRunner extends Component {
       })
     }
     if (nextProps.testResponse.length !== prevState.testResponse.length) {
-      if (nextProps.testResponse.length >= nextProps.testToPass && checkPassing(nextProps.testResponse)) {
-        return {
-          testResponse: nextProps.testResponse,
-          passing: true,
-        };
+      return (nextProps.testResponse.length >= nextProps.testToPass
+        && checkPassing(nextProps.testResponse)) ?
+        {testResponse: nextProps.testResponse, passing: true } :
+        { testResponse: nextProps.testResponse }
       }
-      else return { testResponse: nextProps.testResponse }
-      }
-    else return {}
+    else { return null }
   }
 
   render() {
-    const { objective, it, completeLevel } = this.props;
+    const { objective, it, testBlocks, outro } = this.props;
     const { passing, testResponse } = this.state;
     return (
       <div>
@@ -39,7 +36,7 @@ class TestRunner extends Component {
             <h4>Test Output:</h4>
           </div>
           <div className="level-up">
-            <NextLevel passing={passing} />
+            <NextLevel passing={passing} testOutputs={testResponse} testBlocks={testBlocks} outro={outro}/>
           </div>
         </div>
         <div className="inner-block">
