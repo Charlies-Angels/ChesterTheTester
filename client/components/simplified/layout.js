@@ -9,7 +9,7 @@ import ClearRun from './clear-run';
 import TestRunner from './test-runner';
 import { assert } from '../test-object';
 import { it } from '../../utils/tester';
-import { postCodeToSandbox, getLevelsThunk, setLevel } from '../../store';
+import { postCodeToSandbox, getLevelsThunk, setLevel, completeLevel } from '../../store';
 
 class Layout extends Component {
   constructor(props) {
@@ -23,8 +23,9 @@ class Layout extends Component {
     };
   }
   componentDidMount() {
-    this.props.setLevelOnLoad(0); // req params
-    this.props.getLevelsThunk();
+    if (this.props.level.level !== +this.props.match.params.id) {
+      this.props.setLevelOnLoad(+this.props.match.params.id);
+    }
   }
 
   handleClickAssert = (method) => {
@@ -44,13 +45,13 @@ class Layout extends Component {
   runTest = () => {
     const { selectOne, input1, input2, ranTests, testResponse } = this.state;
     const inputs = [input1, input2];
-    const level = this.props.levels.find(lev => lev.level === Number(0)); // req params
+    const level = this.props.levels.find(lev => lev.level === Number(this.props.match.params.id));
     const { itBlock, actual } = level;
     let sandbox = actual;
     if (assert[selectOne].pre) sandbox = assert[selectOne].pre + sandbox;
     if (assert[selectOne].post) sandbox = sandbox + assert[selectOne].post;
 
-    this.props.postCodeToSandbox({ sandbox, level: 0 }) // req params
+    this.props.postCodeToSandbox({ sandbox, level: this.props.match.params.id })
       .then(res => {
         let result = it(itBlock)(assert[selectOne])(res.sandbox, ...inputs);
         let str = `
@@ -74,8 +75,7 @@ it('${itBlock}',function(){
 
     render() {
     if (!this.props.levels.length) return <span />
-    // CHANGE LEVEL ID TO Req params
-    const thisLevel = this.props.levels.find(lev => lev.level === Number(0));
+    const thisLevel = this.props.levels.find(lev => lev.level === Number(this.props.match.params.id));
     const { level, func, objective, instructions, itBlock, tests, actual, title, testToPass } = thisLevel;
     const { selectOne, input1, testResponse } = this.state;
 
@@ -91,7 +91,7 @@ it('${itBlock}',function(){
 
           <div className="right-side">
             <div className="test-block">
-            <TestRunner objective={objective} it={itBlock} testResponse={testResponse} testToPass={testToPass} />
+            <TestRunner objective={objective} it={itBlock} testResponse={testResponse} testToPass={testToPass} completeLevel={this.props.completeLevelOnClick}/>
               <div className="send-test">
                 <h4>Test Code Block:</h4>
                 <div className="clear-send">
@@ -154,6 +154,7 @@ const mapDispatchToProps = dispatch => ({
     postCodeToSandbox: sandbox => dispatch(postCodeToSandbox(sandbox)),
     getLevelsThunk: () => dispatch(getLevelsThunk()),
     setLevelOnLoad: level => dispatch(setLevel(level)),
+    completeLevelOnClick: () => dispatch(completeLevel())
 });
 
 export default connect(mapState, mapDispatchToProps)(Layout);

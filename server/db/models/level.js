@@ -22,10 +22,6 @@ const Level = db.define('Level', {
         type: Sequelize.ARRAY(Sequelize.STRING),
         allowNull: true,
     },
-    solutions: {
-        type: Sequelize.STRING,
-        allowNull: true,
-    },
     itBlock: {
       type: Sequelize.STRING,
       allowNull: true,
@@ -44,6 +40,14 @@ const Level = db.define('Level', {
     },
     testToPass: {
       type: Sequelize.INTEGER,
+      allowNull: true,
+    },
+    intro: {
+      type: Sequelize.TEXT,
+      allowNull: true,
+    },
+    outro: {
+      type: Sequelize.TEXT,
       allowNull: true,
     }
 })

@@ -3,13 +3,18 @@ import history from '../../history'
 const Header = (props) => {
   const levels = Array.from({length: 11}).map((x, i) => i);
   const goBack = () => {
-    history.goBack();
+    if (props.active == 0) {
+      history.push(`/`)
+    }
+    else {
+      history.push(`/level/${+props.active - 1}/intro`)
+    }
   }
   const goToLevel = (level) => {
-    history.push(`/level/${level}`)
+    history.push(`/level/${level}/intro`)
   }
   const goForward = () => {
-    history.push(`/level/${+props.active}`)
+    history.push(`/level/${+props.active + 1}/intro`)
   }
   return (
       <div className="layout-header">

@@ -44,7 +44,7 @@ h2 {
 }
 h3 {
   font-family: 'Inconsolata', sans-serif;
-  font-size: 1.4em;
+  font-size: 1.37em;
 }
 h4 {
   font-family: 'Oswald', sans-serif;
@@ -62,8 +62,9 @@ h6 {
 .start-container {
   display: flex;
   justify-content: space-around;
-  min-height: 100vh;
+  min-height: 89vh;
   align-items: flex-end;
+  overflow: none;
 }
 .start-game {
   flex: 0 0 40%;
@@ -77,6 +78,19 @@ h6 {
   -o-border-image: url(img/control-panel.png) 38 85 79 83 repeat;
   border-image: url(img/control-panel.png) 38 85 79 83 fill repeat;
   border-radius: 10%;
+}
+
+.intro-block {
+  background-color: #2e2e30;
+  flex: 0 0 50%;
+  align-self: center;
+  border-radius: 3px;
+  width: auto;
+  min-height: 40vh;
+  max-height: 70vh;
+  overflow-y: scroll;
+  padding: 1em 3em;
+  margin-top: .5em;
 }
 .chester {
   flex: 0 0 35%;
@@ -129,6 +143,12 @@ h6 {
   padding: 2vh 0vh;
   text-align: center;
 }
+
+.layout-header__levels:hover {
+  top: 10px;
+}
+
+
 .layout-header__levels-active {
   flex: 1;
   padding: 2vh 0vh;
@@ -330,10 +350,10 @@ ul, li {
 }
 
 .test-output {
-  flex: 0 0 30%;
+  flex: 0 0 60%;
 }
 .level-up {
-  align-self: flex-start;
+  align-self: flex-end;
   text-align: right;
   flex: 0 0 30%;
 }
@@ -395,6 +415,6 @@ ul, li {
   outline-color: #34a89e;
   }
 
-  .expect-input::placeholder {
-    color: #34a89e;
-  }
+.expect-input::placeholder {
+  color: #34a89e;
+}

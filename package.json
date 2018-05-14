@@ -45,7 +45,6 @@
     "react-redux": "^5.0.2",
     "react-router-dom": "^4.1.1",
     "react-scrollbar": "^0.5.4",
-    "react-typist": "^2.0.4",
     "redux": "^3.6.0",
     "redux-logger": "^2.8.1",
     "redux-persist": "^5.9.1",

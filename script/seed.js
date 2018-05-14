@@ -7,211 +7,50 @@ const levels = [
     level: 0,
     title: 'Check All Systems',
     func: `const allSystemsCheck = true;`,
-    objective: 'Check that all systems are go!',
-    buttons: ['allSystemsCheck'],
-    instructions: `Test the variable, 'allSystemsCheck', to be sure that it returns a boolean. Pick which Mocha assertion you'd like to use on the right side. It will appear in the code block below. Some assertions require a second input to check your code against. For instance, 'typeoOf' accepts a string of what data type the tested code should return. `,
+    objective: 'Check all Systems!',
+    instructions: `Test the variable, 'allSystemsCheck', to be sure that it returns a boolean. Pick which Mocha assertion you'd like to use on the right side and it will appear in the test code block below. Some assertions require a second input to check your code against. For instance, 'typeoOf' accepts a string of what data type the tested code should return. Write tests until the NEXT LEVEL button lights up.`,
     itBlock: 'allSystemsCheck should be a boolean',
     tests: ['typeOf', 'isBoolean', 'isTrue', 'isFalse', 'isArray'],
     actual: 'allSystemsCheck',
+    buttons: ['allSystemsCheck'],
     testToPass: 1,
+    intro: `Ok cadets, since no one checked the critical functions of the our intergalactic rocket, I guess it's up to us to make sure things are going smoothly. We do unit testing here at Fullstack A-Cat-amy of Space. We test to check validity, make maintenance easier, for documentation, and for better understanding for those will read our code in the future. It looks like I'll have to be the one to teach you the Mocha.js framework and the Chai.js assertion library. Tests should be organized into groups using 'describe' blocks accepting a message and a callback. Individual tests should be the in the second argument of the describe block and start with 'it'. The 'it' block also takes a message as its first parameter and an anonymous function with an assertion as the second. Start by reading the code you're testing and making a game plan for how to test its validity. Let's jump in.`,
+    outro: `You've written your first Chai assertion, congrats! As you might have noticed, you have many options for how to test your code. 'isBoolean', 'isTrue', and 'typeOf' would all pass in these circumstances. But isTrue would be our best bet for this code block. 'isBoolean' and 'typeOf' are too general for these purposes. When we are testing behavior driven events, try to be as specific as possible. Onto the next!`,
   },
-{
-  level: 1,
-  title: `All systems check!`,
-  objective: 'Ok cadets, since no one checked the critical functions of the our intergalactic rocket, I guess it\'s up to us to make sure thing are going smoothly. We do unit testing here at Fullstack A-Cat-amy of Space, that means making many small tests to tests each part of our code. We test to check validity, make maintenance easier, for documentation, for better understanding, and for considering business logic which means you should check edge cases and any possible use scenarios. I guess I\'ll have to be the one to teach you the mocha.js framework and the chai.js assertions, ugh. Tests should be organized into groups using \'describe\' blocks accepting a message and a callback, then \'beforeEach\' can be added to set up common code, but we won\'t worry about that for now. Individual tests should be the in the second argument of the describe block and start with \'it\', \'it\' also takes a message as its first parameter and an anonymous function with an assertion as the second. Lets jump in. we\'ll start by writing a simple test to test the "all systems are go" function of the ship. You\'ll see the test assertions on the right and the functions on the left. Start by observing the type of variables and functions available to test. allSystemCheck is a variable that stores a boolean, we can select the "isBoolean" assertion. Then choose the allSystemCheck input. you\'ll see that the tests become filled with your choices. Ok, time to write that first test.',
-
-  func: `
-  const allSystemCheck = true;
-  const allSystemsAreGo = (allSystemCheck) => {
-    if (allSystemCheck) return 'Ready for liftoff!';
-  };
-    `,
-
-  buttons: ['allSystemCheck', 'allSystemsAreGo(allSystemCheck)'],
-  solutions: 'Ready for liftoff!',
-  suggestedTests: ['isBoolean,allSystemCheck', 'strictEqual,allSystemsAreGo(),Ready for liftoff!']
-},
   {
-  level: 2,
-  title: `All systems are go, ready for liftoff!`,
-  objective: 'Great, you wrote a test. can you write a second test? I suggest comparing the functions you see on the right side of the page with the assertions on the left. there are a lot of options for both. Next you\'ll see a function that takes allSystemCheck as a parameter. That means you can test the function as a variable which would pass a test check if the test was "isFunction". The instanciated function would return a different fail that same test. allSystemsAreGo() actually returns a string. So "isString", "isOK", and "isNotNull" are all options to check the existence and type of the return from allSystemsAreGo(), while "typeOf" and "equal" require you to input an expected value. Find what you expect to return from the instantiated function. Ok, go on and test!',
-
-  func: `
-  const allSystemCheck = true;
-  const allSystemsAreGo = (allSystemCheck) => {
-    if (allSystemCheck) return 'Ready for liftoff!';
-  };
-    `,
-
-  buttons: ['allSystemCheck', 'allSystemsAreGo(allSystemCheck)'],
-  solutions: 'Ready for liftoff!',
-  suggestedTests: ['isBoolean,allSystemCheck', 'strictEqual,allSystemsAreGo(),Ready for liftoff!']
-},
-{
-  level: 3,
-  title: `Lift Off!`,
-  objective: 'Okay great, you can test a function. I don\'t know if you\'ve ever been part of a catship crew, but it\'s pretty common for a catship to countdown before liftoff. Now that we know that all systems are go we can just make sure our countdown works. you\'ll see that launchRocket is a function that returns and array of numbers 10-0, that\'s a pretty essential part of catship operation. let\'s write 3 tests to check launchRocket',
-  func:
-  `const launchRocket = () => {
-    let countDown = [];
-    let counter = 10;
-    while (counter > -1) {
-      countDown.push(counter);
-      counter--;
-    }
-    return countDown;
-  };
-  `,
-  buttons: ['launchRocket().length', 'launchRocket', 'launchRocket()'],
-  solutions: '[ 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 ]',
-  suggestedTests: ['isFunction,launchRocket', 'isArray,launchRocket()', 'equal, launchRocket(), [10,9,8,7,6,5,4,3,2,1,0]']
-},
-{
-  level: 4,
-  title: 'Meteor check!',
-  objective: 'Finally we\'re flying. This is what it\'s all about... Now that the catship is airborne, let\'s do an analysis of our meteor radar. It looks like there are mostly iron meteors floating around. Let\'s use tests to make sure our radar is actually storing the meteors in range and then automatically sorting them by type. Iron meteors are way more dense, so we do our best to avoid them. So, before we smash into a wall of iron meteors lets write at least three tests for our meteor analysis',
-  func:
-  `function mtrFrequency(meteorsInRange) {
-    const mtrAnalysis = meteorsInRange.reduce(function(meteorsInRange, type) {
-      if (type in meteorsInRange) {
-        meteorsInRange[type]++;
-      } else {
-        meteorsInRange[type] = 1;
-      }
-      return meteorsInRange;
-    }, {});
-    return mtrAnalysis;
+    level: 1,
+    title: `All Systems are Go?`,
+    func: `const allSystemCheck = true;
+    const allSystemsAreGo = (allSystemCheck) => {
+      if (allSystemCheck) return 'Ready for liftoff!';
+      else return 'Definitely not ready for liftoff...'
+    };`,
+    objective: 'Check that all systems are go!',
+    instructions: `Write a test for the function 'allSystemsAreGo' to check that the return value equals what we expect. Note that we must invoke our function to test its return value!`,
+    itBlock: `allSystemsAreGo returns "Ready for liftoff!"`,
+    tests: ['strictEqual', 'equal', 'isTrue', 'typeOf', 'isString'],
+    actual: 'allSystemsAreGo(allSystemCheck)',
+    buttons: ['allSystemsAreGo(allSystemCheck)'],
+    testToPass: 1,
+    intro: `Now that all of our systems have been checked, it's time to check if we're ready for liftoff. On the next level you'll see a function that takes allSystemCheck as a parameter. allSystemsAreGo() returns a string in both cases, so try to pick an assertion that is as specific as possible. Ok, go on and test!`,
+    outro: `SOME TEXT LATER OKKKKKK`,
   }
-
-  var meteors = [
-    'Iron meteor',
-    'Iron meteor',
-    'Stone meteor',
-    'Stone meteor',
-    'Stoney-iron meteor',
-    'Stone meteor',
-    'Stone meteor',
-    'Stoney-iron meteor',
-    'Iron meteor',
-    'Undetermined meteor',
-    'Iron meteor',
-    'Iron meteor',
-  ];
-   `,
-   buttons: ['mtrFrequency', 'meteors', 'mtrFrequency(meteors)' ],
-   solutions:
-   `{
-   'Iron meteor': 5,
-   'Stone meteor': 4,
-   'Stoney-iron meteor': 2,
-   'Undetermined meteor': 1
-    }`,
-   suggestedTests: ['isFunction,mtrFrequency', 'isObject,mtrFrequency()', 'equals, launchRocket(), [10,9,8,7,6,5,4,3,2,1,0]']
-},
-{
-  level: 5,
-  title: 'Sorting to find life!',
-  objective: 'Time for my favorite task of the day,searching the galaxy for inhabitable exoplanets. This catship uses a sensor that populates new "goldi-locks" planet into an "exoplanet" array. Then the catship\'s onboard computer uses an advanced technique to rapidly find the planet most likely to be life sustaining before the sort is even complete. let\'s write at least three tests to make sure this system is in tip top shape. ',
-  func: `
-  const swap = (array, i, j) => {
-    let temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
-  };
-
-  function planetSort(array) {
-    let swaps = 0;
-    for (let i = 0; i < array.length - 1; i++) {
-      if (array[i] > array[i + 1]) {
-        swap(array, i, i + 1);
-        swaps++;
-      }
-    }
-
-    if (swaps > 0) {
-      return planetSort(array);
-    }
-    return array;
-  }
-
-  let exoplanets = [5324246, 234444, 3111000, 4344, 8234566, 734321, 1124560];
-  `,
-  buttons: ['planetSort', 'planetSort(exoplanets)', 'planetSort',
-  'planetSort(meteors)', 'exoplanets', 'exoplanets()' ],
-  solutions: '[ 4344, 234444, 734321, 1124560, 3111000, 5324246, 8234566 ]',
-  suggestedTests: ['isFunction,planetSort', 'isArray,exoplanets', 'isDefined,launchRocket(exoplanets), isNotNull,exoplanets']
-},
-{
-level: 6,
-title: 'Classy spacecraft of the 21st century',
-objective: 'Pop Quiz! We\'re here to test catship operations, obviously. So then, you should know the difference between a Spacecraft, a rocket and a catship. See the ES6 code and check if you know that the return statement would say.',
-func: `
-class Spacecraft {
-  fly() {
-    return 'they fly';
-  }
-}
-
-class Rocket extends Spacecraft {
-  blastOff() {
-    return 'blast off';
-  }
-}
-
-class Catship extends Rocket {
-  info() {
-    return (
-      'Catship: it remains ' +
-      (Catship.prototype instanceof Rocket) +
-      ' that Catship is an instance of Spacecraft, therefore ' +
-      Catship.prototype.fly() +
-      ' and ' +
-      Catship.prototype.blastOff() +
-      '!'
-    );
-  }
-}
-`,
-buttons: ['Catship.prototype.info()', 'Spacecraft.prototype.fly()', 'Rocket.prototype.blastOff()', 'Catship.prototype.info', 'Spacecraft.prototype.fly', 'Rocket.prototype.blastOff'],
-
-solutions: 'Catship: it remains true that Catship is an instance of Spacecraft, therefore they fly and blast off!',
-suggestedTests: ['isFunction,Catship.prototype.info', 'isString,Catship.prototype.info()', 'equal,Spacecraft.prototype.fly(),`they fly`']
-},
-// {
-// level: 7,
-// title: 'All I want for my birthday is my family back',
-// objective: 'So time dilation is an actual pain, ugh. Last time a new trainee was allowed to set up tests for asynchronous controls the whole ship moved forward in time 1 month... that was the month of my birthday, my anniversary and mother\'s day... it changed my life for the worse. don\'t make me miss my birthday. Testing asynchronously is possible. just find the async button to activate the async test. Notice that it wraps the second parameter of the "it" block in a "async" call and passes in "done" as a callback. done is also instantiated in the try and the catch blocks.',
-// function: `setTimeout(() => {
-//     for (var x = 1; x <= 3; x++) alert(x) }, 1000);
-//   }
-//   `,
-// buttons: ['']
-
-// }
 ]
 
 async function seed () {
   await db.sync({force: true})
   console.log('db synced!')
-  // Whoa! Because we `await` the promise that db.sync returns, the next line will not be
-  // executed until that promise resolves!
-
   const users = await Promise.all([
     User.create({email: 'cody@email.com', password: '123'}),
     User.create({email: 'murphy@email.com', password: '123'})
   ])
-
   await Level.bulkCreate(levels);
 
-  // Wowzers! We can even `await` on the right-hand side of the assignment operator
-  // and store the result that the promise resolves to in a variable! This is nice!
   console.log(`seeded ${users.length} users`)
+  console.log(`seeded ${levels.length} levels`)
   console.log(`seeded successfully`)
 }
 
-// Execute the `seed` function
-// `Async` functions always return a promise, so we can use `catch` to handle any errors
-// that might occur inside of `seed`
 seed()
   .catch(err => {
     console.error(err.message)
@@ -224,9 +63,4 @@ seed()
     console.log('db connection closed')
   })
 
-/*
- * note: everything outside of the async function is totally synchronous
- * The console.log below will occur before any of the logs that occur inside
- * of the async function
- */
 console.log('seeding...')
