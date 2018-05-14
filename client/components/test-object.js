@@ -164,30 +164,17 @@ export const assert = {
   // },
   lengthOf: {
     func(msg, actual, len) {
-      if (actual.slice(0, 1) === "'" && actual.slice(-1) === "'"){
-        console.log('here')
-        actual = actual.slice(1, -1)
-        console.log(actual)
-        if (actual.length === Number(len)) {
-          console.log('actual')
-          return msg;
-        }
+      if (actual === len){
+        return msg;
       }
-      if (actual.slice(0, 1) === '[' && actual.slice(-1) === ']'){
-        actual = actual.slice(1, -1)
-        actual = actual.split(',')
-        if (actual.length === Number(len)) {
-          return msg;
-        }
-      }
-
       return `${msg}, Expected ${actual} to have a length of ${len}`;
     },
     args: ['actual', 'length'],
+    post: '.length'
   },
   isOk: {
     func(msg, actual) {
-      if (actual==='true') return msg;
+      if (actual === 'true') return msg;
       return `${msg}, Expected ${actual} to be ok (truthy)`;
     },
     args: ['actual'],
@@ -196,7 +183,7 @@ export const assert = {
   },
   isNotOk: {
     func(msg, actual) {
-      if (actual==='false') return msg;
+      if (actual === 'false') return msg;
       return `${msg}, Expected ${actual} to not be ok (falsey)`;
     },
     args: ['actual'],
@@ -218,25 +205,28 @@ export const assert = {
   //   args: ['instance', 'con'],
   // },
   operator: {
-    func(msg, val1, operation, val2) {
+    func (msg, val1, operation, val2) {
       let checkBool = null;
+      val1 = Number(val1) || val1
+      val2 = Number(val2) || val2
+
       switch (operation) {
-        case '<':
+        case "'<'":
           checkBool = val1 < val2;
           break;
-        case '>':
-          checkBool = val1 < val2;
+        case "'>'":
+          checkBool = val1 > val2;
           break;
-        case '==':
+        case "'=='":
           checkBool = val1 == val2;
           break;
-        case '===':
+        case "'==='":
           checkBool = val1 === val2;
           break;
-        case '!=':
+        case "'!='":
           checkBool = val1 != val2;
           break;
-        case '!==':
+        case "'!=='":
           checkBool = val1 !== val2;
           break;
         default:

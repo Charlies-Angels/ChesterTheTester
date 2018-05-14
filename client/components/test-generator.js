@@ -6,6 +6,9 @@ import { assert } from './test-object';
 import { it } from '../utils/tester';
 import {postCodeToGenerator, updateCode} from '../store/'
 import AceEditor from 'react-ace'
+import Describe from './simplified/describe';
+import AssertButton from './simplified/assert-button';
+import Header from './simplified/header';
 import 'brace/mode/java';
 import 'brace/theme/monokai';
 import PrismCode from 'react-prism'
@@ -26,9 +29,9 @@ class TestGenerator extends Component {
 		}
 	}
 
-	handleClickAssert = (event) => {
+	handleClickAssert = (method) => {
 		this.setState({
-			selectOne: event.target.value
+			selectOne: method
 		})
 	}
 
@@ -53,7 +56,7 @@ class TestGenerator extends Component {
 			inputs.push(event.target[selectOneArgs[i]].value)
 		}
 
-		let sandbox = this.state.output;
+		let sandbox = output;
 		if (assert[selectOne].pre) sandbox = assert[selectOne].pre + sandbox;
 		if (assert[selectOne].post) sandbox = sandbox + assert[selectOne].post;
 
@@ -95,9 +98,10 @@ class TestGenerator extends Component {
 		const invokedFuncArr = this.props.generator.split('\n')
 		const invokedFuncStr = invokedFuncArr[invokedFuncArr.length - 1]
 		return (
-			<div>
-				<Row className="show-grid">
-					<Col xs={6} md={4}>
+			<div className="layout-container">
+				<Header />
+				<div className="layout-body">
+					<div className="left-side">
 						<AceEditor
 						    mode="javascript"
 						    onChange={(event) => this.props.updateCode(event)}
@@ -105,91 +109,89 @@ class TestGenerator extends Component {
 						    readOnly={false}
 						    value={this.props.generator}
 						    name="ace"
-						    editorProps={{$blockScrolling: true}}
-						    width="350px"
 						    height="350px"
+						    width="350px"
+						    editorProps={{$blockScrolling: true}}
+						    style={{position: 'relative'}}	    
 						/>
 						<button
 						type="clear"
 						name="Clear"
+						className="button-red"
 						onClick={() => {this.props.updateCode('//Type functions here. Make sure to invoke your function! \n')}}
 						>Clear Editor</button>
 						<button
+						type="cleartest"
+						className="button-red"
+						name="ClearTest"
+						onClick={() => this.setState({selectOne: '', selected: [], output: '', inputTest1: '', inputTest2: '', message: '', describe: ''})}
+						>Clear Tests</button>
+						<button
 						type="submit"
+						className="button-blue"
 						name="Submit"
 						onClick={this.sendFunctionToSandbox}
 						>Run function</button>
-						<div>Function output: {output}</div>
-					</Col>
-					<div>
-						{methods.map(method => (
-							<button
-							key={method}
-							value={method}
-							onClick={this.handleClickAssert}
-							>{method}</button>
-						))}
+						<h5>Function output: {output}</h5>
 					</div>
-				</Row>
+				</div>
 				<div>
-					{selectOne &&
-						<form onSubmit={this.runTest}>
-							<label>
-							    Describe message
-							    <input
-							    type="text"
-							    name="describe"
-							    onChange={ (event) => this.setState({describe: event.target.value})}
-							    />
-							</label>
-							<label>
-							    It message
-							    <input
-							    type="text"
-							    name="message"
-							    onChange={ (event) => this.setState({message: event.target.value})}
-							    />
-							</label>
-							<label>{output}</label>
-							{assert[selectOne].args.slice(1).map((arg, i) =>
-								(<div key={arg}>
+					<div className="right-side">
+						<div className="test-block">
+						<h5>Choose an assertion: </h5>
+							<div className="display-assertions">
+								{methods.map(method => (
+									selectOne === method ?
+									<div key={method} className="assertion">
+										<AssertButton active method={method} onClick={() => this.handleClickAssert(method)} />
+									</div> :
+									<div key={method} className="assertion">
+										<AssertButton method={method} onClick={() => this.handleClickAssert(method)} />
+									</div>
+								))}
+							</div>
+							{selectOne &&
+								<form onSubmit={this.runTest}>
 									<label>
-									    {arg}
+									    Describe message
 									    <input
 									    type="text"
-									    value={this.state['inputTest' + (i + 1)]}
-									    name={arg}
-									    onChange={ (event) => this.setState({['inputTest' + (i + 1)]: event.target.value})}
+									    name="describe"
+									    onChange={ (event) => this.setState({describe: event.target.value})}
 									    />
 									</label>
-								</div>)
-								)}
-							<input
-							type="submit"
-							name="Submit"
-							/>
-						</form>
-					}
+									<label>
+									    It message
+									    <input
+									    type="text"
+									    name="message"
+									    onChange={ (event) => this.setState({message: event.target.value})}
+									    />
+									</label>
+									<label>{output}</label>
+									{assert[selectOne].args.slice(1).map((arg, i) =>
+										(<div key={arg}>
+											<label>
+											    {arg}
+											    <input
+											    type="text"
+											    value={this.state['inputTest' + (i + 1)]}
+											    name={arg}
+											    onChange={ (event) => this.setState({['inputTest' + (i + 1)]: event.target.value})}
+											    />
+											</label>
+										</div>)
+										)}
+									<input
+									type="submit"
+									name="Submit"
+									/>
+								</form>
+							}
+							<Describe describe={describe} passedTests={selected} assertion={selectOne} actual={invokedFuncStr} input1={inputTest1} input2={inputTest2} it={message} />
+						</div>
+					</div>
 				</div>
-				<ScrollArea
-	            speed={0.8}
-	            className="func-block"
-	            horizontal={false}
-	            >
-					<h4>Code to Test:</h4>
-					<PrismCode component="pre" className="language-javascript">
-						{ 
-`
-describe('Writing tests for ${describe}', function(){
-	${selected.map(element => element)}
-	it('${message}',function(){
-        assert.${selectOne}(${invokedFuncStr}${inputTest1 ? ',' + inputTest1 : ''}${inputTest2 ? ',' + inputTest2 : ''})
-	})
-})
-` 
-						}
-					</PrismCode>
-				</ScrollArea>
 			</div>
 			)
 	}
