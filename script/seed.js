@@ -35,29 +35,29 @@ const levels = [
     intro: `Now that all of our systems have been checked, it's time to check if we're ready for liftoff. On the next level you'll see a function that takes allSystemCheck as a parameter. allSystemsAreGo() returns a string in both cases, so try to pick an assertion that is as specific as possible. Ok, go on and test!`,
     outro: `SOME TEXT LATER OKKKKKK`,
   },
-  // {
-  //   level: 2,
-  //   title: `Lift Off!`,
-  //   objective: 'Okay ket',
-  //   func:
-  //   `const launchRocket = () => {
-  //     let countDown = [];
-  //     let counter = 10;
-  //     while (counter > -1) {
-  //       countDown.push(counter);
-  //       counter--;
-  //     }
-  //     return countDown;
-  //   };
-  //   `,
-  //   tests: ['strictEqual', 'equal', 'isTrue', 'typeOf', 'isString'],
-  //   instructions: `Write a test`,
-  //   itBlock: `allSystemsAreGo returns "Ready for liftoff!"`,
-  //   testToPass: 1,
-  //   buttons: ['launchRocket().length', 'launchRocket', 'launchRocket()'],
-  //   solutions: '[ 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 ]',
-  //   suggestedTests: ['isFunction,launchRocket', 'isArray,launchRocket()', 'equal, launchRocket(), [10,9,8,7,6,5,4,3,2,1,0]']
-  // },
+  {
+    level: 6,
+    title: `Lift Off!`,
+    objective: 'Check that the rocket can launch. ',
+    func:
+    `const launchRocket = () => {
+      let countDown = [];
+      let counter = 10;
+      while (counter > 0) {
+        countDown.push(counter);
+        counter--;
+      }
+      return countDown;
+    };
+    `,
+    tests: ['equal', 'typeOf', 'isString', 'isArray', 'isNumber', 'isFunction', 'include', 'operator'],
+    instructions: `Pass 5 tests to successfully launch the rocket. In this level, there will be multiple functions/variables you can test against. You are on your own...`,
+    itBlock: `launchRocket() returns an array containing [10,9,8,7,6,5,4,3,2,1]`,
+    testToPass: 5,
+    buttons: ['launchRocket().length', 'launchRocket', 'launchRocket()'],
+    intro: `Okay great, you can test a function. I don't know if you've ever been part of a catship crew, but it's pretty common for a catship to countdown before liftoff. Now that we know that all systems are go we can just make sure our countdown works. you'll see that launchRocket is a function that returns and array of numbers 10-0, that's a pretty essential part of catship operation. let's write 5 tests to check launchRocket`,
+    outro: `SOME TEXT LATER OKKKKKK`,
+  },
 ]
 
 async function seed () {
