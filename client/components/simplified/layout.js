@@ -40,6 +40,7 @@ class Layout extends Component {
       selectOne: '',
       input1: '',
       input2: '',
+      actual: this.props.level.actual || ''
     });
   };
 
@@ -75,10 +76,10 @@ it('${itBlock}',function(){
   }
 
   render() {
-    if (!this.props.levels.length) return <span />
+    if (!this.props.level) return <span />
 
     const { level, func, objective, instructions, itBlock, tests, title, testToPass, buttons } = this.props.level;
-    const { selectOne, input1, testResponse, actual } = this.state;
+    const { selectOne, input1, input2, testResponse, actual } = this.state;
 
     return (
       <div className="layout-container">
@@ -100,7 +101,7 @@ it('${itBlock}',function(){
                 </div>
             </div>
 
-              <Describe describe={objective} assertion={selectOne} actual={actual} input1={input1} it={itBlock} />
+              <Describe describe={objective} assertion={selectOne} actual={actual} input1={input1} input2={input2} it={itBlock} />
               { !this.props.level.actual &&
                 <div>
                   <h5>Choose the function/variable you will be testing against: </h5>
@@ -166,7 +167,6 @@ const mapState = (state, ownProps) => {
 
   return {
     level: current,
-    levels: state.levels,
     sandbox: state.sandbox,
   }
 }

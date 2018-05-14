@@ -14,13 +14,14 @@ class Describe extends Component {
     });
   }
   render() {
-    const { describe, it, actual, input1 } = this.props;
+    const { describe, it, actual, input1, input2, passedTests } = this.props;
     return (
 
       <PrismCode component="pre" className="language-javascript">
         {`describe('${describe}', () => {
+          ${passedTests && passedTests.map(element => element)}
     it('${it}', () => {
-    assert.${this.state.assertion}(${actual}${input1 ? ',' + input1 : ''})
+    assert.${this.state.assertion}(${actual}${input1 ? ',' + input1 : ''}${input2 ? ',' + input2 : ''})
     })
   })`}
       </PrismCode>

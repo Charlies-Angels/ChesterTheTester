@@ -35,29 +35,65 @@ const levels = [
     intro: `Now that all of our systems have been checked, it's time to check if we're ready for liftoff. On the next level you'll see a function that takes allSystemCheck as a parameter. allSystemsAreGo() returns a string in both cases, so try to pick an assertion that is as specific as possible. Ok, go on and test!`,
     outro: `SOME TEXT LATER OKKKKKK`,
   },
-  // {
-  //   level: 2,
-  //   title: `Lift Off!`,
-  //   objective: 'Okay ket',
-  //   func:
-  //   `const launchRocket = () => {
-  //     let countDown = [];
-  //     let counter = 10;
-  //     while (counter > -1) {
-  //       countDown.push(counter);
-  //       counter--;
-  //     }
-  //     return countDown;
-  //   };
-  //   `,
-  //   tests: ['strictEqual', 'equal', 'isTrue', 'typeOf', 'isString'],
-  //   instructions: `Write a test`,
-  //   itBlock: `allSystemsAreGo returns "Ready for liftoff!"`,
-  //   testToPass: 1,
-  //   buttons: ['launchRocket().length', 'launchRocket', 'launchRocket()'],
-  //   solutions: '[ 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 ]',
-  //   suggestedTests: ['isFunction,launchRocket', 'isArray,launchRocket()', 'equal, launchRocket(), [10,9,8,7,6,5,4,3,2,1,0]']
-  // },
+  {
+    level: 9,
+    title: `Lift Off!`,
+    objective: 'Check that the rocket can launch. ',
+    func:
+    `const launchRocket = () => {
+      let countDown = [];
+      let counter = 10;
+      while (counter > 0) {
+        countDown.push(counter);
+        counter--;
+      }
+      return countDown;
+    };
+    `,
+    tests: ['equal', 'lengthOf', 'typeOf', 'isString', 'isArray', 'isNumber', 'isFunction', 'include'],
+    instructions: `Pass 3 tests to successfully launch the rocket. In this level, there will be multiple functions/variables you can test against. The choice is yours...`,
+    itBlock: `launchRocket() returns an array containing [10,9,8,7,6,5,4,3,2,1]`,
+    testToPass: 3,
+    buttons: ['launchRocket', 'launchRocket()'],
+    intro: `Okay great, you can test a function. I don't know if you've ever been part of a catship crew, but it's pretty common for a catship to countdown before liftoff. Now that we know that all systems are go we can just make sure our countdown works. you'll see that launchRocket is a function that returns and array of numbers 10-0, that's a pretty essential part of catship operation. let's write 5 tests to check launchRocket`,
+    outro: `SOME TEXT LATER OKKKKKK`,
+  },
+  {
+    level: 10,
+    title: 'Classy spacecraft of the 21st century',
+    objective: 'Building a new spacecraft using ES6 Classes',
+    func: `
+    class Spacecraft {
+      fly() {
+        return 1;
+      }
+    }
+
+    class Rocket extends Spacecraft {
+      blastOff() {
+        return 'blast off';
+      }
+    }
+
+    class Catship extends Rocket {
+      info() {
+        if(Catship.prototype.fly()===1){
+          return (
+            'Time for the Catship to ' + Catship.prototype.blastOff() + '!'
+          );
+        }
+      }
+    }
+    `,
+    tests: ['equal', 'isString', 'isArray', 'isNumber', 'include', 'operator'],
+    instructions: 'Pass 5 tests to successfully build the new Spacecraft',
+    itBlock: 'info(), fly(), blastOff() tests',
+    testToPass: 5,
+    buttons: ['Catship.prototype.info()', 'Spacecraft.prototype.fly()', 'Rocket.prototype.blastOff()', 'Catship.prototype.info', 'Spacecraft.prototype.fly', 'Rocket.prototype.blastOff'],
+    solutions: 'Catship: it remains true that Catship is an instance of Spacecraft, therefore they fly and blast off!',
+    suggestedTests: ['isFunction,Catship.prototype.info', 'isString,Catship.prototype.info()', 'equal,Spacecraft.prototype.fly(),`they fly`'],
+    intro: 'Pop Quiz! We\'re here to test catship operations, obviously. So then, you should know the difference between a Spacecraft, a rocket and a catship. See the ES6 code and check if you know that the return statement would say.',
+  }
 ]
 
 async function seed () {
