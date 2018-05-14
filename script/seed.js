@@ -34,7 +34,30 @@ const levels = [
     testToPass: 1,
     intro: `Now that all of our systems have been checked, it's time to check if we're ready for liftoff. On the next level you'll see a function that takes allSystemCheck as a parameter. allSystemsAreGo() returns a string in both cases, so try to pick an assertion that is as specific as possible. Ok, go on and test!`,
     outro: `SOME TEXT LATER OKKKKKK`,
-  }
+  },
+  // {
+  //   level: 2,
+  //   title: `Lift Off!`,
+  //   objective: 'Okay ket',
+  //   func:
+  //   `const launchRocket = () => {
+  //     let countDown = [];
+  //     let counter = 10;
+  //     while (counter > -1) {
+  //       countDown.push(counter);
+  //       counter--;
+  //     }
+  //     return countDown;
+  //   };
+  //   `,
+  //   tests: ['strictEqual', 'equal', 'isTrue', 'typeOf', 'isString'],
+  //   instructions: `Write a test`,
+  //   itBlock: `allSystemsAreGo returns "Ready for liftoff!"`,
+  //   testToPass: 1,
+  //   buttons: ['launchRocket().length', 'launchRocket', 'launchRocket()'],
+  //   solutions: '[ 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 ]',
+  //   suggestedTests: ['isFunction,launchRocket', 'isArray,launchRocket()', 'equal, launchRocket(), [10,9,8,7,6,5,4,3,2,1,0]']
+  // },
 ]
 
 async function seed () {
