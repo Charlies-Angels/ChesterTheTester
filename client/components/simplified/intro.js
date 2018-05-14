@@ -36,7 +36,9 @@ class Intro extends Component {
             <div className="test-output">
             <h2>{`Level ${levelId}: ${thisLevel.title}`}</h2>
             </div>
-            <div className="level-up">              <button className="button-blue" onClick={() => this.goToLevel(this.props.match.params.id)}>START LEVEL</button></div>
+            <div className="level-up">
+              <button className="button-blue" onClick={() => this.goToLevel(this.props.match.params.id)}>START LEVEL</button>
+            </div>
             </div>
             <h3>{thisLevel.intro}</h3>
 

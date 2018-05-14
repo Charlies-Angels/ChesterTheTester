@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Login, Signup, UserHome, StartGame} from './components'
-
 import {me, getLevelsThunk} from './store'
 import Level from './components/simplified/layout';
 import Intro from './components/simplified/intro';
@@ -21,17 +20,11 @@ class Routes extends Component {
     const {isLoggedIn} = this.props
 
     return (
-      <Switch>
-        {/* Routes placed here are available to all visitors */}
-
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
+    <Switch>
         <Route path="/level/:id/intro" component={Intro} />
         <Route path="/level/:id/start" component={Level} />
-        <Route path="/home" component={UserHome} />
         <Route exact path="/" component={StartGame} />
         <Route path="/generator" component={TestGenerator} />
-        {/* Displays our Login component as a fallback */}
         <Route path="/level/:id/" component={Intro} />
         <Route component={StartGame} />
       </Switch>
@@ -70,3 +63,15 @@ Routes.propTypes = {
   loadInitialData: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
 }
+
+
+        // <Route path="/login" component={Login} />
+        // <Route path="/signup" component={Signup} />
+        // <Route path="/level/:id/intro" component={Intro} />
+        // <Route path="/level/:id/start" component={Level} />
+        // <Route path="/home" component={UserHome} />
+        // <Route exact path="/" component={StartGame} />
+        // <Route path="/generator" component={TestGenerator} />
+        // {/* Displays our Login component as a fallback */}
+        // <Route path="/level/:id/" component={Intro} />
+        // <Route component={StartGame} />

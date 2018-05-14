@@ -83,14 +83,14 @@ h6 {
 .intro-block {
   background-color: #2e2e30;
   flex: 0 0 50%;
+  align-self: center;
   border-radius: 3px;
   width: auto;
-  min-height: 70vh;
+  min-height: 40vh;
   max-height: 70vh;
   overflow-y: scroll;
   padding: 1em 3em;
   margin-top: .5em;
-  margin-bottom: 10vh;
 }
 .chester {
   flex: 0 0 35%;
@@ -143,6 +143,12 @@ h6 {
   padding: 2vh 0vh;
   text-align: center;
 }
+
+.layout-header__levels:hover {
+  top: 10px;
+}
+
+
 .layout-header__levels-active {
   flex: 1;
   padding: 2vh 0vh;
@@ -409,6 +415,6 @@ ul, li {
   outline-color: #34a89e;
   }
 
-  .expect-input::placeholder {
-    color: #34a89e;
-  }
+.expect-input::placeholder {
+  color: #34a89e;
+}

@@ -9,7 +9,7 @@ import ClearRun from './clear-run';
 import TestRunner from './test-runner';
 import { assert } from '../test-object';
 import { it } from '../../utils/tester';
-import { postCodeToSandbox, getLevelsThunk, setLevel } from '../../store';
+import { postCodeToSandbox, getLevelsThunk, setLevel, completeLevel } from '../../store';
 
 class Layout extends Component {
   constructor(props) {
@@ -91,7 +91,7 @@ it('${itBlock}',function(){
 
           <div className="right-side">
             <div className="test-block">
-            <TestRunner objective={objective} it={itBlock} testResponse={testResponse} testToPass={testToPass} />
+            <TestRunner objective={objective} it={itBlock} testResponse={testResponse} testToPass={testToPass} completeLevel={this.props.completeLevelOnClick}/>
               <div className="send-test">
                 <h4>Test Code Block:</h4>
                 <div className="clear-send">
@@ -154,6 +154,7 @@ const mapDispatchToProps = dispatch => ({
     postCodeToSandbox: sandbox => dispatch(postCodeToSandbox(sandbox)),
     getLevelsThunk: () => dispatch(getLevelsThunk()),
     setLevelOnLoad: level => dispatch(setLevel(level)),
+    completeLevelOnClick: () => dispatch(completeLevel())
 });
 
 export default connect(mapState, mapDispatchToProps)(Layout);
