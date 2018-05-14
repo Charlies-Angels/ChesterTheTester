@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Success from '../test-checks/success';
 import Failure from '../test-checks/failure';
+import NextLevel from './next-level'
 
 class TestRunner extends Component {
   constructor(props) {
@@ -38,7 +39,7 @@ class TestRunner extends Component {
             <h4>Test Output:</h4>
           </div>
           <div className="level-up">
-            <button disabled={!passing} className={passing ? 'button-blue-lg' : 'button-inactive-lg'} onClick={completeLevel}>NEXT LEVEL</button>
+            <NextLevel passing={passing} />
           </div>
         </div>
         <div className="inner-block">
