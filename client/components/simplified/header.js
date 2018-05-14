@@ -3,19 +3,21 @@ import history from '../../history'
 const Header = (props) => {
   const levels = Array.from({length: 11}).map((_, i) => i);
   const goBack = () => {
-    return props.active === +0 ? history.push(`/`) :
-      history.push(`/level/${+props.active - 1}/intro`)
+    if (props.active == 0) history.push(`/`)
+    else if (history.location.pathname === '/generator') history.push(`/level/10`)
+    else history.push(`/level/${+props.active - 1}`)
   }
   const goToLevel = (level) => {
-    history.push(`/level/${level}/intro`)
+    history.push(`/level/${level}`)
   }
   const goToEditor = () => {
     history.push(`/generator`)
   }
   const goForward = () => {
-    history.push(`/level/${+props.active + 1}/intro`)
+    if (props.active == 10) history.push(`/generator`)
+    else if (history.location.pathname === '/') history.push(`/level/0`)
+    else history.push(`/level/${+props.active + 1}`)
   }
-
   return (
       <div className="layout-header">
         <div className="layout-header__left" onClick={goBack} >{'<<<'}</div>
@@ -26,8 +28,9 @@ const Header = (props) => {
           :
           <div key={level} className="layout-header__levels" onClick={() => (goToLevel(level))}>level {level}</div>
           ))}
-          <div className="layout-header__levels" onClick={() => goToEditor()}>editor</div>
-        <div className="layout-header__right" onClick={goForward}>{'>>>'}</div>
+          <div className={history.location.pathname === '/generator' ? 'layout-header__levels-active' : 'layout-header__levels'}
+            onClick={() => goToEditor()}>editor</div>
+        <div className='layout-header__right' onClick={goForward}>{'>>>'}</div>
       </div>
   )
 }
