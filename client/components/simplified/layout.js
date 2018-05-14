@@ -20,6 +20,7 @@ class Layout extends Component {
       input2: '',
       testResponse: [],
       ranTests: [],
+      actual: this.props.level.actual || '',
     };
   }
   componentDidMount() {
@@ -39,14 +40,15 @@ class Layout extends Component {
       selectOne: '',
       input1: '',
       input2: '',
+      actual: this.props.level.actual || ''
     });
   };
 
   runTest = () => {
-    const { selectOne, input1, input2, ranTests, testResponse } = this.state;
+    const { selectOne, input1, input2, ranTests, testResponse, actual } = this.state;
     const inputs = [input1, input2];
-    const level = this.props.levels.find(lev => lev.level === Number(this.props.match.params.id));
-    const { itBlock, actual } = level;
+    // const level = this.props.levels.find(lev => lev.level === Number(this.props.match.params.id));
+    const { itBlock } = this.props.level;
     let sandbox = actual;
     if (assert[selectOne].pre) sandbox = assert[selectOne].pre + sandbox;
     if (assert[selectOne].post) sandbox = sandbox + assert[selectOne].post;
@@ -71,11 +73,10 @@ class Layout extends Component {
     })
   }
 
-    render() {
-    if (!this.props.levels.length) return <span />
-    const thisLevel = this.props.levels.find(lev => lev.level === Number(this.props.match.params.id));
-    const { level, func, objective, instructions, itBlock, tests, actual, title, testToPass, outro } = thisLevel;
-    const { selectOne, input1, testResponse, ranTests } = this.state;
+  render() {
+    if (!this.props.level) return <span />
+    const { level, func, objective, instructions, itBlock, tests, title, testToPass, buttons, outro } = this.props.level;
+    const { selectOne, input1, input2, testResponse, actual } = this.state;
 
     return (
       <div className="layout-container">
@@ -97,8 +98,24 @@ class Layout extends Component {
                 </div>
             </div>
 
-              <Describe describe={objective} assertion={selectOne} actual={actual} input1={input1} it={itBlock} />
-
+              <Describe describe={objective} assertion={selectOne} actual={actual} input1={input1} input2={input2} it={itBlock} />
+              { !this.props.level.actual &&
+                <div>
+                  <h5>Choose the function/variable you will be testing against: </h5>
+                  {/* add multiple function buttons */}
+                  {buttons.map(button => (
+                      <button
+                      className="button-red"
+                      key={button}
+                      value={button}
+                      onClick={() => this.setState({
+                        actual: button
+                      })}
+                      >{button}</button>)
+                      )
+                  }
+                </div>
+              }
               <h5>Choose an assertion: </h5>
               <div className="display-assertions">
               {tests.map(method => (
@@ -142,11 +159,14 @@ class Layout extends Component {
   }
 }
 
-const mapState = state => ({
-    level: state.level,
-    levels: state.levels,
+const mapState = (state, ownProps) => {
+  const current = state.levels.find(lev => lev.level === Number(ownProps.match.params.id));
+
+  return {
+    level: current,
     sandbox: state.sandbox,
-});
+  }
+}
 
 const mapDispatchToProps = dispatch => ({
     postCodeToSandbox: sandbox => dispatch(postCodeToSandbox(sandbox)),
