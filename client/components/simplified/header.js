@@ -29,10 +29,9 @@ console.log(history.location.pathname)
           :
           <div key={level} className="layout-header__levels" onClick={() => (goToLevel(level))}>level {level}</div>
           ))}
-          <div className="layout-header__levels" onClick={() => goToEditor()}>editor</div>
-        <div className={history.location.pathname === '/generator' ? 'layout-header__levels-active'
-        : 'layout-header__right' }
-        onClick={goForward}>{'>>>'}</div>
+          <div className={history.location.pathname === '/generator' ? 'layout-header__levels-active' : 'layout-header__levels'}
+            onClick={() => goToEditor()}>editor</div>
+        <div className='layout-header__right' onClick={goForward}>{'>>>'}</div>
       </div>
   )
 }
