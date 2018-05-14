@@ -56,12 +56,10 @@ class Layout extends Component {
     this.props.postCodeToSandbox({ sandbox, level: this.props.match.params.id })
       .then(res => {
         let result = it(itBlock)(assert[selectOne])(res.sandbox, ...inputs);
-        let str = `
-it('${itBlock}',function(){
+        let str = `it('${itBlock}',function(){
     assert.${selectOne}(${inputs[0] ? actual + ',' + inputs.join(',') : actual
   })
-})
-  `;
+})`;
         this.setState({
           testResponse: [...testResponse, result],
           ranTests: [...ranTests, str],
@@ -77,8 +75,7 @@ it('${itBlock}',function(){
 
   render() {
     if (!this.props.level) return <span />
-
-    const { level, func, objective, instructions, itBlock, tests, title, testToPass, buttons } = this.props.level;
+    const { level, func, objective, instructions, itBlock, tests, title, testToPass, buttons, outro } = this.props.level;
     const { selectOne, input1, input2, testResponse, actual } = this.state;
 
     return (
@@ -93,7 +90,7 @@ it('${itBlock}',function(){
 
           <div className="right-side">
             <div className="test-block">
-            <TestRunner objective={objective} it={itBlock} testResponse={testResponse} testToPass={testToPass} completeLevel={this.props.completeLevelOnClick}/>
+            <TestRunner objective={objective} it={itBlock} testResponse={testResponse} testToPass={testToPass} testBlocks={ranTests} outro={outro}/>
               <div className="send-test">
                 <h4>Test Code Block:</h4>
                 <div className="clear-send">

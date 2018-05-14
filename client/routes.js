@@ -22,8 +22,7 @@ class Routes extends Component {
     return (
     <Switch>
         <Route path="/level/:id/intro" component={Intro} />
-        <Route path="/level/:id/start" component={Level} />
-        <Route exact path="/" component={StartGame} />
+        <Route path="/level/:id/tutorial" component={Level} />
         <Route path="/generator" component={TestGenerator} />
         <Route path="/level/:id/" component={Intro} />
         <Route component={StartGame} />

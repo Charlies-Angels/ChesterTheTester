@@ -6,12 +6,13 @@ class Describe extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      assertion: props.assertion || '' };
+      assertion: props.assertion
+    };
   }
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      assertion: nextProps.assertion,
-    });
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    return nextProps.assertion !== prevState.assertion ?
+      {assertion: nextProps.assertion} : null
   }
   render() {
     const { describe, it, actual, input1, input2, passedTests } = this.props;

@@ -16,7 +16,7 @@ class Intro extends Component {
     }
   }
   goToLevel = (level) => {
-    history.push(`/level/${level}/start`)
+    history.push(`/level/${level}/tutorial`)
   }
   render() {
     if (!this.props.levels.length) return <span />

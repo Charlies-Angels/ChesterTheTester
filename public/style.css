@@ -144,11 +144,6 @@ h6 {
   text-align: center;
 }
 
-.layout-header__levels:hover {
-  top: 10px;
-}
-
-
 .layout-header__levels-active {
   flex: 1;
   padding: 2vh 0vh;
@@ -350,7 +345,7 @@ ul, li {
 }
 
 .test-output {
-  flex: 0 0 60%;
+  flex: 0 0 50%;
 }
 .level-up {
   align-self: flex-end;
@@ -417,4 +412,42 @@ ul, li {
 
 .expect-input::placeholder {
   color: #34a89e;
+}
+
+.backdrop {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9998;
+  background: #5d5d5fd0;
+}
+.outro-modal {
+  background-color: #1b1b1c;
+  font-family: 'Inconsolata', sans-serif;
+  color: #c0d3be;
+  align-self: flex-start;
+  justify-content: space-between;
+  border-radius: 10px;
+  min-height: 40vh;
+  width: 100vw;
+  min-width: 90vw;
+  padding: 1em 3em 0 3em;
+  display: flex;
+  margin-top: 5em;
+}
+
+.outro-left {
+  flex: 0 0 65%;
+  padding-bottom: 5vh;
+}
+
+.outro-right {
+  flex: 0 0 30%;
+  align-self: flex-end;
+}
+
+.title-button-float {
+  align-self: space-between;
 }
