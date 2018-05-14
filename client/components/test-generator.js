@@ -68,7 +68,9 @@ class TestGenerator extends Component {
 			//if pass/fail
 			if (result === message){
 				const invokedFuncArr = this.props.generator.split('\n')
-				const invokedFuncStr = invokedFuncArr[invokedFuncArr.length - 1]
+				let invokedFuncStr = invokedFuncArr[invokedFuncArr.length - 1]
+				invokedFuncStr = invokedFuncStr.replace(/;/g, '')
+
 				let str1 =
 	`
 	it('${message}',function(){
@@ -95,7 +97,7 @@ class TestGenerator extends Component {
 	render () {
 		const methods = Object.keys(assert);
 		const {selected, selectOne, output, message, describe, inputTest1, inputTest2} = this.state
-		const invokedFuncArr = this.props.generator.split('\n')
+		const invokedFuncArr = this.props.generator.trim().split('\n')
 		const invokedFuncStr = invokedFuncArr[invokedFuncArr.length - 1]
 		return (
 			<div className="layout-container">
@@ -112,7 +114,7 @@ class TestGenerator extends Component {
 						    height="350px"
 						    width="350px"
 						    editorProps={{$blockScrolling: true}}
-						    style={{position: 'relative'}}	    
+						    style={{position: 'relative'}} 
 						/>
 						<button
 						type="clear"
@@ -139,55 +141,57 @@ class TestGenerator extends Component {
 					<div className="right-side">
 						<div className="test-block">
 						<h5>Choose an assertion: </h5>
-							<div className="display-assertions">
-								{methods.map(method => (
-									selectOne === method ?
-									<div key={method} className="assertion">
-										<AssertButton active method={method} onClick={() => this.handleClickAssert(method)} />
-									</div> :
-									<div key={method} className="assertion">
-										<AssertButton method={method} onClick={() => this.handleClickAssert(method)} />
-									</div>
-								))}
-							</div>
-							{selectOne &&
-								<form onSubmit={this.runTest}>
-									<label>
-									    Describe message
-									    <input
-									    type="text"
-									    name="describe"
-									    onChange={ (event) => this.setState({describe: event.target.value})}
-									    />
-									</label>
-									<label>
-									    It message
-									    <input
-									    type="text"
-									    name="message"
-									    onChange={ (event) => this.setState({message: event.target.value})}
-									    />
-									</label>
-									<label>{output}</label>
-									{assert[selectOne].args.slice(1).map((arg, i) =>
-										(<div key={arg}>
-											<label>
-											    {arg}
-											    <input
-											    type="text"
-											    value={this.state['inputTest' + (i + 1)]}
-											    name={arg}
-											    onChange={ (event) => this.setState({['inputTest' + (i + 1)]: event.target.value})}
-											    />
-											</label>
-										</div>)
-										)}
-									<input
-									type="submit"
-									name="Submit"
-									/>
-								</form>
-							}
+						<div className="display-assertions">
+							{methods.map(method => (
+								selectOne === method ?
+								<div key={method} className="assertion">
+									<AssertButton active method={method} onClick={() => this.handleClickAssert(method)} />
+								</div> :
+								<div key={method} className="assertion">
+									<AssertButton method={method} onClick={() => this.handleClickAssert(method)} />
+								</div>
+							))}
+						</div>
+							<form onSubmit={this.runTest}>
+								<label>
+								    Describe message
+								    <input
+								    type="text"
+								    name="describe"
+								    onChange={ (event) => this.setState({describe: event.target.value})}
+								    />
+								</label>
+								{selectOne &&
+								<div>
+								<label>
+								    It message
+								    <input
+								    type="text"
+								    name="message"
+								    onChange={ (event) => this.setState({message: event.target.value})}
+								    />
+								</label>
+								<label>{output}</label>
+								{assert[selectOne].args.slice(1).map((arg, i) =>
+									(<div key={arg}>
+										<label>
+										    {arg}
+										    <input
+										    type="text"
+										    value={this.state['inputTest' + (i + 1)]}
+										    name={arg}
+										    onChange={ (event) => this.setState({['inputTest' + (i + 1)]: event.target.value})}
+										    />
+										</label>
+									</div>)
+									)}
+								<input
+								type="submit"
+								name="Submit"
+								/>
+								</div>
+								}
+							</form>
 							<Describe describe={describe} passedTests={selected} assertion={selectOne} actual={invokedFuncStr} input1={inputTest1} input2={inputTest2} it={message} />
 						</div>
 					</div>
