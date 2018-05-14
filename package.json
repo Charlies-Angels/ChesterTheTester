@@ -20,6 +20,7 @@
   "author": "Charlie's Angels",
   "license": "MIT",
   "dependencies": {
+    "aws-sdk": "^2.238.1",
     "axios": "^0.15.3",
     "body-parser": "^1.16.1",
     "compression": "^1.7.1",
