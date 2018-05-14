@@ -211,39 +211,39 @@ export const assert = {
   //   args: ['object', 'property', 'value'],
   // },
   // instanceOf: {
-  //   func(msg, instance, constructor) {
-  //     if (instance instanceof constructor) return msg;
-  //     return `${msg}, Expected ${instance} to be an instance of ${constructor}`;
+  //   func(msg, instance, con) {
+  //     if (instance) return msg;
+  //     return `${msg}, Expected ${instance} to be an instance of ${con}`;
   //   },
-  //   args: ['instance', 'constructor'],
+  //   args: ['instance', 'con'],
   // },
-  // operator: {
-  //   func(msg, val1, operation, val2) {
-  //     let checkBool = null;
-  //     switch (operation) {
-  //       case '<':
-  //         checkBool = val1 < val2;
-  //         break;
-  //       case '>':
-  //         checkBool = val1 < val2;
-  //         break;
-  //       case '==':
-  //         checkBool = val1 == val2;
-  //         break;
-  //       case '===':
-  //         checkBool = val1 === val2;
-  //         break;
-  //       case '!=':
-  //         checkBool = val1 != val2;
-  //         break;
-  //       case '!==':
-  //         checkBool = val1 !== val2;
-  //         break;
-  //       default:
-  //         checkBool = false;
-  //     }
-  //     return checkBool ? msg : `${msg}, Expected ${val1} ${operation} ${val2} to be true`;
-  //   },
-  //   args: ['value 1', 'operator', 'value 2'],
-  // },
+  operator: {
+    func(msg, val1, operation, val2) {
+      let checkBool = null;
+      switch (operation) {
+        case '<':
+          checkBool = val1 < val2;
+          break;
+        case '>':
+          checkBool = val1 < val2;
+          break;
+        case '==':
+          checkBool = val1 == val2;
+          break;
+        case '===':
+          checkBool = val1 === val2;
+          break;
+        case '!=':
+          checkBool = val1 != val2;
+          break;
+        case '!==':
+          checkBool = val1 !== val2;
+          break;
+        default:
+          checkBool = false;
+      }
+      return checkBool ? msg : `${msg}, Expected ${val1} ${operation} ${val2} to be true`;
+    },
+    args: ['value 1', 'operator', 'value 2'],
+  },
 };
