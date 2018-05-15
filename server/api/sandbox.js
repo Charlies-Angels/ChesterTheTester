@@ -1,24 +1,37 @@
 const router = require('express').Router()
 const Sandbox = require('sandbox')
-const { Level } = require('../db/models')
+const { Level, Assert } = require('../db/models')
 
 module.exports = router
 
 let sand = new Sandbox();
 
-router.post('/', (req, res, next) => {
-  console.log(req.body.sandbox);
-	Level.findOne({where: {level: req.body.level}})
-	.then(response => {
-		sand.run(response.func + ';' + req.body.sandbox, function(output){
-      console.log(output)
+router.post('/', async (req, res, next) => {
+	try {
+		const assert = await Assert.findOne({where: {assert: req.body.assert}})
+		const level = await Level.findOne({where: {level: req.body.level}})
+		const run = `${level.dataValues.func};${assert.dataValues.func};${req.body.assert}('${req.body.itBlock}',${req.body.sandbox},${req.body.inputs[0] ? req.body.inputs.join(',') : ''});`;
+		return sand.run(run, function(output){
 			res.json(output.result)
 		})
-	})
+	}
+	catch (error) {
+		next(error);
+	}
 })
 
-router.post('/test-generator', (req, res, next) => {
-	sand.run(req.body.input, function(output){
+router.post('/test-generator', async (req, res, next) => {
+	const assert = await Assert.findOne({where: {assert: req.body.assert}})
+	let run = ''
+	if (req.body.input && Object.keys(req.body).length === 1) {
+		run = req.body.input
+	}
+	else {
+		run = `${assert.dataValues.func};${req.body.assert}('${req.body.itBlock}',${req.body.input},${req.body.inputs[0] ? req.body.inputs.join(',') : ''});`
+	}
+	console.log(run)
+	return sand.run(run, function(output){
 		res.json(output.result)
 	})
+
 })

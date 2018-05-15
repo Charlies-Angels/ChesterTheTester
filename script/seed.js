@@ -1,6 +1,68 @@
 
 const db = require('../server/db')
-const {User, Level} = require('../server/db/models')
+const {User, Level, Assert} = require('../server/db/models')
+
+const asserts = [
+{
+  assert: 'typeOf',
+  func: `const typeOf = (msg, actual, expected) => {
+    if (typeof actual === expected) {return msg};
+    return (msg + ', Expected ' + actual + ' to be a type of ' + expected);
+  };`,
+  args: ['actual', 'expected'],
+}, {
+  assert: 'equal',
+  func: `const equal = (msg, actual, expected) => {
+    if (actual == expected) {return msg};
+    return (msg + ', Expected ' + actual + ' to be equal to ' + expected);
+  };`,
+  args: ['actual', 'expected'],
+}, {
+  assert: 'strictEqual',
+  func: `const strictEqual = (msg, actual, expected) => {
+    if (actual === expected) {return msg};
+    return (msg + ', Expected ' + actual + ' to be equal to ' + expected);
+  };`,
+  args: ['actual', 'expected'],
+}, {
+  assert: 'isTrue',
+  func: `const isTrue = (msg, actual) => {
+    if (actual === true) {return msg};
+    return (msg + ', Expected ' + actual + ' to be equal to be true');
+  };`,
+  args: ['actual'],
+},{
+  assert: 'operator',
+  func: `const operator = (msg, val1, operation, val2) => {
+    let checkBool = null;
+
+    switch (operation) {
+      case '<':
+        checkBool = val1 < val2;
+        break;
+      case '>':
+        checkBool = val1 > val2;
+        break;
+      case '==':
+        checkBool = val1 == val2;
+        break;
+      case '===':
+        checkBool = val1 === val2;
+        break;
+      case '!=':
+        checkBool = val1 != val2;
+        break;
+      case '!==':
+        checkBool = val1 !== val2;
+        break;
+      default:
+        checkBool = false;
+    }
+    return checkBool ? msg : (msg + ', Expected ' + val1 + ' ' + operation + ' ' + val2 + ' to be true');
+  };`,
+  args: ['value 1', 'operator', 'value 2'],
+},
+]
 
 const levels = [
   {
@@ -104,6 +166,7 @@ async function seed () {
     User.create({email: 'murphy@email.com', password: '123'})
   ])
   await Level.bulkCreate(levels);
+  await Assert.bulkCreate(asserts);
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${levels.length} levels`)

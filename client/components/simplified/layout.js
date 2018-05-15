@@ -9,7 +9,7 @@ import ClearRun from './clear-run';
 import TestRunner from './test-runner';
 import { assert } from '../test-object';
 import { it } from '../../utils/tester';
-import { postCodeToSandbox, getLevelsThunk, setLevel, completeLevel } from '../../store';
+import { postCodeToSandbox, setLevel, completeLevel } from '../../store';
 
 class Layout extends Component {
   constructor(props) {
@@ -49,22 +49,19 @@ class Layout extends Component {
     const inputs = [input1, input2];
     // const level = this.props.levels.find(lev => lev.level === Number(this.props.match.params.id));
     const { itBlock } = this.props.level;
-    let sandbox = actual;
-    if (assert[selectOne].pre) sandbox = assert[selectOne].pre + sandbox;
-    if (assert[selectOne].post) sandbox = sandbox + assert[selectOne].post;
 
-    this.props.postCodeToSandbox({ sandbox, level: this.props.match.params.id })
+    this.props.postCodeToSandbox({ sandbox: actual, level: this.props.match.params.id, itBlock, assert: selectOne, inputs })
       .then(res => {
-        let result = it(itBlock)(assert[selectOne])(res.sandbox, ...inputs);
         let str = `it('${itBlock}',function(){
     assert.${selectOne}(${inputs[0] ? actual + ',' + inputs.join(',') : actual
   })
 })`;
         this.setState({
-          testResponse: [...testResponse, result],
+          testResponse: [...testResponse, res.sandbox],
           ranTests: [...ranTests, str],
         })
-        if (result === itBlock) {
+        console.log(res.sandbox, itBlock)
+        if (res.sandbox === `'${itBlock}'`) {
           this.clearForm();
         }
       })
@@ -75,8 +72,12 @@ class Layout extends Component {
 
   render() {
     if (!this.props.level) return <span />
+    if (!this.props.asserts) return <span />
     const { level, func, objective, instructions, itBlock, tests, title, testToPass, buttons, outro } = this.props.level;
+    const { asserts } = this.props
     const { selectOne, input1, input2, testResponse, actual, ranTests } = this.state;
+
+    console.log(asserts)
 
     return (
       <div className="layout-container">
@@ -128,11 +129,11 @@ class Layout extends Component {
                   </div>
               ))}
               </div>
-              { selectOne && assert[selectOne].args.length > 1 &&
+              { selectOne && asserts.find(el => el.assert === selectOne).args.length > 1 &&
               <div>
                 <h5>Add input for expected value: </h5>
                 <div className="display-inputs">
-                {assert[selectOne].args.slice(1).map((arg, i) => (
+                {asserts.find(el => el.assert === selectOne).args.slice(1).map((arg, i) => (
                   <input
                     key={arg}
                     autoFocus={i === 0}
@@ -165,14 +166,14 @@ const mapState = (state, ownProps) => {
   return {
     level: current,
     sandbox: state.sandbox,
+    asserts: state.asserts
   }
 }
 
 const mapDispatchToProps = dispatch => ({
     postCodeToSandbox: sandbox => dispatch(postCodeToSandbox(sandbox)),
-    getLevelsThunk: () => dispatch(getLevelsThunk()),
     setLevelOnLoad: level => dispatch(setLevel(level)),
-    completeLevelOnClick: () => dispatch(completeLevel())
+    completeLevelOnClick: () => dispatch(completeLevel()),
 });
 
 export default connect(mapState, mapDispatchToProps)(Layout);
