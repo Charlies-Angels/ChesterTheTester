@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import {Row,Col} from 'react-bootstrap';
 import brace from 'brace';
-import { assert } from './test-object';
-import { it } from '../utils/tester';
 import {postCodeToGenerator, updateCode} from '../store/'
 import AceEditor from 'react-ace'
 import Describe from './simplified/describe';
@@ -11,8 +8,6 @@ import AssertButton from './simplified/assert-button';
 import Header from './simplified/header';
 import 'brace/mode/java';
 import 'brace/theme/monokai';
-import PrismCode from 'react-prism'
-import ScrollArea from 'react-scrollbar';
 
 
 class TestGenerator extends Component {
@@ -21,7 +16,6 @@ class TestGenerator extends Component {
 		this.state = {
 			selectOne: '',
 			selected: [],
-			output: '',
 			inputTest1: '',
 			inputTest2: '',
 			message: '',
@@ -30,6 +24,7 @@ class TestGenerator extends Component {
 	}
 
 	handleClickAssert = (method) => {
+		console.log(method)
 		this.setState({
 			selectOne: method
 		})
@@ -38,65 +33,48 @@ class TestGenerator extends Component {
 	sendFunctionToSandbox = (event) => {
 		event.preventDefault();
 
-		this.props.postCodeToGenerator({input: this.props.generator})
-		.then(res => {
-			this.setState({output: res.sandbox})
-		})
 	}
 
-	runTest = (event) => {
+	runTest = async (event) => {
 		event.preventDefault();
-		const {selectOne, message, output} = this.state
+		const {selectOne, message, inputTest2, inputTest1, selected} = this.state
+		const inputs = [inputTest1, inputTest2];
 
-		const selectOneArgs = assert[selectOne].args;
-		const inputs = [];
+		const evalFunc = await this.props.postCodeToGenerator({input: this.props.generator})
+		const evalAssert = await this.props.postCodeToGenerator({input: evalFunc.sandbox, assert: selectOne, itBlock: message, inputs})
 
-		//not include actual input
-		for (let i = 1;i < selectOneArgs.length;i++) {
-			inputs.push(event.target[selectOneArgs[i]].value)
-		}
+		if (evalAssert.sandbox === `'${message}'`){
+			const invokedFuncArr = this.props.generator.split('\n')
+			let invokedFuncStr = invokedFuncArr[invokedFuncArr.length - 1]
+			invokedFuncStr = invokedFuncStr.replace(/;/g, '')
 
-		let sandbox = output;
-		if (assert[selectOne].pre) sandbox = assert[selectOne].pre + sandbox;
-		if (assert[selectOne].post) sandbox = sandbox + assert[selectOne].post;
-
-		this.props.postCodeToGenerator({input: sandbox})
-		.then(res => {
-			//evaluate response using our assert function
-			let result = it(message)(assert[selectOne])(res.sandbox, ...inputs)
-
-			//if pass/fail
-			if (result === message){
-				const invokedFuncArr = this.props.generator.split('\n')
-				let invokedFuncStr = invokedFuncArr[invokedFuncArr.length - 1]
-				invokedFuncStr = invokedFuncStr.replace(/;/g, '')
-
-				let str1 =
-	`
+			let itString =
+`
 	it('${message}',function(){
-		assert.${selectOne}(${inputs.length ? invokedFuncStr + ',' + inputs.join(',') : invokedFuncStr})
+		assert.${selectOne}(${inputs.length ? invokedFuncStr + ',' + inputs.join(',').replace(/,\s*$/, '') : invokedFuncStr})
 	})
-	`
-				this.setState({
-					selectOne: '',
-					message: '',
-					error: '',
-					selected: [...this.state.selected, str1],
-					inputTest1: '',
-					inputTest2: '',
-				})
-			}
-			else {
-				this.setState({
-					error: result
-				})
-			}
-		})
+`
+			this.setState({
+				selectOne: '',
+				message: '',
+				error: '',
+				selected: [...selected, itString],
+				inputTest1: '',
+				inputTest2: '',
+			})
+		}
+		else {
+			this.setState({
+				error: evalAssert
+			})
+		}
 	}
 
 	render () {
-		const methods = Object.keys(assert);
-		const {selected, selectOne, output, message, describe, inputTest1, inputTest2} = this.state
+		if (!this.props.asserts) return <span />
+		// const methods = Object.keys(assert);
+		const {selected, selectOne, message, describe, inputTest1, inputTest2} = this.state
+		const { asserts } = this.props
 		const invokedFuncArr = this.props.generator.trim().split('\n')
 		const invokedFuncStr = invokedFuncArr[invokedFuncArr.length - 1]
 		return (
@@ -114,7 +92,7 @@ class TestGenerator extends Component {
 						    height="350px"
 						    width="350px"
 						    editorProps={{$blockScrolling: true}}
-						    style={{position: 'relative'}} 
+						    style={{position: 'relative'}}
 						/>
 						<button
 						type="clear"
@@ -126,15 +104,8 @@ class TestGenerator extends Component {
 						type="cleartest"
 						className="button-red"
 						name="ClearTest"
-						onClick={() => this.setState({selectOne: '', selected: [], output: '', inputTest1: '', inputTest2: '', message: '', describe: ''})}
+						onClick={() => this.setState({selectOne: '', selected: [], inputTest1: '', inputTest2: '', message: '', describe: ''})}
 						>Clear Tests</button>
-						<button
-						type="submit"
-						className="button-blue"
-						name="Submit"
-						onClick={this.sendFunctionToSandbox}
-						>Run function</button>
-						<h5>Function output: {output}</h5>
 					</div>
 				</div>
 				<div>
@@ -142,13 +113,13 @@ class TestGenerator extends Component {
 						<div className="test-block">
 						<h5>Choose an assertion: </h5>
 						<div className="display-assertions">
-							{methods.map(method => (
-								selectOne === method ?
-								<div key={method} className="assertion">
-									<AssertButton active method={method} onClick={() => this.handleClickAssert(method)} />
+							{asserts.map(method => (
+								selectOne === method.assert ?
+								<div key={method.assert} className="assertion">
+									<AssertButton active method={method.assert} onClick={() => this.handleClickAssert(method.assert)} />
 								</div> :
-								<div key={method} className="assertion">
-									<AssertButton method={method} onClick={() => this.handleClickAssert(method)} />
+								<div key={method.assert} className="assertion">
+									<AssertButton method={method.assert} onClick={() => this.handleClickAssert(method.assert)} />
 								</div>
 							))}
 						</div>
@@ -171,8 +142,7 @@ class TestGenerator extends Component {
 								    onChange={ (event) => this.setState({message: event.target.value})}
 								    />
 								</label>
-								<label>{output}</label>
-								{assert[selectOne].args.slice(1).map((arg, i) =>
+								{asserts.find(el => el.assert === selectOne).args.slice(1).map((arg, i) =>
 									(<div key={arg}>
 										<label>
 										    {arg}
@@ -186,6 +156,7 @@ class TestGenerator extends Component {
 									</div>)
 									)}
 								<input
+								className="button-blue"
 								type="submit"
 								name="Submit"
 								/>
@@ -204,7 +175,8 @@ class TestGenerator extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		generator: state.generator
+		generator: state.generator,
+		asserts: state.asserts
 	}
 }
 

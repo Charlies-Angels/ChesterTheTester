@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Login, Signup, UserHome, StartGame} from './components'
-import {me, getLevelsThunk} from './store'
+import {me, getLevelsThunk, getAssertsThunk} from './store'
 import Level from './components/simplified/layout';
 import Intro from './components/simplified/intro';
 import TestGenerator from './components/test-generator'
@@ -46,6 +46,7 @@ const mapDispatch = (dispatch) => {
     loadInitialData () {
       dispatch(me())
       dispatch(getLevelsThunk());
+      dispatch(getAssertsThunk())
     }
   }
 }

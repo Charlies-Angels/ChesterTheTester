@@ -6,11 +6,12 @@ import user from './user'
 import level from './level'
 import sandbox from './sandbox'
 import levels from './levels'
+import asserts from './asserts'
 import generator from './generator'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
-const reducer = combineReducers({user, level, sandbox, levels, generator})
+const reducer = combineReducers({user, level, sandbox, levels, generator, asserts})
 
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
@@ -35,3 +36,4 @@ export * from './level'
 export * from './sandbox'
 export * from './levels'
 export * from './generator'
+export * from './asserts'
