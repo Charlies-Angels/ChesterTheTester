@@ -7,8 +7,6 @@ import Describe from './describe';
 import AssertButton from './assert-button';
 import ClearRun from './clear-run';
 import TestRunner from './test-runner';
-import { assert } from '../test-object';
-import { it } from '../../utils/tester';
 import { postCodeToSandbox, setLevel, completeLevel } from '../../store';
 
 class Layout extends Component {
@@ -47,7 +45,6 @@ class Layout extends Component {
   runTest = () => {
     const { selectOne, input1, input2, ranTests, testResponse, actual } = this.state;
     const inputs = [input1, input2];
-    // const level = this.props.levels.find(lev => lev.level === Number(this.props.match.params.id));
     const { itBlock } = this.props.level;
 
     this.props.postCodeToSandbox({ sandbox: actual, level: this.props.match.params.id, itBlock, assert: selectOne, inputs })
@@ -60,7 +57,6 @@ class Layout extends Component {
           testResponse: [...testResponse, res.sandbox],
           ranTests: [...ranTests, str],
         })
-        console.log(res.sandbox, itBlock)
         if (res.sandbox === `'${itBlock}'`) {
           this.clearForm();
         }
@@ -76,8 +72,6 @@ class Layout extends Component {
     const { level, func, objective, instructions, itBlock, tests, title, testToPass, buttons, outro } = this.props.level;
     const { asserts } = this.props
     const { selectOne, input1, input2, testResponse, actual, ranTests } = this.state;
-
-    console.log(asserts)
 
     return (
       <div className="layout-container">
@@ -95,7 +89,7 @@ class Layout extends Component {
               <div className="send-test">
                 <h4>Test Code Block:</h4>
                 <div className="clear-send">
-                  <ClearRun selectOne={selectOne} runTest={this.runTest} clearForm={this.clearForm} />
+                  <ClearRun selectOne={selectOne} actual={actual} runTest={this.runTest} clearForm={this.clearForm} />
                 </div>
             </div>
 
@@ -106,7 +100,7 @@ class Layout extends Component {
                   {/* add multiple function buttons */}
                   {buttons.map(button => (
                       <button
-                      className="button-red"
+                      className={actual === button ? "button-red-active" : "button-red"}
                       key={button}
                       value={button}
                       onClick={() => this.setState({

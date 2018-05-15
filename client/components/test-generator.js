@@ -19,7 +19,8 @@ class TestGenerator extends Component {
 			inputTest1: '',
 			inputTest2: '',
 			message: '',
-			describe: ''
+			describe: '',
+			error: ''
 		}
 	}
 
@@ -65,15 +66,14 @@ class TestGenerator extends Component {
 		}
 		else {
 			this.setState({
-				error: evalAssert
+				error: evalAssert.sandbox
 			})
 		}
 	}
 
 	render () {
 		if (!this.props.asserts) return <span />
-		// const methods = Object.keys(assert);
-		const {selected, selectOne, message, describe, inputTest1, inputTest2} = this.state
+		const {selected, selectOne, message, describe, inputTest1, inputTest2, error} = this.state
 		const { asserts } = this.props
 		const invokedFuncArr = this.props.generator.trim().split('\n')
 		const invokedFuncStr = invokedFuncArr[invokedFuncArr.length - 1]
@@ -111,6 +111,7 @@ class TestGenerator extends Component {
 				<div>
 					<div className="right-side">
 						<div className="test-block">
+						<a href="http://www.chaijs.com/api/assert/" rel="noopener noreferrer" target="_blank">Open Chai Documentation</a>
 						<h5>Choose an assertion: </h5>
 						<div className="display-assertions">
 							{asserts.map(method => (
@@ -156,13 +157,15 @@ class TestGenerator extends Component {
 									</div>)
 									)}
 								<input
-								className="button-blue"
+								className={(!describe || !message || !inputTest1) ? "button-inactive" : "button-blue"}
 								type="submit"
 								name="Submit"
+								disabled={!describe || !message || !inputTest1}
 								/>
 								</div>
 								}
 							</form>
+							<div>{error}</div>
 							<Describe describe={describe} passedTests={selected} assertion={selectOne} actual={invokedFuncStr} input1={inputTest1} input2={inputTest2} it={message} />
 						</div>
 					</div>
