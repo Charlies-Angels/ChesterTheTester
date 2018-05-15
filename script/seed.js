@@ -31,7 +31,84 @@ const asserts = [
     return (msg + ', Expected ' + actual + ' to be equal to be true');
   };`,
   args: ['actual'],
-},{
+}, {
+  assert: 'isFalse',
+  func: `const isFalse = (msg, actual) => {
+    if (actual === false) {return msg};
+    return (msg + ', Expected ' + actual + ' to be equal to be false');
+  };`,
+  args: ['actual'],
+}, {
+  assert: 'isNull',
+  func: `const isNull = (msg, actual) => {
+    if (actual === null) {return msg};
+    return (msg + ', Expected ' + actual + ' to be equal to be null');
+  };`,
+  args: ['actual'],
+}, {
+  assert: 'isNotNull',
+  func: `const isNotNull = (msg, actual) => {
+    if (actual !== null) {return msg};
+    return (msg + ', Expected ' + actual + ' to be equal to not be null');
+  };`,
+  args: ['actual'],
+}, {
+  assert: 'isUndefined',
+  func: `const isUndefined = (msg, actual) => {
+    if (actual === undefined) {return msg};
+    return (msg + ', Expected ' + actual + ' to be equal to be undefined');
+  };`,
+  args: ['actual'],
+}, {
+  assert: 'isNotUndefined',
+  func: `const isNotUndefined = (msg, actual) => {
+    if (actual !== undefined) {return msg};
+    return (msg + ', Expected ' + actual + ' to be equal to not be undefined');
+  };`,
+  args: ['actual'],
+}, {
+  assert: 'isArray',
+  func: `const isArray = (msg, actual) => {
+    if (Array.isArray(actual) === true) {return msg};
+    return (msg + ', Expected ' + actual + ' to be equal to be an array');
+  };`,
+  args: ['actual'],
+}, {
+  assert: 'isObject',
+  func: `const isObject = (msg, actual) => {
+    if (typeof actual === 'object') {return msg};
+    return (msg + ', Expected ' + actual + ' to be equal to be an object');
+  };`,
+  args: ['actual'],
+}, {
+  assert: 'isFunction',
+  func: `const isFunction = (msg, actual) => {
+    if (typeof actual === 'function') {return msg};
+    return (msg + ', Expected ' + actual + ' to be equal to be a function');
+  };`,
+  args: ['actual'],
+}, {
+  assert: 'isString',
+  func: `const isString = (msg, actual) => {
+    if (typeof actual === 'string') {return msg};
+    return (msg + ', Expected ' + actual + ' to be equal to be a string');
+  };`,
+  args: ['actual'],
+}, {
+  assert: 'isNumber',
+  func: `const isNumber = (msg, actual) => {
+    if (typeof actual === 'number') {return msg};
+    return (msg + ', Expected ' + actual + ' to be equal to be a number');
+  };`,
+  args: ['actual'],
+}, {
+  assert: 'isBoolean',
+  func: `const isBoolean = (msg, actual) => {
+    if (typeof actual === 'boolean') {return msg};
+    return (msg + ', Expected ' + actual + ' to be equal to be a boolean');
+  };`,
+  args: ['actual'],
+}, {
   assert: 'operator',
   func: `const operator = (msg, val1, operation, val2) => {
     let checkBool = null;
@@ -61,7 +138,97 @@ const asserts = [
     return checkBool ? msg : (msg + ', Expected ' + val1 + ' ' + operation + ' ' + val2 + ' to be true');
   };`,
   args: ['value 1', 'operator', 'value 2'],
-},
+}, {
+  assert: 'isOk',
+  func: `const isOk = (msg, actual) => {
+      if (actual) return msg;
+      return (msg + ', Expected ' + actual + ' to be equal to be ok (truthy)');
+  };`,
+  args: ['actual'],
+}, {
+  assert: 'isNotOk',
+  func: `const isNotOk = (msg, actual) => {
+      if (!actual) {return msg};
+      return (msg + ', Expected ' + actual + ' to be equal to not be ok (falsey)');
+  };`,
+  args: ['actual'],
+}, {
+  assert: 'instanceOf',
+  func: `const instanceOf = (msg, instance, con) => {
+      if (instance instanceof con) return msg;
+      return (msg + ', Expected ' + instance + ' to be an instance of ' + con);
+  };`,
+  args: ['instance', 'con'],
+}, {
+  assert: 'include',
+  func: `const include = (msg, actual, searchTerm) => {
+    if (Array.isArray(actual) || typeof actual === 'string') {
+      if (actual.includes(searchTerm)) return msg;
+    }
+    else if (typeof actual === 'object' && actual.hasOwnProperty(searchTerm)) {
+      return msg;
+    };
+    return (msg + ', Expected ' + actual + ' to include ' + searchTerm);
+  };`,
+  args: ['actual', 'searchTerm'],
+}, {
+  assert: 'notInclude',
+  func: `const notInclude = (msg, actual, searchTerm) => {
+    if (Array.isArray(actual) || typeof actual === 'string') {
+      if (!actual.includes(searchTerm)) return msg;
+    }
+    else if (typeof actual === 'object' && !actual.hasOwnProperty(searchTerm)) {
+      return msg;
+    };
+    return (msg + ', Expected ' + actual + ' to not include ' + searchTerm);
+  };`,
+  args: ['actual', 'searchTerm'],
+}, {
+  assert: 'match',
+  func: `const match = (msg, value, regexp) => {
+    if (value.match(regexp)) {
+      return msg;
+    }
+    return (msg + ', Expected ' + value + ' to match ' + regexp);
+  };`,
+  args: ['value', 'regexp'],
+}, {
+  assert: 'property',
+  func: `const property = (msg, object, prop) => {
+    if (object.hasOwnProperty(prop)) {
+      return msg;
+    }
+    return (msg + ', Expected ' + object + ' to have the property ' + prop);
+  };`,
+  args: ['object', 'property'],
+}, {
+  assert: 'lengthOf',
+  func: `const lengthOf = (msg, actual, len) => {
+    if (actual.length === len) {
+      return msg;
+    }
+    return (msg + ', Expected ' + actual + ' to have length of ' + len);
+  };`,
+  args: ['actual', 'length'],
+}, {
+  assert: 'propertyVal',
+  func: `const propertyVal = (msg, object, property, value) => {
+    if (object[property] === value) {
+      return msg;
+    }
+    return (msg + ', Expected ' + object + ' to have a property of ' + property + ', with a value of ' + value);
+  };`,
+  args: ['object', 'property', 'value'],
+}, {
+  assert: 'closeTo',
+  func: `const closeTo = (msg, actual, expected, delta) => {
+    if (actual === expected) return msg;
+    else if (actual < expected && actual + delta >= expected) return msg;
+    else if (actual > expected && actual + delta <= expected) return msg;
+    else return (msg + ', Expected ' + actual + ' to be close to ' + expected);
+  };`,
+  args: ['actual', 'expected', 'delta'],
+}
 ]
 
 const levels = [
