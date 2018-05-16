@@ -78,8 +78,10 @@ const levels = [
     ];
      `,
      tests: ['isObject', 'isOk', 'isArray', 'lengthOf', 'property', 'propertyVal'],
-     buttons: ['meteors', 'mtrFrequency(meteorsInRange)'],
-     instructions: `Pass 2 tests to check that the variable 'meteors' and the function 'meteorFrequency' are working properly! We use Array.prototype.reduce to iterate over the meteorsInRange array to return an object with a unique key name for each type of meteor we encounter and a value for how many we've seen. Cool! We are working with objects now, so you'll see some new assertion types, property and propertyVal.`,
+     buttons: ['meteorsInRange', 'meteorFrequency(meteorsInRange)'],
+     instructions: `Pass 2 tests to check that the variable 'meteorsInRange' and the function 'meteorFrequency' are working properly! We use Array.prototype.reduce to iterate over the meteorsInRange array to return an object with a unique key name for each type of meteor we encounter and a value for how many we've seen. Cool! We are working with objects now, so you'll see some new assertion types, property and propertyVal.`,
+     itBlock: `meteorFrequency should return an object`,
+     testToPass: 2,
     intro: `Finally we're flying. This is what it's all about... Now that the catship is airborne, let's do an analysis of our meteor sensors. It looks like there are mostly iron meteors floating around. Let's use tests to make sure our radar is actually storing the meteors in range and then automatically sorting them by type. Iron meteors are way more dense, so we do our best to avoid them. So, before we smash into a wall of iron meteors lets write at least three tests for our meteor analysis`,
     outro: `Look at you, mighty tester! You're really starting to pull your weight on the ship. I'm so pleased to know that our radar is functioning properly and we can navigate space without running into any meteors. The assertion 'property', checks to see if that given value is a property in the object is it is being called upon. 'propertyVal' does a similar, deeper check, searching for a particular key/value pair. In Javacscript, because objects are passed by reference, we have construct more precise tests than we do when testing primitives.`
   },
