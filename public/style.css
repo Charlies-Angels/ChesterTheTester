@@ -4,6 +4,7 @@ body {
   height: 100%;
   color: #c0d3be;
   background-color: #1b1b1c;
+  overflow-x: hidden;
   font-family: 'Inconsolata', monotype;
 }
 
@@ -32,9 +33,11 @@ form div {
 
 .success {
   color: #4ce7da;
+  font-size: 1.5rem;
 }
 .failure {
   color: #d75b2a;
+  font-size: 1.5rem;
 }
 h2 {
   color: #d75b2a;
@@ -64,22 +67,7 @@ h6 {
   justify-content: space-around;
   min-height: 89vh;
   align-items: flex-end;
-  overflow: none;
 }
-.start-game {
-  flex: 0 0 40%;
-  align-self: center;
-  height: 70vh;
-  min-height: 100%;
-  border-style: solid;
-  border-width: 38px 85px 79px 83px;
-  -moz-border-image: url(img/control-panel.png) 38 85 79 83 repeat;
-  -webkit-border-image: url(img/control-panel.png) 38 85 79 83 repeat;
-  -o-border-image: url(img/control-panel.png) 38 85 79 83 repeat;
-  border-image: url(img/control-panel.png) 38 85 79 83 fill repeat;
-  border-radius: 10%;
-}
-
 .intro-block {
   background-color: #2e2e30;
   flex: 0 0 50%;
@@ -109,6 +97,7 @@ h6 {
 /* // GAME HEADER */
 .layout-header {
   flex: 0 0 20%;
+  max-width: 100vw;
   display: flex;
   flex-direction: row;
   margin: 2vh 2vh 2vh 2vh;
@@ -138,7 +127,7 @@ h6 {
 .layout-header__levels {
   flex: 1;
   background-color: #2f9c93;
-  box-shadow: inset 0 -0.6em 0 -0.35em #27817a;
+  box-shadow: inset 0 -0.6em 0 -0.35em #216e68;
   border-right: 2px solid #1b1b1c;
   padding: 2vh 0vh;
   text-align: center;
@@ -212,8 +201,8 @@ h6 {
   font-family: 'Inconsolata', sans-serif;
   font-weight: 400;
   color: #1b1b1c;
-  background-color: #f5672f;
-  box-shadow: inset 0 -0.6em 0 -0.35em #b64d23;
+  background-color: #ff7e28;
+  box-shadow: inset 0 -0.6em 0 -0.35em #b65923;
   text-align: center;
   position: relative;
   border: none;
@@ -230,7 +219,7 @@ h6 {
   font-weight: 400;
   color: #1b1b1c;
   background-color: #2f9c93;
-  box-shadow: inset 0 -0.6em 0 -0.35em #27817a;
+  box-shadow: inset 0 -0.6em 0 -0.35em #216e68;
   text-align: center;
   position: relative;
   border: none;

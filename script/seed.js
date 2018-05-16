@@ -1,4 +1,4 @@
-
+// import { strictEqual } from 'assert';
 const db = require('../server/db')
 const {User, Level, Assert} = require('../server/db/models')
 
@@ -352,13 +352,13 @@ const levels = [
     const Catship = new Spacecraft('18.0.2', 4.5, 350)
     Catship.setWarpDrive(5.2)
     Catship.setWarpDrive(4.5)`,
-    tests: ['instanceOf', 'equal', 'isNumber', 'isTrue', 'strictEqual'],
+    tests: ['instanceOf', 'equal', 'isNumber', 'isTrue', 'strictEqual', 'isString', 'isFunction'],
     buttons: ['Catship', 'Catship.model', 'Catship.setWarpDrive(4.5)'],
     instructions: `Write 2 tests for 'Catship', a child of the class, 'Spacecraft'. Test the properties on this class to verify that everything is working properly.`,
     testToPass: 2,
     itBlock: `Catship should have access to the properties of its constructor`,
-    intro: `Well aren't we lucky? Chicago (where our headquarters are) just contacted us saying that my archrival at Fullstack, Princess Potato, has totally dropped the ball on her mission. No surprises here, she's always screwing things up for me. Now, we have the best job you can possibly get while deployed on a Fullstack ship, testing out new spacecraft and trying to break them! Let's write some tests to ensure that our new Model 18.0.2 behaves how we want it to.`,
-    outro: `Aren't classes just wonderful? They save you so much time and energy by not having to repeat any code for properties shared across multiple iterations. We did such a good job on this last sub-mission that we've been tasked to test out some other hot new tech on Superior Station. Let's go!`,
+    intro: `Fullstack Headquarters in Chicago just contacted us saying that my archrival, Princess Potato, has totally dropped the ball on her mission. No surprises here, she's been screwing things up for me since we were kittens. Well aren't we lucky? We have the best job you can possibly get while deployed on a Fullstack ship, testing out new spacecraft and trying to break them! Let's write some tests to ensure that our new Model 18.0.2 behaves how we want it to.`,
+    outro: `Wasn't that fun? Classes can save you so much time and energy by not having to repeat roperties shared across multiple iterations of the same type of spacecraft. We did such a good job on this last sub-mission that we've been tasked to test out some other hot new tech on Superior Station. Let's go!`,
   },
   {
     level: 6,
@@ -395,7 +395,7 @@ const torpedoInventory = projectileInventory.reduce((total, projectile) => {
   }
   return total;
 }, 0)`,
-    tests: ['instanceOf', 'equal', 'isNumber', 'property', 'strictEqual'],
+    tests: ['instanceOf', 'equal', 'isNumber', 'property', 'strictEqual', 'isNotOk'],
     buttons: ['Torpedo', 'torpedoInventory', 'quantum.getConstructorName()', 'spatial'],
     instructions: `Write 3 tests to check that our updated torpedoInventory function is working properly. `,
     testToPass: 3,
@@ -406,7 +406,7 @@ const torpedoInventory = projectileInventory.reduce((total, projectile) => {
   {
     level: 7,
     title: 'Finding life through sorting!',
-    objective: ``,
+    objective: `Searching habitable planets by how likely they contain alien life`,
     func: `const swap = (arr, i, j) => {
   let temp = arr[i];
   arr[i] = arr[j];
@@ -431,47 +431,15 @@ const planetSort = (arr) => {
 const exoplanets = [5324246, 234444, 3111000, 4344, 8234566, 734321, 1124560];
 const sortedPlanets = planetSort(exoplanets);
 `,
-    tests: ['lengthOf', 'equal', 'isNumber', 'isArray', 'include'],
-    buttons: ['exoplanets', 'sortedPlanets', 'sortedPlanets[0]'],
-    instructions: `Write at least three tests to make sure our planetSort function is working properly. `,
+    tests: ['lengthOf', 'isUndefined', 'equal', 'isNumber', 'isArray', 'include', 'strictEqual'],
+    buttons: ['exoplanets', 'sortedPlanets', 'sortedPlanets[0]', 'sortedPlanets[2]', 'sortedPlanets[sortedPlanets.length -1]'],
+    instructions: `Write at least three tests to make sure our planetSort function is working properly. Notice that you can test individual indexes of the array in this test, to verify that the sortedPlanets array is in lowest to highest.`,
     testToPass: 3,
-    itBlock: `planetSort should return the exoplanets in order from lowest to highest`,
-    intro: `'Time for my favorite task of any trip into space, searching the galaxy for habitable exoplanets. Our new Catship, model 18.0.2, uses a sensor rig that populates new the most likely habitable planet space-coordinates into an "exoplanet" array. Then our ship's computer uses an advanced recursive sorting technique to rapidly find the planet most likely to be sustain life. It'd better be working properly, I want to meet some aliens!`,
-    outro: ``,
+    itBlock: `planetSort should return the exoplanets from lowest to highest`,
+    intro: `It's time for my favorite task of any trip into space, searching the galaxy for habitable exoplanets. Our new Catship, model 18.0.2, uses a sensor rig that populates the most likely habitable planet codes into an "exoplanets" array. Then our ship's computer uses an advanced recursive sorting technique to rapidly find the planet most likely to be sustain life. It had better be working properly, I want to meet some aliens!`,
+    outro: `What are you waiting for??? Set a couse for planet #4344!`,
   },
-  {
-    level: 10,
-    title: 'Classy spacecraft of the 21st century',
-    objective: 'Building a new spacecraft using ES6 Classes',
-    func: `class Spacecraft {
-      fly() {
-        return 1;
-      }
-    }
 
-    class Rocket extends Spacecraft {
-      blastOff() {
-        return 'blast off';
-      }
-    }
-
-    class Catship extends Rocket {
-      info() {
-        if(Catship.prototype.fly()===1){
-          return (
-            'Time for the Catship to ' + Catship.prototype.blastOff() + '!'
-          );
-        }
-      }
-    }
-    `,
-    tests: ['equal', 'isString', 'isArray', 'isNumber', 'include', 'operator'],
-    instructions: 'Pass 5 tests to successfully build the new Spacecraft',
-    itBlock: 'info(), fly(), blastOff() tests',
-    testToPass: 5,
-    buttons: ['Catship.prototype.info()', 'Spacecraft.prototype.fly()', 'Rocket.prototype.blastOff()', 'Catship.prototype.info', 'Spacecraft.prototype.fly', 'Rocket.prototype.blastOff'],
-    intro: `Pop Quiz! We're here to test catship operations, obviously. So then, you should know the difference between a Spacecraft, a rocket and a catship. See the ES6 code and check if you know that the return statement would say.`,
-  }
 ]
 
 async function seed () {

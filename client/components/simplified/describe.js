@@ -19,12 +19,11 @@ class Describe extends Component {
     return (
 
       <PrismCode component="pre" className="language-javascript"  dataLine={4}>
-        {`describe('${describe}', () => {
-          ${(passedTests && passedTests.length) ? passedTests.map(element => element) : '' }
-    it('${it}', () => {
-    assert.${this.state.assertion}(${actual}${input1 ? ',' + input1 : ''}${input2 ? ',' + input2 : ''})
-    })
-  })`}
+{`describe('${describe}', () => {${(passedTests && passedTests.length) ? passedTests.map(element => element) : '' }
+  it('${it}', () => {
+  assert.${this.state.assertion}(${actual}${input1 ? ',' + input1 : ''}${input2 ? ',' + input2 : ''})
+  })
+})`}
       </PrismCode>
     );
   }
