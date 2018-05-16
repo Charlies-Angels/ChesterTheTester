@@ -31,7 +31,8 @@
  pre[class*="language-"] {
    padding: 1em;
    margin: .5em 0;
-   overflow: auto;
+   max-width: 46.5vw;
+   overflow-x: scroll;
  }
 
  :not(pre) > code[class*="language-"],
