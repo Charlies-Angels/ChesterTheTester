@@ -10,6 +10,7 @@ body {
 
 a {
   text-decoration: none;
+  color: #c0d3be;
 }
 
 label {
@@ -293,8 +294,9 @@ h6 {
 
 .display-assertions {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   width: 100%;
+  flex-wrap: wrap;
 }
 .display-inputs {
   display: flex;
