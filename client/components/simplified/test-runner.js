@@ -12,9 +12,10 @@ class TestRunner extends Component {
     };
   }
   static getDerivedStateFromProps(nextProps, prevState) {
+    console.log(nextProps.testResponse)
     const checkPassing = (tests) => {
       return tests.some( (test) => {
-        return test.indexOf('Expected') === -1
+        return test === `'${nextProps.it}'`
       })
     }
     if (nextProps.testResponse.length !== prevState.testResponse.length) {
@@ -29,6 +30,7 @@ class TestRunner extends Component {
   render() {
     const { objective, it, testBlocks, outro } = this.props;
     const { passing, testResponse } = this.state;
+    console.log(it);
     return (
       <div>
         <div className="output-container">
@@ -44,7 +46,7 @@ class TestRunner extends Component {
           <ul className="fa-ul">
             { testResponse.length ?
             testResponse.map(response => (
-              response.includes('Expected') ?
+              response !== `'${this.props.it}'` ?
                 <Failure msg={response} key={Math.random() * 40} /> :
                 <Success msg={response} key={Math.random() * 20} />
             ))
