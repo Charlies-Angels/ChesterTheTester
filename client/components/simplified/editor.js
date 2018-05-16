@@ -8,7 +8,7 @@ const Editor = (props) => {
   const {func, codeBlock} = props;
 	return (
     <div className="func-block">
-      <h4>`Code block:</h4>
+      <h4>Code block:</h4>
       <PrismCode component="pre" className="language-javascript">
         {`${func}`}</PrismCode>
     </div>

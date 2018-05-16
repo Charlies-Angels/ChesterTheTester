@@ -233,7 +233,7 @@ const asserts = [
 
 const levels = [
   {
-    level: 0,
+    level: 1,
     title: 'Check All Systems',
     func: `const allSystemsCheck = true;`,
     objective: 'Check all Systems!',
@@ -246,7 +246,7 @@ const levels = [
     outro: `Congrats, you've written your first Chai assertion! As you might have noticed, you have many options for how to test your code. 'isBoolean', 'isTrue', and 'typeOf' would all pass in these circumstances. But isTrue would be our best bet for this code block. 'isBoolean' and 'typeOf' are too general for these purposes. Try to be as specific as possible. Below are the tests you wrote and results of those assertions. Onto the next!`,
   },
   {
-    level: 1,
+    level: 2,
     title: `All Systems are Go?`,
     func: `const allSystemCheck = true;
     const allSystemsAreGo = (allSystemCheck) => {
@@ -268,7 +268,7 @@ const levels = [
     outro: `READY FOR LIFTOFF! Purrrr! So now that that work is done, lets prepare to actually blast off into space. You my have noticed that 'equal' and 'strictEqual' perform a very similar check, but 'equal' can evaluate equality with type coersion (like '0' == 0), which is not really necessary in this particular tes4t. Now, let's launch our rocket so we can get on with the real work of space exploration!`,
   },
   {
-    level: 2,
+    level: 3,
     title: `Launch Rocket!`,
     objective: 'launchRocket() completes the countdown to liftoff!',
     func: `const launchRocket = () => {
@@ -289,7 +289,7 @@ const levels = [
     outro: `Nice! Wow, SPACE, am I right? It's nice out here, so far away from the high school bullies who doubted I could ever be an astroCat. *ahem* Now,our function only ever returns an array, so 'isArray' will definitely pass, but is that the best you can do? I'd wager that 'lengthOf', 'equal' or 'includes' are our better options for testing what our function specificity returns. But regardless, we've made it! We're floating along in our little tin can and preparing for some hardcore space exploration.`,
   },
   {
-    level: 3,
+    level: 4,
     title: 'Meteor check!',
     objective: `meteorFrequency groups and counts all of the meteors in sensor range`,
     func: `const meteorFrequency = (meteors) => {
@@ -326,7 +326,7 @@ const levels = [
     outro: `Look at you, mighty tester! You're really starting to pull your weight on the ship. I'm so pleased to know that our radar is functioning properly and we can navigate space without running into any meteors. The assertion 'property', checks to see if that given value is a property in the object is it is being called upon. 'propertyVal' does a similar, deeper check, searching for a particular key/value pair. In Javacscript, because objects are passed by reference, we have write more precise tests than we do when testing primitives.`
   },
   {
-    level: 4,
+    level: 5,
     title: 'First stop, Superior Station',
     objective: `Testing out the new Catship at Superior Station`,
     func: `class Spacecraft {
@@ -357,11 +357,11 @@ const levels = [
     instructions: `Write 2 tests for 'Catship', a child of the class, 'Spacecraft'. Test the properties on this class to verify that everything is working properly.`,
     testToPass: 2,
     itBlock: `Catship should have access to the properties of its constructor`,
-    intro: `Well aren't we lucky? Chicago (where our headquarters are) just contacted us saying that my archrival, Potato, has totally dropped the ball on her mission. No surprises here. Now, we have the best job you can possibly get while deployed on a Fullstack ship, testing out new spacecraft and trying to break them. Let's write some tests to ensure that our new Model 18.0.2 behaves how we want it to.`,
-    outro: `Aren't ES6 classes just wonderful? They save you so much time and energy by not having to repeat any code for properties shared across multiple iterations. We did such a good job on this last sub-mission that we've been tasked to test out some other hot new tech on Superior Station. Let's go!`,
+    intro: `Well aren't we lucky? Chicago (where our headquarters are) just contacted us saying that my archrival at Fullstack, Princess Potato, has totally dropped the ball on her mission. No surprises here, she's always screwing things up for me. Now, we have the best job you can possibly get while deployed on a Fullstack ship, testing out new spacecraft and trying to break them! Let's write some tests to ensure that our new Model 18.0.2 behaves how we want it to.`,
+    outro: `Aren't classes just wonderful? They save you so much time and energy by not having to repeat any code for properties shared across multiple iterations. We did such a good job on this last sub-mission that we've been tasked to test out some other hot new tech on Superior Station. Let's go!`,
   },
   {
-    level: 5,
+    level: 6,
     title: 'Bait and Switch',
     objective: `Taking inventory of projectiles at Superior Station`,
     func: `class Projectile {
@@ -397,11 +397,47 @@ const torpedoInventory = projectileInventory.reduce((total, projectile) => {
 }, 0)`,
     tests: ['instanceOf', 'equal', 'isNumber', 'property', 'strictEqual'],
     buttons: ['Torpedo', 'torpedoInventory', 'quantum.getConstructorName()', 'spatial'],
-    instructions: `Write 3 tests to check that our torpedoInventory workaround function is working properly. `,
+    instructions: `Write 3 tests to check that our updated torpedoInventory function is working properly. `,
     testToPass: 3,
     itBlock: `torpedoInventory should equal 115`,
-    intro: `It seems we've been duped. It also seems that my rivalry with Potato will persist because she's set us up. While testing out the newest model of the Catship was an exhilerating experience, the crew at Superior neglected to inform us that it also comes with the task of taking inventory of all of the torpedoes in the station. Potato screwed with the inventory so it includes all projectiles, not just torpedoes. So we're going to reduce over the whole collection to find what we're looking for and count them. And, then, of course, write tests for it.`,
-    outro: `Nice job, glad that's over. Let's get out of here before we get wrangled in to doing anymore kitten work! We are high ranking astro-cats and really have no business taking inventory on some station, we are supposed to be explor space. I don't know about you, but I think I could go for some `,
+    intro: `So, it seems that my rivalry with Princess Potato will persist because she's set us up. We've been duped. Testing out the newest model of the Catship was truly an exhilerating experience, but the crew at Superior neglected to inform us that it also comes with the task of taking inventory of all of the torpedoes in the station. *Sigh* Potato messed with the inventory so it includes all projectiles, not just torpedoes. So we're going to reduce over the whole collection to find what we're looking for and count them. And, then, of course, write tests for it.`,
+    outro: `Nice job, glad that's over. Let's get out of here before we get wrangled in to doing anymore kitten work! We are highly trained astro-cats and really have no business taking inventory on some station. We're supposed to be exploring uncharted territories in space! Let's disembark from Superior Station and have some real adventures in the expanse! Oh yeah, and we're taking that new model of Catship. Take that, Princess Potato!`,
+  },
+  {
+    level: 7,
+    title: 'Finding life through sorting!',
+    objective: ``,
+    func: `const swap = (arr, i, j) => {
+  let temp = arr[i];
+  arr[i] = arr[j];
+  arr[j] = temp;
+};
+
+const planetSort = (arr) => {
+  let swaps = 0;
+  let arrCopy = arr.slice();
+  for (let i = 0; i < arrCopy.length - 1; i++) {
+    if (arrCopy[i] > arrCopy[i + 1]) {
+      swap(arrCopy, i, i + 1);
+      swaps++;
+    }
+  }
+  if (swaps > 0) {
+    return planetSort(arrCopy);
+  }
+  return arrCopy;
+}
+
+const exoplanets = [5324246, 234444, 3111000, 4344, 8234566, 734321, 1124560];
+const sortedPlanets = planetSort(exoplanets);
+`,
+    tests: ['lengthOf', 'equal', 'isNumber', 'isArray', 'include'],
+    buttons: ['exoplanets', 'sortedPlanets', 'sortedPlanets[0]'],
+    instructions: `Write at least three tests to make sure our planetSort function is working properly. `,
+    testToPass: 3,
+    itBlock: `planetSort should return the exoplanets in order from lowest to highest`,
+    intro: `'Time for my favorite task of any trip into space, searching the galaxy for habitable exoplanets. Our new Catship, model 18.0.2, uses a sensor rig that populates new the most likely habitable planet space-coordinates into an "exoplanet" array. Then our ship's computer uses an advanced recursive sorting technique to rapidly find the planet most likely to be sustain life. It'd better be working properly, I want to meet some aliens!`,
+    outro: ``,
   },
   {
     level: 10,
