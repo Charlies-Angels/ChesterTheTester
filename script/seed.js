@@ -281,8 +281,8 @@ const levels = [
   return countDown.concat('Liftoff!');
 };`,
     tests: ['equal', 'lengthOf', 'isArray', 'isNumber', 'isFunction', 'include'],
-    instructions: `Pass 2 tests to successfully launch the rocket. Notice that launchRocket is a function that returns an array of numbers 10-1 and 'Liftoff!.  In this level, there will be multiple functions/variables you can use in writing your unit tests. The choice is yours...`,
-    itBlock: `launchRocket() returns an array of numbers 10 through 1 and 'Liftoff!'`,
+    instructions: `Pass 2 tests to successfully launch the rocket. Notice that launchRocket is a function that returns an array of numbers 10-1 and Liftoff!.  In this level, there will be multiple functions/variables you can use in writing your unit tests. The choice is yours...`,
+    itBlock: `launchRocket() returns an array of numbers 10 through 1 and Liftoff!`,
     testToPass: 2,
     buttons: ['launchRocket', 'launchRocket()'],
     intro: `Okay great, you can test a function. I don't know if you've ever been part of a catship crew, but it's pretty common in our industry to do a countdown before liftoff. Now that we know that all systems are go, let's make sure our countdown is functioning properly. Our countdown starts at 10 and counts down to 1 and that's a pretty essential step of preparing for liftoff on a catship. We have to make sure we're all on the schedule, ok? Synchronized watches can only get you so far. Let's write 2 passing tests to check launchRocket`,
@@ -401,7 +401,7 @@ const torpedoInventory = projectileInventory.reduce((total, projectile) => {
     testToPass: 3,
     itBlock: `torpedoInventory should equal 115`,
     intro: `It seems we've been duped. It also seems that my rivalry with Potato will persist because she's set us up. While testing out the newest model of the Catship was an exhilerating experience, the crew at Superior neglected to inform us that it also comes with the task of taking inventory of all of the torpedoes in the station. Potato screwed with the inventory so it includes all projectiles, not just torpedoes. So we're going to reduce over the whole collection to find what we're looking for and count them. And, then, of course, write tests for it.`,
-    outro: `Nice job, glad that's over. Let's get out of here before we get wrangled in to doing anymore kitten work! We are grown up astro-cats and really have no business taking inventory on some silly station, we are supposed to explore space. Blastoff again!`,
+    outro: `Nice job, glad that's over. Let's get out of here before we get wrangled in to doing anymore kitten work! We are high ranking astro-cats and really have no business taking inventory on some station, we are supposed to be explor space. I don't know about you, but I think I could go for some `,
   },
   {
     level: 10,
