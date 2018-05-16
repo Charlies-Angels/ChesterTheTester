@@ -2,6 +2,7 @@ import React from 'react';
 import history from '../../history'
 const Header = (props) => {
   const levels = Array.from({length: 11}).map((_, i) => i);
+  // what is link to prev, next and reference those in each link instead of these functions
   const goBack = () => {
     if (props.active == 0) history.push(`/`)
     else if (history.location.pathname === '/generator') history.push(`/level/10`)
