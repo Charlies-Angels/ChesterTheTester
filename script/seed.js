@@ -283,7 +283,7 @@ const levels = [
     };`,
     tests: ['equal', 'lengthOf', 'isArray', 'isNumber', 'isFunction', 'include'],
     instructions: `Pass 2 tests to successfully launch the rocket. Notice that launchRocket is a function that returns an array of numbers 10-1 and 'Liftoff!.  In this level, there will be multiple functions/variables you can use in writing your unit tests. The choice is yours...`,
-    itBlock: `launchRocket() returns an array containing [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 'Liftoff!']`,
+    itBlock: 'launchRocket() returns an array containing [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, `Liftoff!`]',
     testToPass: 2,
     buttons: ['launchRocket', 'launchRocket()'],
     intro: `Okay great, you can test a function. I don't know if you've ever been part of a catship crew, but it's pretty common in our industry to do a countdown before liftoff. Now that we know that all systems are go, let's make sure our countdown is functioning properly. Our countdown starts at 10 and counts down to 1 and that's a pretty essential step of preparing for liftoff on a catship. We have to make sure we're all on the schedule, ok? Synchronized watches can only get you so far. Let's write 2 passing tests to check launchRocket`,
@@ -312,7 +312,42 @@ const levels = [
      itBlock: `meteorFrequency should return an object`,
      testToPass: 2,
     intro: `Finally we're flying. This is what it's all about... Now that the catship is airborne, let's do an analysis of our meteor sensors. It looks like there are mostly iron meteors floating around. Let's use tests to make sure our radar is actually storing the meteors in range and then automatically sorting them by type. Iron meteors are way more dense, so we do our best to avoid them. So, before we smash into a wall of iron meteors lets write at least three tests for our meteor analysis`,
-    outro: `Look at you, mighty tester! You're really starting to pull your weight on the ship. I'm so pleased to know that our radar is functioning properly and we can navigate space without running into any meteors. The assertion 'property', checks to see if that given value is a property in the object is it is being called upon. 'propertyVal' does a similar, deeper check, searching for a particular key/value pair. In Javacscript, because objects are passed by reference, we have construct more precise tests than we do when testing primitives.`
+    outro: `Look at you, mighty tester! You're really starting to pull your weight on the ship. I'm so pleased to know that our radar is functioning properly and we can navigate space without running into any meteors. The assertion 'property', checks to see if that given value is a property in the object is it is being called upon. 'propertyVal' does a similar, deeper check, searching for a particular key/value pair. In Javacscript, because objects are passed by reference, we have write more precise tests than we do when testing primitives.`
+  },
+  {
+    level: 4,
+    title: 'First stop, Superior Station',
+    objective: `Testing out the new Catship at Superior Station`,
+    func: `class Spacecraft {
+      constructor (model, warp, crew) {
+        this.model = model;
+        this.maxWarp = warp;
+        this.currentWarp = 0;
+        this.crewSize = crew;
+      }
+      punchIt () {
+        return 'Whoosh!'
+      }
+      setWarpDrive (newWarp) {
+        if (newWarp > this.maxWarp) {
+          return \`Warning! $\{newWarp} exceeds max warp. Enter a warp speed less than or equal to $\{this.maxWarp}\`
+        }
+        else {
+          this.currentWarp = newWarp;
+          return \`Current warp is set to $\{this.currentWarp}\`
+        }
+      }
+    }
+    const Catship = new Spacecraft('18.0.2', 4.5, 350)
+    Catship.setWarpDrive(5.2)
+    Catship.setWarpDrive(4.5)`,
+    tests: ['instanceOf', 'equal', 'isNumber', 'isTrue', 'strictEqual'],
+    buttons: ['Catship', 'Catship.model', 'Catship.setWarpDrive(4.5)'],
+    instructions: `Write 3 tests for 'Catship', a child of the class, 'Spacecraft'. Test the properties on this class to verify that everything is working properly.`,
+    testToPass: 3,
+    itBlock: `Catship should have access to the properties of its constructor`,
+    intro: `Well aren't we lucky? Chicago (where our headquarters are) just contacted us saying that my archrival, Potato, has totally dropped the ball on her mission. No surprises here. Now, we have the best job you can possibly get while deployed on a Fullstack ship, testing out new spacecraft and trying to break them. Let's write some tests to ensure that our new Model 18.0.2 behaves how we want it to.`,
+    outro: `Aren't ES6 classes just wonderful? They save you so much time and energy by not having to repeat any code for properties shared across multiple iterations. We did such a good job on this last sub-mission that we've been tasked to test out some other hot new tech on Superior Station. Let's go!`,
   },
   {
     level: 10,
@@ -345,8 +380,6 @@ const levels = [
     itBlock: 'info(), fly(), blastOff() tests',
     testToPass: 5,
     buttons: ['Catship.prototype.info()', 'Spacecraft.prototype.fly()', 'Rocket.prototype.blastOff()', 'Catship.prototype.info', 'Spacecraft.prototype.fly', 'Rocket.prototype.blastOff'],
-    solutions: 'Catship: it remains true that Catship is an instance of Spacecraft, therefore they fly and blast off!',
-    suggestedTests: ['isFunction,Catship.prototype.info', 'isString,Catship.prototype.info()', 'equal,Spacecraft.prototype.fly(),`they fly`'],
     intro: `Pop Quiz! We're here to test catship operations, obviously. So then, you should know the difference between a Spacecraft, a rocket and a catship. See the ES6 code and check if you know that the return statement would say.`,
   }
 ]
