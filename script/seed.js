@@ -363,7 +363,7 @@ async function seed () {
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${levels.length} levels`)
-  console.log(`seeded $`)
+  console.log(`seeded ${asserts.length} asserts`)
   console.log(`seeded successfully`)
 }
 

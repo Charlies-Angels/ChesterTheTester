@@ -120,7 +120,7 @@ class TestGenerator extends Component {
 						</div>
 							<form onSubmit={this.runTest}>
 								<label>
-								    Describe message
+								    Write a describe message for your tests:
 								    <input
 								    type="text"
 								    name="describe"
@@ -130,7 +130,7 @@ class TestGenerator extends Component {
 								{selectOne &&
 								<div>
 								<label>
-								    It message
+								    Write an individual It block message for your tests:
 								    <input
 								    type="text"
 								    name="message"
