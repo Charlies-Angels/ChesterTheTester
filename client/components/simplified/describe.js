@@ -18,7 +18,7 @@ class Describe extends Component {
     const { describe, it, actual, input1, input2, passedTests } = this.props;
     return (
 
-      <PrismCode component="pre" className="language-javascript">
+      <PrismCode component="pre" className="language-javascript"  dataLine={4}>
         {`describe('${describe}', () => {
           ${(passedTests && passedTests.length) ? passedTests.map(element => element) : '' }
     it('${it}', () => {
