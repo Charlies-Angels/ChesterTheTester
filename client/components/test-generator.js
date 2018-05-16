@@ -26,7 +26,8 @@ class TestGenerator extends Component {
 
 	handleClickAssert = (method) => {
 		this.setState({
-			selectOne: method
+			selectOne: method,
+			inputTest2: '',
 		})
 	}
 
@@ -34,19 +35,16 @@ class TestGenerator extends Component {
 		event.preventDefault();
 		const {selectOne, message, inputTest2, inputTest1, selected} = this.state
 		const inputs = [inputTest1, inputTest2];
+		let invokedFuncArr = this.props.generator.trim().split('\n')
+		let invokedFuncStr = invokedFuncArr.pop().replace(/;/g, '')
+		let generatorFunc = invokedFuncArr.join('\n')
 
-		const evalFunc = await this.props.postCodeToGenerator({input: this.props.generator})
-		const evalAssert = await this.props.postCodeToGenerator({input: evalFunc.sandbox, assert: selectOne, itBlock: message, inputs})
-
+		const evalAssert = await this.props.postCodeToGenerator({generator: generatorFunc, input: invokedFuncStr, assert: selectOne, itBlock: message, inputs})
 		if (evalAssert.sandbox === `'${message}'`){
-			const invokedFuncArr = this.props.generator.split('\n')
-			let invokedFuncStr = invokedFuncArr[invokedFuncArr.length - 1]
-			invokedFuncStr = invokedFuncStr.replace(/;/g, '')
-
 			let itString =
 `
 	it('${message}',function(){
-		assert.${selectOne}(${inputs.length ? invokedFuncStr + ',' + inputs.join(',').replace(/,\s*$/, '') : invokedFuncStr})
+		assert.${selectOne}(${inputs[0] ? invokedFuncStr + ',' + inputs.join(',').replace(/,\s*$/, '') : invokedFuncStr})
 	})
 `
 			this.setState({
