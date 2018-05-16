@@ -28,84 +28,84 @@ const asserts = [
   assert: 'isTrue',
   func: `const isTrue = (msg, actual) => {
     if (actual === true) {return msg};
-    return (msg + ', Expected ' + actual + ' to be equal to be true');
+    return (msg + ', Expected ' + actual + ' to be true');
   };`,
   args: ['actual'],
 }, {
   assert: 'isFalse',
   func: `const isFalse = (msg, actual) => {
     if (actual === false) {return msg};
-    return (msg + ', Expected ' + actual + ' to be equal to be false');
+    return (msg + ', Expected ' + actual + ' to be false');
   };`,
   args: ['actual'],
 }, {
   assert: 'isNull',
   func: `const isNull = (msg, actual) => {
     if (actual === null) {return msg};
-    return (msg + ', Expected ' + actual + ' to be equal to be null');
+    return (msg + ', Expected ' + actual + ' to be null');
   };`,
   args: ['actual'],
 }, {
   assert: 'isNotNull',
   func: `const isNotNull = (msg, actual) => {
     if (actual !== null) {return msg};
-    return (msg + ', Expected ' + actual + ' to be equal to not be null');
+    return (msg + ', Expected ' + actual + ' to not be null');
   };`,
   args: ['actual'],
 }, {
   assert: 'isUndefined',
   func: `const isUndefined = (msg, actual) => {
     if (actual === undefined) {return msg};
-    return (msg + ', Expected ' + actual + ' to be equal to be undefined');
+    return (msg + ', Expected ' + actual + ' to be undefined');
   };`,
   args: ['actual'],
 }, {
   assert: 'isNotUndefined',
   func: `const isNotUndefined = (msg, actual) => {
     if (actual !== undefined) {return msg};
-    return (msg + ', Expected ' + actual + ' to be equal to not be undefined');
+    return (msg + ', Expected ' + actual + ' to not be undefined');
   };`,
   args: ['actual'],
 }, {
   assert: 'isArray',
   func: `const isArray = (msg, actual) => {
     if (Array.isArray(actual) === true) {return msg};
-    return (msg + ', Expected ' + actual + ' to be equal to be an array');
+    return (msg + ', Expected ' + actual + ' to be an array');
   };`,
   args: ['actual'],
 }, {
   assert: 'isObject',
   func: `const isObject = (msg, actual) => {
     if (typeof actual === 'object') {return msg};
-    return (msg + ', Expected ' + actual + ' to be equal to be an object');
+    return (msg + ', Expected ' + actual + ' to be an object');
   };`,
   args: ['actual'],
 }, {
   assert: 'isFunction',
   func: `const isFunction = (msg, actual) => {
     if (typeof actual === 'function') {return msg};
-    return (msg + ', Expected ' + actual + ' to be equal to be a function');
+    return (msg + ', Expected ' + actual + ' to be a function');
   };`,
   args: ['actual'],
 }, {
   assert: 'isString',
   func: `const isString = (msg, actual) => {
     if (typeof actual === 'string') {return msg};
-    return (msg + ', Expected ' + actual + ' to be equal to be a string');
+    return (msg + ', Expected ' + actual + ' to be a string');
   };`,
   args: ['actual'],
 }, {
   assert: 'isNumber',
   func: `const isNumber = (msg, actual) => {
     if (typeof actual === 'number') {return msg};
-    return (msg + ', Expected ' + actual + ' to be equal to be a number');
+    return (msg + ', Expected ' + actual + ' to be a number');
   };`,
   args: ['actual'],
 }, {
   assert: 'isBoolean',
   func: `const isBoolean = (msg, actual) => {
     if (typeof actual === 'boolean') {return msg};
-    return (msg + ', Expected ' + actual + ' to be equal to be a boolean');
+    return (msg + ', Expected ' + actual + ' to be a boolean');
   };`,
   args: ['actual'],
 }, {
@@ -337,6 +337,7 @@ async function seed () {
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${levels.length} levels`)
+  console.log(`seeded $`)
   console.log(`seeded successfully`)
 }
 
