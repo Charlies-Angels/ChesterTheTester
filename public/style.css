@@ -335,8 +335,9 @@ h6 {
   border-radius: 3px;
   width: auto;
   height: auto;
-  max-height: 50vh;
+  overflow: scroll;
   padding: .5em;
+  word-wrap: normal;
   margin-top: .5em;
   margin-bottom: .5em;
 }

@@ -250,13 +250,13 @@ const levels = [
     title: `All Systems are Go?`,
     func: `const allSystemCheck = true;
     const allSystemsAreGo = (allSystemCheck) => {
-      if (allSystemCheck === true) {
-        return 'Ready for liftoff!';
-      }
-      else {
-        throw new Error('Systems Check failure!');
-      }
-    };`,
+  if (allSystemCheck === true) {
+    return 'Ready for liftoff!';
+  }
+  else {
+    throw new Error('Systems Check failure!');
+  }
+};`,
     objective: 'Check that all systems are go!',
     instructions: `Write a test for the function 'allSystemsAreGo' to check that its return value equals what we expect. Note that we must invoke our function inside of the test to check its return value!`,
     itBlock: `allSystemsAreGo returns "Ready for liftoff!"`,
@@ -271,19 +271,18 @@ const levels = [
     level: 2,
     title: `Launch Rocket!`,
     objective: 'launchRocket() completes the countdown to liftoff!',
-    func:
-    `const launchRocket = () => {
-      const countDown = [];
-      let counter = 10;
-      while (counter > 0) {
-        countDown.push(counter);
-        counter--;
-      }
-      return countDown.concat('Liftoff!');
-    };`,
+    func: `const launchRocket = () => {
+  const countDown = [];
+  let counter = 10;
+  while (counter > 0) {
+    countDown.push(counter);
+    counter--;
+  }
+  return countDown.concat('Liftoff!');
+};`,
     tests: ['equal', 'lengthOf', 'isArray', 'isNumber', 'isFunction', 'include'],
     instructions: `Pass 2 tests to successfully launch the rocket. Notice that launchRocket is a function that returns an array of numbers 10-1 and 'Liftoff!.  In this level, there will be multiple functions/variables you can use in writing your unit tests. The choice is yours...`,
-    itBlock: 'launchRocket() returns an array containing [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, `Liftoff!`]',
+    itBlock: `launchRocket() returns an array of numbers 10 through 1 and 'Liftoff!'`,
     testToPass: 2,
     buttons: ['launchRocket', 'launchRocket()'],
     intro: `Okay great, you can test a function. I don't know if you've ever been part of a catship crew, but it's pretty common in our industry to do a countdown before liftoff. Now that we know that all systems are go, let's make sure our countdown is functioning properly. Our countdown starts at 10 and counts down to 1 and that's a pretty essential step of preparing for liftoff on a catship. We have to make sure we're all on the schedule, ok? Synchronized watches can only get you so far. Let's write 2 passing tests to check launchRocket`,
@@ -294,16 +293,28 @@ const levels = [
     title: 'Meteor check!',
     objective: `meteorFrequency groups and counts all of the meteors in sensor range`,
     func: `const meteorFrequency = (meteors) => {
-      return meteors.reduce((meteorsByType, type) => {
-        if (type in meteorsByType) {
-          meteorsByType[type]++;
-        } else {
-          meteorsByType[type] = 1;
-        }
-        return meteorsByType;
-      }, {});
-    };
-    const meteorsInRange = ['Iron meteor', 'Iron meteor', 'Stone meteor', 'Stone meteor', 'Stoney-iron meteor', 'Stone meteor', 'Stone meteor', 'Stoney-iron meteor', 'Iron meteor', 'Undetermined meteor', 'Iron meteor', 'Iron meteor',
+  return meteors.reduce((meteorsByType, type) => {
+    if (type in meteorsByType) {
+      meteorsByType[type]++;
+    } else {
+      meteorsByType[type] = 1;
+    }
+    return meteorsByType;
+  }, {});
+};
+    const meteorsInRange = [
+      'Iron meteor',
+      'Iron meteor',
+      'Stone meteor',
+      'Stone meteor',
+      'Stoney-iron meteor',
+      'Stone meteor',
+      'Stone meteor',
+      'Stoney-iron meteor',
+      'Iron meteor',
+      'Undetermined meteor',
+      'Iron meteor',
+      'Iron meteor'
     ];
      `,
      tests: ['isObject', 'isOk', 'isArray', 'lengthOf', 'property', 'propertyVal'],
@@ -319,35 +330,78 @@ const levels = [
     title: 'First stop, Superior Station',
     objective: `Testing out the new Catship at Superior Station`,
     func: `class Spacecraft {
-      constructor (model, warp, crew) {
-        this.model = model;
-        this.maxWarp = warp;
-        this.currentWarp = 0;
-        this.crewSize = crew;
-      }
-      punchIt () {
-        return 'Whoosh!'
-      }
-      setWarpDrive (newWarp) {
-        if (newWarp > this.maxWarp) {
-          return \`Warning! $\{newWarp} exceeds max warp. Enter a warp speed less than or equal to $\{this.maxWarp}\`
-        }
-        else {
-          this.currentWarp = newWarp;
-          return \`Current warp is set to $\{this.currentWarp}\`
-        }
-      }
+  constructor (model, warp, crew) {
+    this.model = model;
+    this.maxWarp = warp;
+    this.currentWarp = 0;
+    this.crewSize = crew;
+  }
+  punchIt () {
+    return 'Whoosh!'
+  }
+  setWarpDrive (newWarp) {
+    if (newWarp > this.maxWarp) {
+      return \`Warning! $\{newWarp} exceeds max warp. Enter a warp speed less than or equal to $\{this.maxWarp}\`
     }
+    else {
+      this.currentWarp = newWarp;
+      return \`Current warp is set to $\{this.currentWarp}\`
+    }
+  }
+}
     const Catship = new Spacecraft('18.0.2', 4.5, 350)
     Catship.setWarpDrive(5.2)
     Catship.setWarpDrive(4.5)`,
     tests: ['instanceOf', 'equal', 'isNumber', 'isTrue', 'strictEqual'],
     buttons: ['Catship', 'Catship.model', 'Catship.setWarpDrive(4.5)'],
-    instructions: `Write 3 tests for 'Catship', a child of the class, 'Spacecraft'. Test the properties on this class to verify that everything is working properly.`,
-    testToPass: 3,
+    instructions: `Write 2 tests for 'Catship', a child of the class, 'Spacecraft'. Test the properties on this class to verify that everything is working properly.`,
+    testToPass: 2,
     itBlock: `Catship should have access to the properties of its constructor`,
     intro: `Well aren't we lucky? Chicago (where our headquarters are) just contacted us saying that my archrival, Potato, has totally dropped the ball on her mission. No surprises here. Now, we have the best job you can possibly get while deployed on a Fullstack ship, testing out new spacecraft and trying to break them. Let's write some tests to ensure that our new Model 18.0.2 behaves how we want it to.`,
     outro: `Aren't ES6 classes just wonderful? They save you so much time and energy by not having to repeat any code for properties shared across multiple iterations. We did such a good job on this last sub-mission that we've been tasked to test out some other hot new tech on Superior Station. Let's go!`,
+  },
+  {
+    level: 5,
+    title: 'Bait and Switch',
+    objective: `Taking inventory of projectiles at Superior Station`,
+    func: `class Projectile {
+  constructor (quantity, type) {
+    this.quantity = quantity;
+    this.type = type;
+  }
+  getConstructorName() {
+    return this.constructor.name;
+  }
+}
+
+class Torpedo extends Projectile {
+  constructor (quantity, type) {
+    super(quantity, type)
+  }
+}
+
+const spatial = new Torpedo(20, 'Spatial');
+const quantum = new Torpedo(15, 'Quantum');
+const stunGrenade = new Projectile(150, 'Stun Grenade');
+const timeStopper = new Projectile(37, 'Time Stopper');
+const photon = new Torpedo(75, 'Photon');
+const gravimetric = new Torpedo(5, 'Gravimetric');
+
+const projectileInventory = [spatial, quantum, stunGrenade, photon, timeStopper, gravimetric];
+
+const torpedoInventory = projectileInventory.reduce((total, projectile) => {
+  if (projectile.getConstructorName() === 'Torpedo') {
+    total += projectile.quantity
+  }
+  return total;
+}, 0)`,
+    tests: ['instanceOf', 'equal', 'isNumber', 'property', 'strictEqual'],
+    buttons: ['Torpedo', 'torpedoInventory', 'quantum.getConstructorName()', 'spatial'],
+    instructions: `Write 3 tests to check that our torpedoInventory workaround function is working properly. `,
+    testToPass: 3,
+    itBlock: `torpedoInventory should equal 115`,
+    intro: `It seems we've been duped. It also seems that my rivalry with Potato will persist because she's set us up. While testing out the newest model of the Catship was an exhilerating experience, the crew at Superior neglected to inform us that it also comes with the task of taking inventory of all of the torpedoes in the station. Potato screwed with the inventory so it includes all projectiles, not just torpedoes. So we're going to reduce over the whole collection to find what we're looking for and count them. And, then, of course, write tests for it.`,
+    outro: `Nice job, glad that's over. Let's get out of here before we get wrangled in to doing anymore kitten work! We are grown up astro-cats and really have no business taking inventory on some silly station, we are supposed to explore space. Blastoff again!`,
   },
   {
     level: 10,
