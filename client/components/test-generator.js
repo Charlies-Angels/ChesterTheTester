@@ -6,8 +6,8 @@ import AceEditor from 'react-ace'
 import Describe from './simplified/describe';
 import AssertButton from './simplified/assert-button';
 import Header from './simplified/header';
-import 'brace/mode/java';
-import 'brace/theme/monokai';
+import 'brace/mode/javascript';
+import 'brace/theme/tomorrow_night';
 
 
 class TestGenerator extends Component {
@@ -71,26 +71,26 @@ class TestGenerator extends Component {
 		const invokedFuncStr = invokedFuncArr[invokedFuncArr.length - 1]
 		return (
 			<div className="layout-container">
-				<Header />
+				<Header active="editor" />
 				<div className="layout-body">
 					<div className="left-side">
 						<AceEditor
 						    mode="javascript"
 						    onChange={(event) => this.props.updateCode(event)}
-						    theme="monokai"
+						    theme="tomorrow_night"
 						    readOnly={false}
 						    value={this.props.generator}
 						    name="ace"
-						    height="350px"
-						    width="350px"
+						    height="550px"
+						    width="550px"
 						    editorProps={{$blockScrolling: true}}
-						    style={{position: 'relative'}}
+
 						/>
 						<button
 						type="clear"
 						name="Clear"
 						className="button-red"
-						onClick={() => {this.props.updateCode('//Type functions here. Make sure to invoke your function! \n')}}
+						onClick={() => {this.props.updateCode('//Type functions here. Make sure to invoke your function! \n' )}}
 						>Clear Editor</button>
 						<button
 						type="cleartest"
@@ -99,8 +99,6 @@ class TestGenerator extends Component {
 						onClick={() => this.setState({selectOne: '', selected: [], inputTest1: '', inputTest2: '', message: '', describe: ''})}
 						>Clear Tests</button>
 					</div>
-				</div>
-				<div>
 					<div className="right-side">
 						<div className="test-block">
 						<a href="http://www.chaijs.com/api/assert/" rel="noopener noreferrer" target="_blank">Open Chai Documentation</a>
