@@ -109,6 +109,29 @@ const asserts = [
   };`,
   args: ['actual'],
 }, {
+  assert: 'throws',
+  func: `const throws = (msg, func, error) => {
+  try{
+    if(func()){
+      return (msg + ', Expected ' + func + ' to throw Error');
+    }
+  }
+  catch(err){
+    if(error){
+      if(err.toString()=== 'Error: ' + error){
+        return msg;
+      }
+      else{
+        return (msg + ', Expected ' + func + ' to throw Error');
+      }
+    }
+    else {
+      return msg;
+    };
+  }
+};`,
+  args: ['function', 'optional custom error message']
+}, {
   assert: 'operator',
   func: `const operator = (msg, val1, operation, val2) => {
     let checkBool = null;

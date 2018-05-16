@@ -10,8 +10,8 @@ router.post('/', async (req, res, next) => {
 	try {
 		const assert = await Assert.findOne({where: {assert: req.body.assert}})
 		const level = await Level.findOne({where: {level: req.body.level}})
-    const run = `${level.dataValues.func};${assert.dataValues.func};${req.body.assert}('${req.body.itBlock}',${req.body.sandbox},${req.body.inputs[0] ? req.body.inputs.join(',') : ''});`;
-    console.log(run);
+    	const run = `${level.dataValues.func};${assert.dataValues.func};${req.body.assert}('${req.body.itBlock}',${req.body.sandbox},${req.body.inputs[0] ? req.body.inputs.join(',') : ''});`;
+    	console.log(run);
 		return sand.run(run, function(output){
 			res.json(output.result)
 		})
@@ -23,13 +23,7 @@ router.post('/', async (req, res, next) => {
 
 router.post('/test-generator', async (req, res, next) => {
 	const assert = await Assert.findOne({where: {assert: req.body.assert}})
-	let run = ''
-	if (req.body.input && Object.keys(req.body).length === 1) {
-		run = req.body.input
-	}
-	else {
-		run = `${assert.dataValues.func};${req.body.assert}('${req.body.itBlock}',${req.body.input},${req.body.inputs[0] ? req.body.inputs.join(',') : ''});`
-	}
+	let run = `${req.body.generator};${assert.dataValues.func};${req.body.assert}('${req.body.itBlock}',${req.body.input},${req.body.inputs[0] ? req.body.inputs.join(',') : ''});`
 	console.log(run)
 	return sand.run(run, function(output){
 		res.json(output.result)

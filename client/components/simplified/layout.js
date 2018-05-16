@@ -42,28 +42,26 @@ class Layout extends Component {
     });
   };
 
-  runTest = () => {
+  runTest = async () => {
     const { selectOne, input1, input2, ranTests, testResponse, actual } = this.state;
     const inputs = [input1, input2];
     const { itBlock } = this.props.level;
 
-    this.props.postCodeToSandbox({ sandbox: actual, level: this.props.match.params.id, itBlock, assert: selectOne, inputs })
-      .then(res => {
-        let str = `it('${itBlock}',function(){
-    assert.${selectOne}(${inputs[0] ? actual + ',' + inputs.join(',') : actual
-  })
+    let res = await this.props.postCodeToSandbox({ sandbox: actual, level: this.props.match.params.id, itBlock, assert: selectOne, inputs })
+
+    let str = `it('${itBlock}',function(){
+    assert.${selectOne}(${inputs[0] ? actual + ',' + inputs.join(',') : actual})
 })`;
-        this.setState({
-          testResponse: [...testResponse, res.sandbox],
-          ranTests: [...ranTests, str],
-        })
-        if (res.sandbox === `'${itBlock}'`) {
-          this.clearForm();
-        }
-      })
-      .catch(err => {
-        console.log(err);
+
+    this.setState({
+      testResponse: [...testResponse, res.sandbox],
+      ranTests: [...ranTests, str],
     })
+
+    if (res.sandbox === `'${itBlock}'`) {
+      this.clearForm();
+    }
+
   }
 
   render() {
