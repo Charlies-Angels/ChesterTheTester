@@ -25,15 +25,9 @@ class TestGenerator extends Component {
 	}
 
 	handleClickAssert = (method) => {
-		console.log(method)
 		this.setState({
 			selectOne: method
 		})
-	}
-
-	sendFunctionToSandbox = (event) => {
-		event.preventDefault();
-
 	}
 
 	runTest = async (event) => {
@@ -157,10 +151,10 @@ class TestGenerator extends Component {
 									</div>)
 									)}
 								<input
-								className={(!describe || !message || !inputTest1) ? "button-inactive" : "button-blue"}
+								className={(!message) ? "button-inactive" : "button-blue"}
 								type="submit"
 								name="Submit"
-								disabled={!describe || !message || !inputTest1}
+								disabled={!message}
 								/>
 								</div>
 								}
