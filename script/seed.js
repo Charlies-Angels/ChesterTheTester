@@ -204,7 +204,7 @@ const asserts = [
 }, {
   assert: 'lengthOf',
   func: `const lengthOf = (msg, actual, len) => {
-    if (actual.length === len) {
+    if (len !== undefined && actual.length === len) {
       return msg;
     }
     return (msg + ', Expected ' + actual + ' to have length of ' + len);
@@ -241,6 +241,7 @@ const levels = [
     itBlock: 'allSystemsCheck should be a boolean',
     tests: ['typeOf', 'isBoolean', 'isTrue', 'isFalse', 'isArray'],
     buttons: ['allSystemsCheck'],
+    actual: 'allSystemsCheck',
     testToPass: 1,
     intro: `Ok cadets, since no one checked the critical functions of the our intergalactic rocket, I guess it's up to us to make sure things are going smoothly. We do unit testing here at Fullstack A-Cat-amy of Space. We test to check validity, make maintenance easier, for documentation, and for better understanding for those will read our code in the future. It looks like I'll have to be the one to teach you the Mocha.js framework and the Chai.js assertion library. Tests should be organized into groups using 'describe' blocks accepting a message and a callback. Individual tests should be the in the second argument of the describe block and start with 'it'. The 'it' block also takes a message as its first parameter and an anonymous function with an assertion as the second. Start by reading the code you're testing and making a game plan for how to test its validity. Let's jump in.`,
     outro: `Congrats, you've written your first Chai assertion! As you might have noticed, you have many options for how to test your code. 'isBoolean', 'isTrue', and 'typeOf' would all pass in these circumstances. But isTrue would be our best bet for this code block. 'isBoolean' and 'typeOf' are too general for these purposes. Try to be as specific as possible. Below are the tests you wrote and results of those assertions. Onto the next!`,
