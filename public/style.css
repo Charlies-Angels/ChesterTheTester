@@ -464,26 +464,28 @@ ul, li {
   align-self: space-between;
 }
 
-/* .transition-wrapper {
-  position: relative;
-  z-index: 1;
+.transition-wrapper {
+  /* position: relative; */
+  /* z-index: 1; */
 }
 
 .transition-wrapper .transition-item {
   position: fixed;
-  top: 0;
+  /* top: 0;
   right: 0;
-  left: 0;
+  left: 0; */
 }
 
 .generator {
+  overflow: auto;
+  box-sizing: border-box;
   transition: transform 0.5s, opacity 0.5s;
   transform: translate3d(0, 0, 0);
 }
 
 .generator.transition-appear {
   opacity: 0;
-  transform: translate3d(100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
 }
 
 .generator.transition-appear.transition-appear-active {
@@ -498,22 +500,24 @@ ul, li {
 
 .generator.transition-leave.transition-leave-active {
   opacity: 0;
-  transform: translate3d(100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
 }
 
 .intro {
+  overflow: auto;
+  box-sizing: border-box;
   transition: transform 0.5s, opacity 0.5s;
-  transform: translate3d(0, 0, 0);
+  /* transform: translate3d(0, 0, 0); */
 }
 
 .intro.transition-appear {
   opacity: 0;
-  transform: translate3d(0, 0, 0);
+  transform: translate3d(-100%, -100%, -100%);
 }
 
 .intro.transition-appear.transition-appear-active {
   opacity: 1;
-  transform: translate3d(-100%, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 
 .intro.transition-leave {
@@ -523,22 +527,24 @@ ul, li {
 
 .intro.transition-leave.transition-leave-active {
   opacity: 0;
-  transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-100%, -100%, -100%);
 }
 
 .layout {
+  overflow: auto;
+  box-sizing: border-box;
   transition: transform 0.5s, opacity 0.5s;
-  transform: translate3d(0, 0, 0);
+  /* transform: translate3d(0, 0, 0); */
 }
 
 .layout.transition-appear {
   opacity: 0;
-  transform: translate3d(0, 0, 0);
+  transform: translate3d(-100%, 0, 0);
 }
 
 .layout.transition-appear.transition-appear-active {
   opacity: 1;
-  transform: translate3d(-100%, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 
 .layout.transition-leave {
@@ -552,18 +558,20 @@ ul, li {
 }
 
 .start {
+  overflow: auto;
+  box-sizing: border-box;
   transition: transform 0.5s, opacity 0.5s;
-  transform: translate3d(0, 0, 0);
+  /* transform: translate3d(0, 0, 0); */
 }
 
 .start.transition-appear {
   opacity: 0;
-  transform: translate3d(0, 0, 0);
+  transform: translate3d(-100, 0, 0);
 }
 
 .start.transition-appear.transition-appear-active {
   opacity: 1;
-  transform: translate3d(-100%, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 
 .start.transition-leave {
@@ -574,4 +582,4 @@ ul, li {
 .start.transition-leave.transition-leave-active {
   opacity: 0;
   transform: translate3d(-100%, 0, 0);
-} */
+}
