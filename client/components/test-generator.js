@@ -81,10 +81,10 @@ class TestGenerator extends Component {
 						    readOnly={false}
 						    value={this.props.generator}
 						    name="ace"
-						    height="550px"
-						    width="550px"
+						    height="70vh"
+						    width="50vw"
 						    editorProps={{$blockScrolling: true}}
-
+                fontSize= "18px"
 						/>
 						<button
 						type="clear"
@@ -120,6 +120,7 @@ class TestGenerator extends Component {
 								    <input
 								    type="text"
 								    name="describe"
+                    className="expect-input"
 								    onChange={ (event) => this.setState({describe: event.target.value})}
 								    />
 								</label>
@@ -130,6 +131,7 @@ class TestGenerator extends Component {
 								    <input
 								    type="text"
 								    name="message"
+                    className="expect-input"
 								    onChange={ (event) => this.setState({message: event.target.value})}
 								    />
 								</label>
@@ -140,6 +142,7 @@ class TestGenerator extends Component {
 										    <input
 										    type="text"
 										    value={this.state['inputTest' + (i + 1)]}
+                        className="expect-input"
 										    name={arg}
 										    onChange={ (event) => this.setState({['inputTest' + (i + 1)]: event.target.value})}
 										    />
