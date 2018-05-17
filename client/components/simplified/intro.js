@@ -23,7 +23,7 @@ class Intro extends Component {
     const thisLevel = this.props.levels.find(lev => lev.level === Number(this.props.match.params.id));
     const levelId = this.props.match.params.id
     return (
-      <div>
+      <div className="transition-item intro">
         <Header active={levelId} />
         <div className="start-container">
           <ScrollArea

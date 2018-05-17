@@ -72,7 +72,7 @@ class Layout extends Component {
     const { selectOne, input1, input2, testResponse, actual, ranTests } = this.state;
 
     return (
-      <div className="layout-container">
+      <div className="layout-container transition-item layout">
         <Header active={level} />
         <div className="layout-body">
 
@@ -98,7 +98,7 @@ class Layout extends Component {
                   {/* add multiple function buttons */}
                   {buttons.map(button => (
                       <button
-                      className={actual === button ? "button-red-active" : "button-red"}
+                      className={actual === button ? 'button-red-active' : 'button-red'}
                       key={button}
                       value={button}
                       onClick={() => this.setState({
