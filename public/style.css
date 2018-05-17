@@ -2,6 +2,7 @@ body {
   font-family: sans-serif;
   width: 100%;
   height: 100%;
+  font-size: 18px;
   color: #c0d3be;
   background-color: #1b1b1c;
   overflow-x: hidden;
@@ -34,11 +35,11 @@ form div {
 
 .success {
   color: #4ce7da;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
 }
 .failure {
   color: #d75b2a;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
 }
 h2 {
   color: #d75b2a;
@@ -52,15 +53,16 @@ h3 {
 }
 h4 {
   font-family: 'Oswald', sans-serif;
+  font-size: 1.2em;
   letter-spacing: .1rem;
 }
 h5 {
   font-family: 'Oswald', sans-serif;
-  font-size: 1.6rem;
+  font-size: 1em;
 }
 h6 {
   font-family: 'Inconsolata', sans-serif;
-  font-size: 1.6rem;
+  font-size: 1em;
 }
 
 .start-container {
