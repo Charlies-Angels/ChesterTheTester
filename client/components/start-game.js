@@ -9,15 +9,15 @@ class StartGame extends Component {
   }
   render() {
     return (
-      <div>
-        <Header active={0} />
+      <div className="transition-item start">
+        <Header />
         <div className="start-container">
           <div className="intro-block">
             <h2>Meet Chester</h2>
             <h3>He's having a bad day. As Captain of the USS Fullstack, he's supposed to launch into the wild unknown of space today, but it seems that his development team has neglected to do any unit or integration testing for their programs. Testing is important to any program, and especially necessary in space travel. This seems to be a challenge for CHESTER THE TESTER.
 
             </h3>
-            <Link to="/level/0">
+            <Link to="/level/1">
               <button className="button-blue">GO TO TUTORIAL</button>
             </Link>
             <Link to="/generator">

@@ -7,7 +7,7 @@ import {me, getLevelsThunk, getAssertsThunk} from './store'
 import Level from './components/simplified/layout';
 import Intro from './components/simplified/intro';
 import TestGenerator from './components/test-generator'
-
+import PageTransition from 'react-router-page-transition';
 /**
  * COMPONENT
  */
@@ -20,12 +20,18 @@ class Routes extends Component {
     const {isLoggedIn} = this.props
 
     return (
-    <Switch>
-        <Route path="/level/:id/tutorial" component={Level} />
-        <Route path="/level/:id" component={Intro} />
-        <Route path="/generator" component={TestGenerator} />
-        <Route component={StartGame} />
-      </Switch>
+      <Route
+        render={({ location }) => (
+        <PageTransition timeout={500}>
+          <Switch>
+            <Route path="/level/:id/tutorial" component={Level} />
+            <Route path="/level/:id" component={Intro} />
+            <Route path="/generator" component={TestGenerator} />
+            <Route component={StartGame} />
+          </Switch>
+        </PageTransition>
+        )}
+      />
     )
   }
 }

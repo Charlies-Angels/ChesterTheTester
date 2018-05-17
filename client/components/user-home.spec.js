@@ -41,7 +41,7 @@ describe('return an array of numbers counting down from 10', () => {
 	let result = launchRocket();
 
 	it('launchRocket should be a function', () => {
-		assert.isNull(launchRocket);
+		assert.isFunction(launchRocket);
 	});
 
 	it('launchRocket should return an array', () => {
@@ -78,9 +78,4 @@ describe('', () => {
 		expect(testRocket.area()).to.equal(50);
 	});
 });
-
-
-
-
-
 

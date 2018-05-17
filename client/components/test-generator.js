@@ -70,7 +70,7 @@ class TestGenerator extends Component {
 		const invokedFuncArr = this.props.generator.trim().split('\n')
 		const invokedFuncStr = invokedFuncArr[invokedFuncArr.length - 1]
 		return (
-			<div className="layout-container">
+			<div className="layout-container transition-item generator">
 				<Header active="editor" />
 				<div className="layout-body">
 					<div className="left-side">
@@ -147,7 +147,7 @@ class TestGenerator extends Component {
 									</div>)
 									)}
 								<input
-								className={(!message) ? "button-inactive" : "button-blue"}
+								className={(!message) ? 'button-inactive' : 'button-blue'}
 								type="submit"
 								name="Submit"
 								disabled={!message}
@@ -180,4 +180,4 @@ const mapDispatchToProps = (dispatch) => {
 	}
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(TestGenerator)
+export default connect(mapStateToProps, mapDispatchToProps)(TestGenerator)
