@@ -23,6 +23,9 @@ class StartGame extends Component {
             <Link to="/generator">
               <button className="button-red">GO TO EDITOR</button>
             </Link>
+            <Link to="/about">
+              <button className="button-blue">ABOUT US</button>
+            </Link>
           </div>
           <div className="chester">
             <img className="chester-img" src="/img/chester.svg" />

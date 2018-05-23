@@ -2,10 +2,11 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome, StartGame} from './components'
+import {StartGame} from './components'
 import {me, getLevelsThunk, getAssertsThunk} from './store'
 import Level from './components/simplified/layout';
 import Intro from './components/simplified/intro';
+import About from './components/simplified/about'
 import TestGenerator from './components/test-generator'
 import PageTransition from 'react-router-page-transition';
 /**
@@ -27,6 +28,7 @@ class Routes extends Component {
             <Route path="/level/:id/tutorial" component={Level} />
             <Route path="/level/:id" component={Intro} />
             <Route path="/generator" component={TestGenerator} />
+            <Route path="/about" component={About} />
             <Route component={StartGame} />
           </Switch>
         </PageTransition>
