@@ -101,10 +101,6 @@ class TestGenerator extends Component {
 					</div>
 
 					<div className="right-side">
-					<div>
-						<h5>Notice what's being tested: <h4>{invokedFuncStr}</h4></h5>
-					</div>
-
 						<div className="test-block">
 						<a href="http://www.chaijs.com/api/assert/" rel="noopener noreferrer" target="_blank">Open Chai Documentation</a>
 						<h5>Choose an assertion: </h5>
