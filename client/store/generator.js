@@ -9,7 +9,7 @@ export const updateCode = code => ({type: UPDATE_CODE, code});
 
 
 //reducer
-export default function (state = '//Type functions here. Make sure to invoke your function! \n', action) {
+export default function (state = '//Type functions here. Make sure to include your function/variable at the end of the editor! \n', action) {
   switch (action.type) {
     case UPDATE_CODE:
       return action.code

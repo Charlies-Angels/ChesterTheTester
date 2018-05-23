@@ -20,7 +20,8 @@ class TestGenerator extends Component {
 			inputTest2: '',
 			message: '',
 			describe: '',
-			error: ''
+			error: '',
+			success: '',
 		}
 	}
 
@@ -51,6 +52,7 @@ class TestGenerator extends Component {
 				selectOne: '',
 				message: '',
 				error: '',
+				success: evalAssert.sandbox,
 				selected: [...selected, itString],
 				inputTest1: '',
 				inputTest2: '',
@@ -58,6 +60,7 @@ class TestGenerator extends Component {
 		}
 		else {
 			this.setState({
+				success: '',
 				error: evalAssert.sandbox
 			})
 		}
@@ -65,7 +68,7 @@ class TestGenerator extends Component {
 
 	render () {
 		if (!this.props.asserts) return <span />
-		const {selected, selectOne, message, describe, inputTest1, inputTest2, error} = this.state
+		const {selected, selectOne, message, describe, inputTest1, inputTest2, error, success} = this.state
 		const { asserts } = this.props
 		const invokedFuncArr = this.props.generator.trim().split('\n')
 		const invokedFuncStr = invokedFuncArr[invokedFuncArr.length - 1]
@@ -159,7 +162,7 @@ class TestGenerator extends Component {
 								</div>
 								}
 							</form>
-							<div className="errormsg">{error && `error: ${error}`}</div>
+							<div>{error ? error : 'Passed Test!!! ' + success}</div>
 							<Describe describe={describe} passedTests={selected} assertion={selectOne} actual={invokedFuncStr} input1={inputTest1} input2={inputTest2} it={message} />
 						</div>
 					</div>
