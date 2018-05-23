@@ -99,7 +99,12 @@ class TestGenerator extends Component {
 						onClick={() => this.setState({selectOne: '', selected: [], inputTest1: '', inputTest2: '', message: '', describe: ''})}
 						>Clear Tests</button>
 					</div>
+
 					<div className="right-side">
+					<div>
+						<h5>Notice what's being tested: <h4>{invokedFuncStr}</h4></h5>
+					</div>
+
 						<div className="test-block">
 						<a href="http://www.chaijs.com/api/assert/" rel="noopener noreferrer" target="_blank">Open Chai Documentation</a>
 						<h5>Choose an assertion: </h5>
@@ -114,13 +119,13 @@ class TestGenerator extends Component {
 								</div>
 							))}
 						</div>
-							<form onSubmit={this.runTest}>
+							<form className="gimme-space" onSubmit={this.runTest}>
 								<label>
 								    Write a describe message for your tests:
 								    <input
 								    type="text"
 								    name="describe"
-                    className="expect-input"
+                    className="generator-input"
 								    onChange={ (event) => this.setState({describe: event.target.value})}
 								    />
 								</label>
@@ -131,7 +136,7 @@ class TestGenerator extends Component {
 								    <input
 								    type="text"
 								    name="message"
-                    className="expect-input"
+                    className="generator-input"
 								    onChange={ (event) => this.setState({message: event.target.value})}
 								    />
 								</label>
@@ -142,7 +147,7 @@ class TestGenerator extends Component {
 										    <input
 										    type="text"
 										    value={this.state['inputTest' + (i + 1)]}
-                        className="expect-input"
+                        className="generator-input"
 										    name={arg}
 										    onChange={ (event) => this.setState({['inputTest' + (i + 1)]: event.target.value})}
 										    />
@@ -158,7 +163,7 @@ class TestGenerator extends Component {
 								</div>
 								}
 							</form>
-							<div>{error}</div>
+							<div className="errormsg">{error && `error: ${error}`}</div>
 							<Describe describe={describe} passedTests={selected} assertion={selectOne} actual={invokedFuncStr} input1={inputTest1} input2={inputTest2} it={message} />
 						</div>
 					</div>
