@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import Header from './simplified/header';
 
 class StartGame extends Component {
@@ -17,15 +17,15 @@ class StartGame extends Component {
             <h3>He's having a bad day. As Captain of the USS Fullstack, he's supposed to launch into the wild unknown of space today, but it seems that his development team has neglected to do any unit or integration testing for their programs. Testing is important to any program, and especially necessary in space travel. This seems to be a challenge for CHESTER THE TESTER.
 
             </h3>
-            <Link to="/level/1">
+            <NavLink to="/level/1">
               <button className="button-blue">GO TO TUTORIAL</button>
-            </Link>
-            <Link to="/generator">
+            </NavLink>
+            <NavLink to="/generator">
               <button className="button-red">GO TO EDITOR</button>
-            </Link>
-            <Link to="/about">
+            </NavLink>
+            <NavLink to="/about">
               <button className="button-blue">ABOUT US</button>
-            </Link>
+            </NavLink>
           </div>
           <div className="chester">
             <img className="chester-img" src="/img/chester.svg" />

@@ -424,6 +424,27 @@ ul, li {
   outline-color: #34a89e;
   }
 
+.generator-input{
+  padding: .2em .3em;
+  margin: 0 0.15em 0.15em 1em;
+  width: 15vw;
+  border-radius: 0em;
+  font-family: 'Inconsolata', sans-serif;
+  font-weight: 400;
+  color: #1b1b1c;
+  background-color: #4ce7da;
+  /* box-shadow: inset 0 -0.6em 0 -0.35em #34a89e; */
+  text-align: left;
+  position: relative;
+  border: none;
+  text-decoration: none;
+  outline-color: #34a89e;
+  }
+
+.gimme-space {
+  padding-top: 3vh;
+}
+
 .expect-input::placeholder {
   color: #34a89e;
 }
@@ -584,4 +605,8 @@ ul, li {
 .start.transition-leave.transition-leave-active {
   opacity: 0;
   transform: translate3d(-100%, 0, 0);
+}
+
+.errormsg {
+  background-color: red;
 }
